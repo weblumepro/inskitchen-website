@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In's Kitchen — Design Mockup · Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --bg:           #0C0906;
+      --bg-alt:       #131009;
+      --bg-card:      #1E1610;
+      --bg-card-hover:#261D12;
+      --gold:         #C8922A;
+      --gold-light:   #E8B448;
+      --gold-dim:     #7A5618;
+      --red:          #B83828;
+      --cream:        #F2E6D2;
+      --cream-mid:    #C4B49A;
+      --cream-muted:  #7A6E5E;
+      --border:       #2C2016;
+      --border-light: #3D2D1A;
+
+      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-label:   'Space Grotesk', 'Inter', sans-serif;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+
+      --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in:    cubic-bezier(0.7, 0, 0.84, 0);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ─── UTILITY ─── */
+    .label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+
+    /* ─── MOCKUP BADGE ─── */
+    .mockup-badge {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      background: rgba(200, 146, 42, 0.95);
+      color: #0C0906;
+      font-family: var(--font-label);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+    }
+
+    /* ─── NAVBAR ─── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(12, 9, 6, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span {
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-mid);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold) !important;
+      border: 1px solid var(--gold-dim);
+      padding: 8px 20px;
+      border-radius: 100px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--bg) !important;
+      border-color: var(--gold) !important;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(90, 45, 12, 0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 70%, rgba(180, 56, 40, 0.12) 0%, transparent 60%),
+        linear-gradient(160deg, #1A0F07 0%, #0C0906 50%, #0F0A05 100%);
+    }
+    /* Subtle grain texture */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    /* Korean character decoration */
+    .hero-korean-char {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Noto Sans KR', var(--font-display);
+      font-size: clamp(140px, 18vw, 240px);
+      font-weight: 700;
+      color: rgba(200, 146, 42, 0.06);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 32px;
+    }
+    .hero-label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .hero-label::before, .hero-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--cream-mid);
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(200, 146, 42, 0.3);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-mid);
+      border: 1px solid var(--border-light);
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--cream-mid);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.5;
+    }
+    .hero-scroll span {
+      font-family: var(--font-label);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--cream-muted), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(0.7); }
+    }
+
+    /* ─── BADGE STRIP ─── */
+    .badges {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      overflow: hidden;
+    }
+    .badges-inner {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: marquee 24s linear infinite;
+    }
+    .badges-inner:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 48px;
+      font-family: var(--font-label);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      flex-shrink: 0;
+    }
+    .badge-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .badge-item.highlight { color: var(--gold); }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section {
+      padding: 120px 0;
+    }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-header {
+      margin-bottom: 64px;
+    }
+    .section-header.centered { text-align: center; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-top: 16px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--cream-muted);
+      max-width: 480px;
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+    .section-header.centered .section-sub {
+      margin: 16px auto 0;
+    }
+
+    /* ─── DISHES GRID ─── */
+    .dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .dish-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.35s var(--ease-out), border-color 0.3s, box-shadow 0.35s;
+      cursor: pointer;
+    }
+    .dish-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-light);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,146,42,0.1);
+    }
+    .dish-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+    }
+    .dish-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out), filter 0.4s;
+      filter: brightness(0.85) saturate(1.1);
+    }
+    .dish-card:hover .dish-photo-img {
+      transform: scale(1.06);
+      filter: brightness(0.9) saturate(1.2);
+    }
+    .dish-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: var(--font-label);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      opacity: 0.6;
+    }
+    .dish-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(12, 9, 6, 0.8);
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(8px);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-family: var(--font-label);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .dish-body {
+      padding: 28px;
+    }
+    .dish-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .dish-desc {
+      font-size: 14px;
+      color: var(--cream-muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .dish-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dish-price {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+    .dish-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-muted);
+      font-size: 14px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .dish-card:hover .dish-arrow {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg);
+      transform: rotate(45deg);
+    }
+    .dishes-cta {
+      text-align: center;
+      margin-top: 56px;
+    }
+
+    /* ─── STORY SECTION ─── */
+    .story {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .story-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .story-text { }
+    .story-blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--cream);
+      margin: 24px 0 32px;
+      padding-left: 28px;
+      border-left: 2px solid var(--gold);
+    }
+    .story-body {
+      font-size: 15px;
+      color: var(--cream-muted);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .link-arrow {
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: gap 0.2s;
+    }
+    .link-arrow:hover { gap: 16px; }
+    .story-image {
+      position: relative;
+    }
+    .story-image-main {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    .story-image-accent {
+      position: absolute;
+      bottom: -32px;
+      left: -32px;
+      width: 55%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 4px solid var(--bg-alt);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: var(--font-label);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(200, 146, 42, 0.4);
+    }
+    .photo-placeholder-icon {
+      font-size: 28px;
+      opacity: 0.3;
+    }
+    .story-badge {
+      position: absolute;
+      top: 28px;
+      right: -20px;
+      background: var(--gold);
+      color: var(--bg);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-label);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      box-shadow: 0 8px 32px rgba(200, 146, 42, 0.4);
+    }
+
+    /* ─── PILLARS ─── */
+    .pillars {
+      border-top: 1px solid var(--border);
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .pillar {
+      padding: 56px 40px;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .pillar:last-child { border-right: none; }
+    .pillar:hover { background: var(--bg-alt); }
+    .pillar-icon {
+      font-size: 28px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .pillar-desc {
+      font-size: 14px;
+      color: var(--cream-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── HOURS / FIND US ─── */
+    .hours {
+      position: relative;
+      overflow: hidden;
+    }
+    .hours-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 80% 50%, rgba(184, 56, 40, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 10% 30%, rgba(200, 146, 42, 0.06) 0%, transparent 50%),
+        var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hours-label-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .hours-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 48px;
+    }
+    .hours-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .hours-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-row:first-child { border-top: 1px solid var(--border); }
+    .hours-day {
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--cream-mid);
+    }
+    .hours-time {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .hours-time.closed { color: var(--cream-muted); font-style: italic; font-size: 14px; }
+    .hours-time.today {
+      color: var(--gold-light);
+    }
+    .location-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .location-map {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 32px;
+      border: 1px solid var(--border);
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #131009, #1E1610);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--cream-muted);
+      font-family: var(--font-label);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .map-pin { font-size: 28px; }
+    .location-info { display: flex; flex-direction: column; gap: 20px; }
+    .location-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .location-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .location-text-label {
+      font-family: var(--font-label);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .location-text-value {
+      font-size: 15px;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+    .location-text-value a {
+      color: var(--cream-mid);
+      transition: color 0.2s;
+    }
+    .location-text-value a:hover { color: var(--gold); }
+    .directions-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 32px;
+      padding: 16px;
+      background: transparent;
+      border: 1px solid var(--gold-dim);
+      border-radius: var(--radius-md);
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+      cursor: pointer;
+    }
+    .directions-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ─── INSTAGRAM ─── */
+    .instagram {
+      padding: 80px 0 0;
+    }
+    .insta-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .insta-handle {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-top: 12px;
+    }
+    .insta-handle span { color: var(--gold); }
+    .insta-sub {
+      font-size: 14px;
+      color: var(--cream-muted);
+      margin-top: 8px;
+    }
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 3px;
+    }
+    .insta-cell {
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .insta-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(200, 146, 42, 0);
+      transition: background 0.3s;
+    }
+    .insta-cell:hover::after {
+      background: rgba(200, 146, 42, 0.2);
+    }
+    .insta-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      opacity: 0.4;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 64px 48px 40px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--cream-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--cream-muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(200, 146, 42, 0.08);
+    }
+    .footer-col-title {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--cream-muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--cream-muted);
+    }
+    .footer-love {
+      font-size: 13px;
+      color: var(--cream-muted);
+    }
+    .footer-love span { color: var(--gold); }
+
+    /* ─── HALAL FLOATING BADGE ─── */
+    .halal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 80, 30, 0.2);
+      border: 1px solid rgba(80, 180, 80, 0.25);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD87D;
+      margin-bottom: 20px;
+    }
+    .halal-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7DD87D;
+    }
+
+    /* ─── PHOTO GRADIENTS ─── */
+    .photo-grad-1 { background: linear-gradient(135deg, #3D1A08, #1A0C06, #2A1510); }
+    .photo-grad-2 { background: linear-gradient(135deg, #1A0A20, #0C0615, #200E2A); }
+    .photo-grad-3 { background: linear-gradient(135deg, #1A1208, #0C0A04, #251808); }
+    .photo-grad-4 { background: linear-gradient(135deg, #200A0A, #0C0606, #2A1010); }
+    .photo-grad-5 { background: linear-gradient(135deg, #0A1A10, #060C08, #0E2016); }
+    .photo-grad-6 { background: linear-gradient(135deg, #1A0E18, #0C0610, #221020); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .nav { padding: 0 32px; }
+      .section-inner { padding: 0 32px; }
+      .dishes-grid { grid-template-columns: repeat(2, 1fr); }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .pillar:nth-child(2) { border-right: none; }
+      .pillar:nth-child(3) { border-right: 1px solid var(--border); }
+      .story-inner { padding: 80px 32px; gap: 48px; }
+      .hours-inner { padding: 80px 32px; gap: 48px; }
+      .insta-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero-title { font-size: clamp(36px, 10vw, 64px); }
+      .section-inner { padding: 0 24px; }
+      .section { padding: 80px 0; }
+      .dishes-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .story-inner {
+        padding: 80px 24px;
+        grid-template-columns: 1fr;
+      }
+      .story-image { display: none; }
+      .hours-inner {
+        padding: 80px 24px;
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .insta-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer { padding: 48px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOCKUP INDICATOR -->
+  <div class="mockup-badge">Design Mockup</div>
+
+  <!-- ═══════════════════════════════════════ NAV ═══ -->
+  <nav class="nav" id="navbar">
+    <a href="#" class="nav-logo">In<span>'</span>s Kitchen</a>
+    <ul class="nav-links">
+      <li><a href="#dishes">Menu</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#hours">Find Us</a></li>
+      <li><a href="https://www.instagram.com/in.s_kitchen" target="_blank">Instagram</a></li>
+      <li><a href="https://g.page/inskitchen/review" target="_blank" class="nav-cta">Review Us ↗</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-korean-char">한</div>
+
+    <div class="hero-content">
+      <div class="halal-badge">
+        <span class="halal-dot"></span>
+        100% Halal Certified
+      </div>
+      <div class="hero-label">
+        <span>Authentic Korean Cuisine</span>
+        <span>·</span>
+        <span>Ottawa, ON</span>
+      </div>
+      <h1 class="hero-title">
+        Seoul in<br>Every <em>Bowl</em>
+      </h1>
+      <p class="hero-subtitle">
+        Home-cooked Korean flavours crafted with Triple&#8202;A beef and the warmth of a neighbourhood kitchen.
+      </p>
+      <div class="hero-actions">
+        <a href="mockup-menu.html" class="btn-primary">
+          View Menu
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#story" class="btn-secondary">Our Story</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ BADGES ═══ -->
+  <div class="badges">
+    <div class="badges-inner">
+      <!-- Repeated twice for seamless loop -->
+      <div class="badge-item highlight"><span class="badge-dot"></span>100% Halal Certified</div>
+      <div class="badge-item"><span class="badge-dot"></span>Triple A Canadian Beef</div>
+      <div class="badge-item"><span class="badge-dot"></span>Authentic Seoul Recipes</div>
+      <div class="badge-item"><span class="badge-dot"></span>Ottawa's Korean Kitchen</div>
+      <div class="badge-item"><span class="badge-dot"></span>Walk-Ins Welcome</div>
+      <div class="badge-item"><span class="badge-dot"></span>Near University of Ottawa</div>
+      <div class="badge-item highlight"><span class="badge-dot"></span>100% Halal Certified</div>
+      <div class="badge-item"><span class="badge-dot"></span>Triple A Canadian Beef</div>
+      <div class="badge-item"><span class="badge-dot"></span>Authentic Seoul Recipes</div>
+      <div class="badge-item"><span class="badge-dot"></span>Ottawa's Korean Kitchen</div>
+      <div class="badge-item"><span class="badge-dot"></span>Walk-Ins Welcome</div>
+      <div class="badge-item"><span class="badge-dot"></span>Near University of Ottawa</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ DISHES ═══ -->
+  <section class="section" id="dishes">
+    <div class="section-inner">
+      <div class="section-header centered fade-up">
+        <div class="label">Signature Dishes</div>
+        <h2 class="section-title">From Our Kitchen,<br>To <em>Your Soul</em></h2>
+        <p class="section-sub">Every dish is made fresh, in-house, with ingredients we're proud of — and flavours that bring Seoul to Ottawa.</p>
+      </div>
+
+      <div class="dishes-grid">
+
+        <!-- Dish 1 -->
+        <div class="dish-card fade-up delay-1">
+          <div class="dish-photo">
+            <div class="dish-photo-placeholder photo-grad-1">
+              <span style="font-size:40px;">🥩</span>
+              <span>Food Photo</span>
+            </div>
+            <div class="dish-tag">Chef's Pick</div>
+          </div>
+          <div class="dish-body">
+            <div class="dish-name">Bulgogi Bowl</div>
+            <div class="dish-desc">Thinly sliced Triple A marinated beef over steamed rice, with banchan and house gochujang.</div>
+            <div class="dish-footer">
+              <div class="dish-price">$16</div>
+              <div class="dish-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dish 2 -->
+        <div class="dish-card fade-up delay-2">
+          <div class="dish-photo">
+            <div class="dish-photo-placeholder photo-grad-2">
+              <span style="font-size:40px;">🍲</span>
+              <span>Food Photo</span>
+            </div>
+            <div class="dish-tag">Most Loved</div>
+          </div>
+          <div class="dish-body">
+            <div class="dish-name">Sundubu Jjigae</div>
+            <div class="dish-desc">Silken tofu stew in a deep, spicy broth with your choice of protein — served bubbling hot.</div>
+            <div class="dish-footer">
+              <div class="dish-price">$14</div>
+              <div class="dish-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dish 3 -->
+        <div class="dish-card fade-up delay-3">
+          <div class="dish-photo">
+            <div class="dish-photo-placeholder photo-grad-4">
+              <span style="font-size:40px;">🍱</span>
+              <span>Food Photo</span>
+            </div>
+            <div class="dish-tag">Street Classic</div>
+          </div>
+          <div class="dish-body">
+            <div class="dish-name">Tteokbokki</div>
+            <div class="dish-desc">Chewy rice cakes simmered in our signature spicy-sweet gochujang sauce — a Seoul street food staple.</div>
+            <div class="dish-footer">
+              <div class="dish-price">$12</div>
+              <div class="dish-arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="dishes-cta fade-up">
+        <a href="mockup-menu.html" class="btn-primary">
+          View Full Menu
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ PILLARS ═══ -->
+  <div class="pillars">
+    <div class="pillars-grid">
+      <div class="pillar fade-up delay-1">
+        <span class="pillar-icon">☪️</span>
+        <div class="pillar-title">100% Halal</div>
+        <div class="pillar-desc">Every ingredient we source is fully halal — because great food should be for everyone.</div>
+      </div>
+      <div class="pillar fade-up delay-2">
+        <span class="pillar-icon">🥩</span>
+        <div class="pillar-title">Triple A Beef</div>
+        <div class="pillar-desc">We only use Canada's finest Triple A grade beef for richness, tenderness, and flavour.</div>
+      </div>
+      <div class="pillar fade-up delay-3">
+        <span class="pillar-icon">🍽️</span>
+        <div class="pillar-title">Made Fresh Daily</div>
+        <div class="pillar-desc">No shortcuts. Every banchan, every broth, every sauce is made from scratch each morning.</div>
+      </div>
+      <div class="pillar fade-up delay-4">
+        <span class="pillar-icon">🏘️</span>
+        <div class="pillar-title">Neighbourhood Roots</div>
+        <div class="pillar-desc">Located steps from uOttawa — a warm, welcoming kitchen for students, families, and regulars.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ STORY ═══ -->
+  <section class="story" id="story">
+    <div class="story-inner">
+      <div class="story-text fade-up">
+        <div class="label">Our Story</div>
+        <blockquote class="story-blockquote">
+          "We wanted to bring the warmth of a Seoul home kitchen to Ottawa — one bowl at a time."
+        </blockquote>
+        <p class="story-body">
+          In's Kitchen was born from a simple belief: that authentic Korean food, made with love and the finest halal ingredients, could bring people together. We started small on Templeton Street, serving the uOttawa community, and we haven't looked back since.<br><br>
+          Every dish is rooted in tradition — the kind passed down through generations in Korean kitchens. We just happen to make it here, in Ottawa, for you.
+        </p>
+        <a href="#" class="link-arrow">
+          Read Our Full Story
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="story-image fade-up delay-2">
+        <div class="story-image-main photo-grad-3">
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">📸</div>
+            <span>Restaurant / Interior Photo</span>
+          </div>
+        </div>
+        <div class="story-image-accent photo-grad-5">
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon">👩‍🍳</div>
+            <span>Chef Photo</span>
+          </div>
+        </div>
+        <div class="story-badge">
+          Halal<br>Certified
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ HOURS & LOCATION ═══ -->
+  <section class="hours" id="hours">
+    <div class="hours-bg"></div>
+    <div class="hours-inner">
+
+      <div class="fade-up">
+        <div class="hours-label-row">
+          <div class="label">Hours & Location</div>
+        </div>
+        <h2 class="hours-title">Come<br>Find <em style="font-style:italic;color:var(--gold-light)">Us</em></h2>
+        <div class="hours-rows">
+          <div class="hours-row">
+            <span class="hours-day">Monday – Friday</span>
+            <span class="hours-time">11:00 am – 8:00 pm</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Saturday</span>
+            <span class="hours-time">12:00 pm – 7:00 pm</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sunday</span>
+            <span class="hours-time closed">Closed</span>
+          </div>
+        </div>
+        <p style="margin-top:24px;font-size:13px;color:var(--cream-muted);">
+          * Holiday hours may vary — check our <a href="https://www.instagram.com/in.s_kitchen" style="color:var(--gold);">Instagram</a> for updates.
+        </p>
+      </div>
+
+      <div class="fade-up delay-2">
+        <div class="location-card">
+          <div class="location-map">
+            <div class="map-placeholder">
+              <div class="map-pin">📍</div>
+              <span>Google Map Embed Here</span>
+            </div>
+          </div>
+          <div class="location-info">
+            <div class="location-row">
+              <div class="location-icon">📍</div>
+              <div>
+                <div class="location-text-label">Address</div>
+                <div class="location-text-value">65-1 Templeton St.<br>Ottawa, ON  K1N 0A6</div>
+              </div>
+            </div>
+            <div class="location-row">
+              <div class="location-icon">📞</div>
+              <div>
+                <div class="location-text-label">Phone</div>
+                <div class="location-text-value"><a href="tel:6132331001">(613) 233-1001</a></div>
+              </div>
+            </div>
+            <div class="location-row">
+              <div class="location-icon">✉️</div>
+              <div>
+                <div class="location-text-label">Email</div>
+                <div class="location-text-value"><a href="mailto:suyeon@inskitchen.ca">suyeon@inskitchen.ca</a></div>
+              </div>
+            </div>
+          </div>
+          <button class="directions-btn" onclick="window.open('https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON', '_blank')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Get Directions
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ INSTAGRAM ═══ -->
+  <section class="instagram">
+    <div class="insta-header fade-up">
+      <div class="label">Follow Along</div>
+      <div class="insta-handle">@In<span>.</span>s_kitchen</div>
+      <div class="insta-sub">Behind the scenes, daily specials, and all the good stuff.</div>
+    </div>
+    <div class="insta-grid">
+      <div class="insta-cell photo-grad-1"><div class="insta-placeholder">🥩</div></div>
+      <div class="insta-cell photo-grad-4"><div class="insta-placeholder">🍲</div></div>
+      <div class="insta-cell photo-grad-2"><div class="insta-placeholder">🍜</div></div>
+      <div class="insta-cell photo-grad-5"><div class="insta-placeholder">🥗</div></div>
+      <div class="insta-cell photo-grad-3"><div class="insta-placeholder">🍱</div></div>
+      <div class="insta-cell photo-grad-6"><div class="insta-placeholder">🫕</div></div>
+    </div>
+    <div style="text-align:center;padding:32px;">
+      <a href="https://www.instagram.com/in.s_kitchen" target="_blank" class="btn-secondary">
+        Follow on Instagram
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">In<span>'</span>s Kitchen</div>
+          <div class="footer-tagline">
+            Authentic Korean cuisine in the heart of Ottawa. 100% Halal. Triple A Beef. Made with love.
+          </div>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/in.s_kitchen" class="social-link" title="Instagram">📷</a>
+            <a href="https://www.facebook.com" class="social-link" title="Facebook">f</a>
+            <a href="https://g.page/inskitchen/review" class="social-link" title="Google">G</a>
+            <a href="mailto:suyeon@inskitchen.ca" class="social-link" title="Email">✉</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#dishes">Menu</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#hours">Find Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Visit Us</div>
+          <ul class="footer-links">
+            <li><a href="#">65-1 Templeton St.</a></li>
+            <li><a href="#">Ottawa, ON  K1N 0A6</a></li>
+            <li><a href="tel:6132331001">(613) 233-1001</a></li>
+            <li><a href="mailto:suyeon@inskitchen.ca">suyeon@inskitchen.ca</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 In's Kitchen · All rights reserved.</div>
+        <div class="footer-love">Made with <span>♥</span> in Ottawa, ON</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Scroll-reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In's Kitchen — Menu · Design Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0C0906;
+      --bg-alt:       #131009;
+      --bg-card:      #1E1610;
+      --gold:         #C8922A;
+      --gold-light:   #E8B448;
+      --gold-dim:     #7A5618;
+      --cream:        #F2E6D2;
+      --cream-mid:    #C4B49A;
+      --cream-muted:  #7A6E5E;
+      --border:       #2C2016;
+      --border-light: #3D2D1A;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-label:   'Space Grotesk', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    .label {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* MOCKUP BADGE */
+    .mockup-badge {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      background: rgba(200, 146, 42, 0.95);
+      color: #0C0906;
+      font-family: var(--font-label);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(12, 9, 6, 0.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta {
+      color: var(--gold) !important;
+      border: 1px solid var(--gold-dim);
+      padding: 8px 20px;
+      border-radius: 100px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--bg) !important; border-color: var(--gold) !important; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding-top: 120px;
+      padding-bottom: 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(90, 45, 12, 0.3) 0%, transparent 70%);
+    }
+    .page-header-content { position: relative; }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-top: 16px;
+    }
+    .page-header p {
+      font-size: 16px;
+      color: var(--cream-muted);
+      margin-top: 16px;
+    }
+
+    /* MENU TABS */
+    .menu-tabs-wrap {
+      position: sticky;
+      top: 72px;
+      z-index: 50;
+      background: rgba(12, 9, 6, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-tabs {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .menu-tabs::-webkit-scrollbar { display: none; }
+    .menu-tab {
+      flex-shrink: 0;
+      padding: 18px 28px;
+      font-family: var(--font-label);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: var(--font-label);
+    }
+    .menu-tab.active, .menu-tab:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* MENU SECTIONS */
+    .menu-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 48px 120px;
+    }
+    .menu-section {
+      margin-bottom: 72px;
+    }
+    .menu-section-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-section-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+    .menu-section-count {
+      font-family: var(--font-label);
+      font-size: 11px;
+      color: var(--cream-muted);
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+
+    /* MENU ITEMS */
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .menu-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 0;
+      position: relative;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item::before {
+      content: '';
+      position: absolute;
+      inset: 0 -16px;
+      border-radius: 8px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+    .menu-item:hover::before { background: rgba(200, 146, 42, 0.04); }
+    .menu-item-left { position: relative; }
+    .menu-item-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .item-badge {
+      font-family: var(--font-label);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+    .badge-hot {
+      background: rgba(184, 56, 40, 0.2);
+      color: #E87060;
+      border: 1px solid rgba(184, 56, 40, 0.3);
+    }
+    .badge-popular {
+      background: rgba(200, 146, 42, 0.15);
+      color: var(--gold-light);
+      border: 1px solid rgba(200, 146, 42, 0.25);
+    }
+    .badge-halal {
+      background: rgba(30, 100, 30, 0.2);
+      color: #80D880;
+      border: 1px solid rgba(60, 160, 60, 0.25);
+    }
+    .menu-item-desc {
+      font-size: 14px;
+      color: var(--cream-muted);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+    .menu-item-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .menu-item-price {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+    .menu-item-note {
+      font-size: 11px;
+      color: var(--cream-muted);
+      margin-top: 4px;
+    }
+
+    /* LUNCH/DINNER TOGGLE */
+    .service-toggle {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 48px 0;
+      display: flex;
+      gap: 12px;
+    }
+    .service-btn {
+      padding: 10px 28px;
+      border-radius: 100px;
+      font-family: var(--font-label);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      border: 1px solid var(--border-light);
+      color: var(--cream-muted);
+      background: none;
+    }
+    .service-btn.active {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+    .service-btn:not(.active):hover {
+      border-color: var(--cream-mid);
+      color: var(--cream);
+    }
+
+    /* HALAL NOTE */
+    .halal-note {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 48px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .halal-note-text {
+      font-size: 13px;
+      color: var(--cream-muted);
+    }
+    .halal-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(30, 100, 30, 0.15);
+      border: 1px solid rgba(60, 160, 60, 0.2);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #80D880;
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      border-top: 1px solid var(--border);
+      padding: 48px;
+      text-align: center;
+    }
+    .page-footer p {
+      font-size: 13px;
+      color: var(--cream-muted);
+      margin-bottom: 8px;
+    }
+    .page-footer a {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .menu-tabs { padding: 0 24px; }
+      .service-toggle { padding: 24px 24px 0; }
+      .halal-note { padding: 16px 24px 0; }
+      .menu-body { padding: 48px 24px 80px; }
+      .menu-item { grid-template-columns: 1fr auto; gap: 16px; }
+      .page-footer { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mockup-badge">Design Mockup — Menu Page</div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="mockup-home.html" class="nav-logo">In<span>'</span>s Kitchen</a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Menu</a></li>
+      <li><a href="mockup-home.html#story">Our Story</a></li>
+      <li><a href="mockup-home.html#hours">Find Us</a></li>
+      <li><a href="https://www.instagram.com/in.s_kitchen" target="_blank">Instagram</a></li>
+      <li><a href="#" class="nav-cta">Review Us ↗</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content">
+      <div class="label">In's Kitchen</div>
+      <h1>Our <em>Menu</em></h1>
+      <p>Made fresh daily. Served with care.</p>
+    </div>
+  </div>
+
+  <!-- LUNCH / DINNER TOGGLE -->
+  <div class="service-toggle">
+    <button class="service-btn active" onclick="this.parentElement.querySelectorAll('.service-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Lunch Menu</button>
+    <button class="service-btn" onclick="this.parentElement.querySelectorAll('.service-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Dinner Menu</button>
+  </div>
+
+  <!-- HALAL NOTE -->
+  <div class="halal-note">
+    <div class="halal-pill">☪ 100% Halal</div>
+    <div class="halal-note-text">All meat sourced from certified halal suppliers. Triple A Canadian beef throughout.</div>
+  </div>
+
+  <!-- STICKY SECTION TABS -->
+  <div class="menu-tabs-wrap">
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="scroll_to('starters')">Starters</button>
+      <button class="menu-tab" onclick="scroll_to('soups')">Soups & Stews</button>
+      <button class="menu-tab" onclick="scroll_to('rice')">Rice Bowls</button>
+      <button class="menu-tab" onclick="scroll_to('noodles')">Noodles</button>
+      <button class="menu-tab" onclick="scroll_to('sides')">Sides & Banchan</button>
+      <button class="menu-tab" onclick="scroll_to('drinks')">Drinks</button>
+    </div>
+  </div>
+
+  <!-- MENU CONTENT -->
+  <div class="menu-body">
+
+    <!-- STARTERS -->
+    <div class="menu-section" id="starters">
+      <div class="menu-section-header">
+        <div class="menu-section-title">Starters</div>
+        <div class="menu-section-count">4 items</div>
+      </div>
+      <div class="menu-items">
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Pajeon
+              <span class="item-badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-item-desc">Crispy Korean scallion pancake served with a sesame soy dipping sauce. Light, savoury, and perfect to share.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$10</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Mandu (6 pc)</div>
+            <div class="menu-item-desc">Pan-fried Korean dumplings filled with seasoned beef and glass noodles. Crispy on the outside, tender inside.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$11</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Tteokbokki
+              <span class="item-badge badge-hot">Spicy</span>
+              <span class="item-badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-item-desc">Chewy rice cakes in a rich, fiery gochujang broth — a Seoul street food staple. Available mild on request.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$12</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Japchae</div>
+            <div class="menu-item-desc">Sweet potato glass noodles stir-fried with seasonal vegetables, beef, and sesame oil. Served warm or cold.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$13</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SOUPS -->
+    <div class="menu-section" id="soups">
+      <div class="menu-section-header">
+        <div class="menu-section-title">Soups & Stews</div>
+        <div class="menu-section-count">4 items</div>
+      </div>
+      <div class="menu-items">
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Sundubu Jjigae
+              <span class="item-badge badge-popular">Most Loved</span>
+            </div>
+            <div class="menu-item-desc">Silken tofu stew in a deep, spicy broth with your choice of beef or vegetables. Served bubbling hot with rice.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$14</div>
+            <div class="menu-item-note">Choice of protein</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Doenjang Jjigae</div>
+            <div class="menu-item-desc">Hearty fermented soybean paste stew with tofu, zucchini, and vegetables. Rich, earthy, and deeply comforting.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$13</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Yukgaejang
+              <span class="item-badge badge-hot">Spicy</span>
+            </div>
+            <div class="menu-item-desc">Slow-simmered spicy beef and vegetable soup with glass noodles — warming from the inside out.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$15</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Miyeok Guk</div>
+            <div class="menu-item-desc">Gentle seaweed soup in a clear beef broth. Light, nourishing, and traditionally served on birthdays.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$12</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RICE BOWLS -->
+    <div class="menu-section" id="rice">
+      <div class="menu-section-header">
+        <div class="menu-section-title">Rice Bowls</div>
+        <div class="menu-section-count">3 items</div>
+      </div>
+      <div class="menu-items">
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Bulgogi Bowl
+              <span class="item-badge badge-popular">Chef's Pick</span>
+            </div>
+            <div class="menu-item-desc">Thinly sliced, marinated Triple A beef over steamed rice with banchan sides and house gochujang sauce.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$16</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Bibimbap</div>
+            <div class="menu-item-desc">Mixed rice bowl with seasoned vegetables, a fried egg, and gochujang sauce. Served with or without beef.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$14</div>
+            <div class="menu-item-note">+ $3 with beef</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Deopbap (Stir-fry Bowl)</div>
+            <div class="menu-item-desc">Rice topped with wok-tossed beef and vegetables in a savoury-sweet sauce. Quick, satisfying, weekday perfect.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$15</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NOODLES -->
+    <div class="menu-section" id="noodles">
+      <div class="menu-section-header">
+        <div class="menu-section-title">Noodles</div>
+        <div class="menu-section-count">3 items</div>
+      </div>
+      <div class="menu-items">
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Jjajangmyeon
+              <span class="item-badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-item-desc">Thick wheat noodles in a rich, dark black bean sauce with beef and vegetables. Deeply satisfying.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$14</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">
+              Jjamppong
+              <span class="item-badge badge-hot">Spicy</span>
+            </div>
+            <div class="menu-item-desc">Spicy seafood noodle soup — a bold, fiery broth with chewy noodles and fresh vegetables.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$15</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Ramyeon (In's Special)</div>
+            <div class="menu-item-desc">Our house ramyeon — elevated with house broth, marinated beef, a jammy egg, and fresh toppings.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$13</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDES -->
+    <div class="menu-section" id="sides">
+      <div class="menu-section-header">
+        <div class="menu-section-title">Sides & Banchan</div>
+        <div class="menu-section-count">Included with most mains</div>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Banchan Platter</div>
+            <div class="menu-item-desc">A rotating selection of house-made Korean side dishes — kimchi, pickled radish, spinach, and bean sprouts.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">Included</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Steamed Rice (extra)</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$2</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Extra Kimchi</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRINKS -->
+    <div class="menu-section" id="drinks">
+      <div class="menu-section-header">
+        <div class="menu-section-title">Drinks</div>
+        <div class="menu-section-count">4 items</div>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Sikhye</div>
+            <div class="menu-item-desc">Traditional Korean sweet rice drink — lightly sweet, lightly effervescent, a perfect palate cleanser.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$4</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Barley Tea (Boricha)</div>
+            <div class="menu-item-desc">Toasty, caffeine-free Korean barley tea. Served hot or iced.</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$3</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Soft Drinks</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">$2</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <div class="menu-item-name">Water</div>
+          </div>
+          <div class="menu-item-right">
+            <div class="menu-item-price">Complimentary</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="page-footer">
+    <p>⚠️ Menu items and prices are placeholders for design purposes. Replace with actual In's Kitchen menu before launch.</p>
+    <p>Questions or dietary restrictions? Call us at <a href="tel:6132331001">(613) 233-1001</a></p>
+    <div style="margin-top:24px;">
+      <a href="mockup-home.html" style="font-family:var(--font-label);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);">← Back to Homepage Mockup</a>
+    </div>
+  </div>
+
+  <script>
+    function scroll_to(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
