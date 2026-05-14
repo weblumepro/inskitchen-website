@@ -4,1113 +4,647 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>In's Kitchen — Authentic Korean Cuisine · Ottawa</title>
-  <meta name="description" content="Authentic Korean home cooking in Ottawa. 100% Halal. Triple A Canadian beef. Walk-ins welcome on Templeton St.">
-  <meta property="og:title" content="In's Kitchen — Authentic Korean Cuisine · Ottawa">
-  <meta property="og:description" content="Home-cooked Korean flavours made with Triple A beef and the warmth of a neighbourhood kitchen.">
+  <meta name="description" content="In's Kitchen serves authentic Korean cuisine in Ottawa's Lowertown. 100% Halal. Triple A Canadian beef. Made fresh daily since 2019.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-  /* ═══════════════════════════════════════
-     TOKENS
-  ═══════════════════════════════════════ */
   :root {
-    --bg:        #FEFAF2;
-    --bg-alt:    #F5EADA;
-    --bg-card:   #FFFFFF;
-    --red:       #B5341C;
-    --red-h:     #C84030;
-    --red-soft:  rgba(181,52,28,.08);
-    --red-b:     rgba(181,52,28,.18);
-    --ink:       #1C1208;
-    --ink-mid:   #6A5848;
-    --ink-muted: #9A8A78;
-    --border:    #E2D5C4;
-    --border-dk: #C8B89E;
+    --bg:        #F7F2EA;
+    --bg-alt:    #EDE5D8;
+    --bg-card:   #E8DECE;
+    --bg-dark:   #1E1612;
+    --terra:     #B84C3A;
+    --terra-h:   #C95A47;
+    --terra-s:   rgba(184,76,58,.09);
+    --terra-b:   rgba(184,76,58,.2);
+    --wood:      #A0744A;
+    --wood-s:    rgba(160,116,74,.14);
+    --green:     #4A7C59;
+    --green-s:   rgba(74,124,89,.1);
+    --green-b:   rgba(74,124,89,.24);
+    --ink:       #1E1612;
+    --ink-mid:   #7A6858;
+    --ink-muted: #A89278;
+    --border:    rgba(30,22,18,.1);
+    --border-dk: rgba(30,22,18,.18);
+    --sh-sm:  0 2px 10px rgba(160,110,50,.12), 0 1px 3px rgba(160,110,50,.07);
+    --sh-md:  0 8px 36px rgba(160,110,50,.16), 0 3px 10px rgba(160,110,50,.09);
+    --sh-lg:  0 24px 80px rgba(160,110,50,.2),  0 8px 28px rgba(160,110,50,.11);
+    --sh-t:   0 6px 24px rgba(184,76,58,.28);
     --fd: 'Playfair Display', Georgia, serif;
     --fb: 'Outfit', system-ui, sans-serif;
-    --fl: 'Space Grotesk', 'Outfit', sans-serif;
-    --eout:   cubic-bezier(.16,1,.3,1);
+    --fl: 'Space Grotesk', sans-serif;
+    --eout:    cubic-bezier(.16,1,.3,1);
     --espring: cubic-bezier(.34,1.56,.64,1);
-    --r-md: 14px; --r-lg: 22px; --r-xl: 32px;
   }
 
-  /* ═══════════════════════════════════════
-     RESET
-  ═══════════════════════════════════════ */
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);color:var(--ink);
-    font-family:var(--fb);font-size:16px;line-height:1.6;
-    overflow-x:hidden;-webkit-font-smoothing:antialiased;
-    cursor:none; /* custom cursor */
+  *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+  html { scroll-behavior:smooth }
+  body {
+    background:var(--bg); color:var(--ink);
+    font-family:var(--fb); font-size:16px; line-height:1.65;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+    cursor:none;
   }
-  img{display:block;max-width:100%}
-  a{text-decoration:none;color:inherit}
-  button{cursor:none;border:none;background:none;font-family:inherit}
+  img { display:block; max-width:100%; height:auto }
+  a   { text-decoration:none; color:inherit }
+  button { cursor:none; border:none; background:none; font-family:inherit }
 
-  /* Grain overlay — fixed, pointer-events-none only (taste-skill perf rule) */
-  body::before{
-    content:'';position:fixed;inset:0;z-index:5000;pointer-events:none;
+  /* GRAIN */
+  body::before {
+    content:''; position:fixed; inset:0; z-index:5000; pointer-events:none;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size:256px;opacity:.025;
+    background-size:256px; opacity:.028;
   }
 
-  /* ═══════════════════════════════════════
-     INTRO CURTAIN
-  ═══════════════════════════════════════ */
-  .intro{
-    position:fixed;inset:0;z-index:9999;pointer-events:none;
+  /* SCROLL PROGRESS */
+  .spb { position:fixed; top:0; left:0; height:2px; width:0%; background:var(--terra); z-index:9990; transition:width .05s linear; pointer-events:none; }
+
+  /* CURSOR */
+  .c-dot { position:fixed; width:7px; height:7px; border-radius:50%; background:var(--terra); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); will-change:left,top; }
+  .c-ring { position:fixed; width:34px; height:34px; border-radius:50%; border:1.5px solid var(--terra); pointer-events:none; z-index:9997; transform:translate(-50%,-50%); opacity:.48; transition:width .4s var(--eout),height .4s var(--eout),opacity .3s,background .3s; will-change:left,top; }
+  .c-ring.hover { width:52px; height:52px; opacity:.2; background:var(--terra-s); }
+  @media(pointer:coarse) { .c-dot,.c-ring{display:none;} body,button{cursor:auto;} }
+
+  /* BACK TO TOP */
+  .btt { position:fixed; bottom:32px; right:32px; z-index:900; width:46px; height:46px; border-radius:50%; background:var(--terra); color:var(--bg); display:flex; align-items:center; justify-content:center; box-shadow:var(--sh-t); opacity:0; pointer-events:none; transform:translateY(16px); transition:opacity .35s var(--eout),transform .35s var(--eout),background .2s; }
+  .btt.show { opacity:1; pointer-events:auto; transform:translateY(0); }
+  .btt:hover { background:var(--terra-h); transform:translateY(-4px)!important; }
+  .btt:active { transform:scale(.94)!important; }
+
+  /* NAV */
+  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:68px; display:flex; align-items:center; justify-content:space-between; background:rgba(247,242,234,.94); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); transition:box-shadow .3s; }
+  .nav.scrolled { box-shadow:var(--sh-sm); }
+  .nav-logo { font-family:var(--fd); font-size:21px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
+  .nav-logo .a { color:var(--terra); }
+  .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
+  .nav-links a { font-family:var(--fl); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-mid); transition:color .2s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px; background:var(--terra); transition:width .3s var(--eout); }
+  .nav-links a:hover { color:var(--ink); }
+  .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+  .nav-links a.active { color:var(--terra); }
+  .nav-pill { font-family:var(--fl); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--bg)!important; background:var(--terra); padding:9px 22px; border-radius:3px; transition:background .22s,transform .22s var(--espring),box-shadow .22s; box-shadow:var(--sh-t); }
+  .nav-pill::after { display:none!important; }
+  .nav-pill:hover { background:var(--terra-h); transform:translateY(-1px); }
+  .nav-pill:active { transform:scale(.97); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height:100dvh; position:relative;
+    display:grid; grid-template-columns:58% 42%;
+    padding-top:68px; overflow:hidden;
+    background:var(--bg);
   }
-  .intro-half{
-    position:absolute;left:0;right:0;height:50%;
-    background:var(--ink);
-    transition:transform 1s cubic-bezier(.76,0,.24,1);
+  .hero-l {
+    display:flex; flex-direction:column; justify-content:center;
+    padding:80px 52px 140px 64px; position:relative; z-index:4;
   }
-  .intro-top{top:0;}
-  .intro-bot{bottom:0;}
-  .intro.open .intro-top{transform:translateY(-100%);}
-  .intro.open .intro-bot{transform:translateY(100%);}
-  .intro-center{
-    position:absolute;inset:0;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  .hero-eyebrow {
+    display:flex; align-items:center; gap:14px; margin-bottom:36px;
+    opacity:0; transform:translateY(14px);
+    animation:fuUp .7s var(--eout) .35s forwards;
   }
-  .intro-logo{
+  .ey-line { width:28px; height:1px; background:var(--terra); flex-shrink:0; }
+  .ey-txt { font-family:var(--fl); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mid); }
+  .hero-headline {
     font-family:var(--fd);
-    font-size:clamp(36px,5vw,72px);
-    font-weight:700;letter-spacing:-.025em;
-    color:#FEFAF2;
-    opacity:0;transform:translateY(20px);
-    transition:opacity .7s var(--eout),transform .7s var(--eout);
+    font-size:clamp(56px,8.6vw,110px);
+    line-height:.9; letter-spacing:-.035em; color:var(--ink);
+    margin-bottom:36px;
   }
-  .intro-logo.show{opacity:1;transform:translateY(0);}
-  .intro-sub{
-    font-family:var(--fl);font-size:11px;font-weight:500;
-    letter-spacing:.22em;text-transform:uppercase;
-    color:rgba(254,250,242,.4);
-    opacity:0;transition:opacity .5s var(--eout) .3s;
+  .hero-headline .hl { display:block; overflow:hidden; }
+  .hero-headline .hl span { display:block; opacity:0; transform:translateY(1.1em); animation:lineUp .9s var(--eout) forwards; }
+  .hero-headline .hl:nth-child(1) span { animation-delay:.48s; }
+  .hero-headline .hl:nth-child(2) span { animation-delay:.62s; }
+  .hero-headline .hl:nth-child(3) span { animation-delay:.76s; }
+  .hero-headline em { font-style:italic; color:var(--terra); }
+  .hero-sub {
+    font-size:15px; font-weight:300; color:var(--ink-mid);
+    max-width:36ch; line-height:1.84; margin-bottom:48px;
+    opacity:0; transform:translateY(14px);
+    animation:fuUp .7s var(--eout) 1s forwards;
   }
-  .intro-sub.show{opacity:1;}
+  .hero-cta {
+    display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+    opacity:0; transform:translateY(14px);
+    animation:fuUp .7s var(--eout) 1.15s forwards;
+  }
+  .btn-p {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--fl); font-size:11px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--bg); background:var(--terra); padding:15px 34px; border-radius:3px;
+    transition:background .22s,transform .22s var(--espring),box-shadow .22s; box-shadow:var(--sh-t);
+  }
+  .btn-p:hover { background:var(--terra-h); transform:translateY(-2px); box-shadow:0 12px 32px rgba(184,76,58,.32); }
+  .btn-p:active { transform:scale(.97) translateY(0); }
+  .btn-s {
+    font-family:var(--fl); font-size:11px; font-weight:500; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--ink-mid); border-bottom:1px solid var(--border-dk); padding-bottom:2px;
+    transition:color .2s,border-color .2s;
+  }
+  .btn-s:hover { color:var(--ink); border-color:var(--ink); }
 
-  /* ═══════════════════════════════════════
-     CUSTOM CURSOR
-  ═══════════════════════════════════════ */
-  .c-dot{
-    position:fixed;width:7px;height:7px;border-radius:50%;
-    background:var(--red);pointer-events:none;z-index:9998;
-    transform:translate(-50%,-50%);
-    transition:transform .1s,width .3s var(--espring),height .3s var(--espring),background .3s;
-    will-change:transform;
+  .hero-r { position:relative; z-index:2; overflow:hidden; }
+  .hero-r img {
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; transform:scale(1.05);
+    animation:imgIn 1.3s var(--eout) .25s forwards;
   }
-  .c-ring{
-    position:fixed;width:36px;height:36px;border-radius:50%;
-    border:1.5px solid var(--red);pointer-events:none;z-index:9997;
-    transform:translate(-50%,-50%);opacity:.6;
-    transition:width .4s var(--eout),height .4s var(--eout),
-               opacity .3s,border-color .3s,background .3s;
-    will-change:transform;
+  .hero-r::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; z-index:2;
+    width:80px; background:linear-gradient(to right,var(--bg) 0%,transparent 100%);
   }
-  .c-ring.hover{
-    width:56px;height:56px;opacity:.3;
-    background:var(--red-soft);border-color:var(--red);
-  }
-  .c-dot.click{width:5px;height:5px;}
-  @media(pointer:coarse){.c-dot,.c-ring{display:none;}body,button{cursor:auto;}}
-
-  /* ═══════════════════════════════════════
-     SCROLL PROGRESS BAR
-  ═══════════════════════════════════════ */
-  .spb{
-    position:fixed;top:0;left:0;height:2px;width:0%;
-    background:var(--red);z-index:9990;
-    transition:width .05s linear;
-    pointer-events:none;
-  }
-
-  /* ═══════════════════════════════════════
-     UTILITY
-  ═══════════════════════════════════════ */
-  .lbl{
-    font-family:var(--fl);font-size:10px;font-weight:600;
-    letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+  .hero-r::after {
+    content:''; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(to top,rgba(247,242,234,.5) 0%,transparent 40%);
   }
 
-  /* Reveal animations — different directions */
-  .ry,.rx-,.rx+,.rscale{opacity:0;will-change:transform,opacity;}
-  .ry     {transform:translateY(32px);}
-  .rx-    {transform:translateX(-32px);}
-  .rx+    {transform:translateX(32px);}
-  .rscale {transform:scale(.94);}
-  .ry.in,.rx-.in,.rx+.in,.rscale.in{
-    opacity:1;transform:translate(0) scale(1);
-    transition:opacity .75s var(--eout),transform .75s var(--eout);
-  }
-  .d1{transition-delay:.08s!important;}
-  .d2{transition-delay:.16s!important;}
-  .d3{transition-delay:.24s!important;}
-  .d4{transition-delay:.32s!important;}
-  .d5{transition-delay:.40s!important;}
-
-  /* Line reveal (hero headline) */
-  .reveal-line{display:block;overflow:hidden;}
-  .reveal-inner{
-    display:block;
-    transform:translateY(108%);
-    transition:transform .9s var(--eout);
-  }
-  .reveal-inner.in{transform:translateY(0);}
-
-  /* Animated warm gradient — photo slot */
-  .ph-live{
-    width:100%;height:100%;position:relative;overflow:hidden;
-    background:linear-gradient(-45deg,#FFE8C4,#FFCF90,#FFB870,#FFD4A0);
-    background-size:400% 400%;
-    animation:grad-breathe 9s ease-in-out infinite;
-  }
-  .ph-live::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.25) 50%,transparent 65%);
-    background-size:300% 100%;
-    animation:shimmer 3.5s ease-in-out infinite;
-  }
-  @keyframes grad-breathe{
-    0%,100%{background-position:0% 50%;}
-    50%    {background-position:100% 50%;}
-  }
-  @keyframes shimmer{
-    0%  {background-position:200% 0;}
-    100%{background-position:-200% 0;}
+  /* Year ghost watermark */
+  .hero-year {
+    position:absolute; bottom:-0.08em; right:35%; z-index:3; pointer-events:none;
+    font-family:var(--fd); font-style:italic;
+    font-size:clamp(130px,20vw,260px);
+    line-height:1; letter-spacing:-.05em;
+    color:rgba(184,76,58,.05);
+    opacity:0; animation:fuUp .8s var(--eout) 1.5s forwards;
   }
 
-  /* ═══════════════════════════════════════
-     NAV
-  ═══════════════════════════════════════ */
-  .nav{
-    position:fixed;top:0;left:0;right:0;z-index:800;
-    padding:0 56px;height:68px;
-    display:flex;align-items:center;justify-content:space-between;
-    transition:background .45s ease,box-shadow .45s ease;
+  /* Stats strip */
+  .hero-stats {
+    position:absolute; bottom:0; left:0; right:0; z-index:10;
+    display:flex; align-items:stretch;
+    background:rgba(247,242,234,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-top:1px solid var(--border);
   }
-  .nav.on{
-    background:rgba(254,250,242,.94);
-    backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
-    box-shadow:0 1px 0 var(--border);
+  .stat {
+    flex:1; padding:22px 40px; border-right:1px solid var(--border);
+    opacity:0; transform:translateY(10px); animation:fuUp .6s var(--eout) forwards;
   }
-  .nav-logo{
-    font-family:var(--fd);font-size:20px;font-weight:600;
-    color:var(--ink);letter-spacing:-.01em;
-  }
-  .nav-logo .a{color:var(--red);}
-  .nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
-  .nav-links a{
-    font-family:var(--fl);font-size:12px;font-weight:500;
-    letter-spacing:.09em;text-transform:uppercase;
-    color:var(--ink-mid);transition:color .2s;position:relative;
-  }
-  .nav-links a::after{
-    content:'';position:absolute;bottom:-3px;left:0;
-    width:0;height:1px;background:var(--red);
-    transition:width .3s var(--eout);
-  }
-  .nav-links a:hover{color:var(--ink);}
-  .nav-links a:hover::after{width:100%;}
-  .nav-pill{
-    font-family:var(--fl);font-size:12px;font-weight:600;
-    letter-spacing:.09em;text-transform:uppercase;
-    color:#fff!important;background:var(--red);
-    padding:8px 20px;border-radius:100px;
-    transition:background .2s,transform .2s var(--espring),box-shadow .2s;
-    box-shadow:0 4px 14px rgba(181,52,28,.25);
-  }
-  .nav-pill::after{display:none!important;}
-  .nav-pill:hover{background:var(--red-h);transform:translateY(-1px);box-shadow:0 8px 24px rgba(181,52,28,.3);}
-  .nav-pill:active{transform:scale(.97);}
+  .stat:last-child { border-right:none; }
+  .stat:nth-child(1){ animation-delay:1.25s; }
+  .stat:nth-child(2){ animation-delay:1.38s; }
+  .stat:nth-child(3){ animation-delay:1.51s; }
+  .stat-n { font-family:var(--fd); font-size:26px; font-weight:600; color:var(--ink); line-height:1; margin-bottom:4px; letter-spacing:-.02em; }
+  .stat-l { font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); }
 
-  /* ═══════════════════════════════════════
-     HERO — split screen, left-aligned
-  ═══════════════════════════════════════ */
-  .hero{
-    min-height:100dvh;
-    display:grid;grid-template-columns:1fr 1fr;
-    position:relative;overflow:hidden;
-  }
-  /* Ambient warm radial */
-  .hero::before{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    background:
-      radial-gradient(ellipse 70% 60% at 0% 70%,rgba(255,220,160,.45) 0%,transparent 65%),
-      radial-gradient(ellipse 40% 50% at 100% 10%,rgba(255,235,200,.3) 0%,transparent 60%);
-  }
-  /* Slowly rotating decorative orb */
-  .hero-orb{
-    position:absolute;width:500px;height:500px;border-radius:50%;
-    background:radial-gradient(circle,rgba(181,52,28,.07) 0%,transparent 70%);
-    top:10%;right:-100px;
-    animation:orb-drift 15s ease-in-out infinite;
-    pointer-events:none;
-  }
-  @keyframes orb-drift{
-    0%,100%{transform:translate(0,0) scale(1);}
-    33%    {transform:translate(-30px,-40px) scale(1.06);}
-    66%    {transform:translate(20px,30px) scale(.95);}
-  }
+  @keyframes fuUp    { to { opacity:1; transform:none; } }
+  @keyframes lineUp  { to { opacity:1; transform:translateY(0); } }
+  @keyframes imgIn   { to { opacity:1; transform:scale(1); } }
 
-  .hero-left{
-    position:relative;z-index:2;
-    display:flex;flex-direction:column;justify-content:center;
-    padding:120px 56px 80px;
+  /* ── TYPE BAND ── */
+  .type-band {
+    background:var(--terra); padding:36px 64px; text-align:center;
+    position:relative; overflow:hidden;
   }
-  .hero-halal{
-    display:inline-flex;align-items:center;gap:8px;
-    border:1px solid rgba(60,160,60,.28);
-    background:rgba(40,140,40,.06);
-    border-radius:100px;padding:5px 14px;
-    margin-bottom:28px;width:fit-content;
+  .type-band::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:256px; opacity:.04;
   }
-  .halal-dot{
-    width:5px;height:5px;border-radius:50%;background:#4CAF50;
-    animation:pulse-green 2.5s ease-in-out infinite;
-  }
-  @keyframes pulse-green{
-    0%,100%{box-shadow:0 0 0 0 rgba(76,175,80,.4);}
-    50%    {box-shadow:0 0 0 5px rgba(76,175,80,.0);}
-  }
-  .halal-txt{
-    font-family:var(--fl);font-size:10px;font-weight:600;
-    letter-spacing:.14em;text-transform:uppercase;color:#3A9A3A;
-  }
-  .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
-  .ey-line{width:28px;height:1px;background:var(--red);}
-
-  .hero-h1{
-    font-family:var(--fd);
-    font-size:clamp(44px,5.5vw,82px);
-    font-weight:700;line-height:1.02;
-    letter-spacing:-.028em;color:var(--ink);
-    margin-bottom:24px;text-wrap:balance;
-  }
-  .hero-h1 em{font-style:italic;color:var(--red);}
-
-  .hero-body{
-    font-size:16px;font-weight:300;color:var(--ink-mid);
-    max-width:42ch;line-height:1.75;margin-bottom:44px;
-  }
-  .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-
-  /* Buttons */
-  .btn-p{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:var(--fl);font-size:12px;font-weight:600;
-    letter-spacing:.1em;text-transform:uppercase;
-    color:#fff;background:var(--red);
-    padding:15px 32px;border-radius:100px;
-    box-shadow:0 4px 16px rgba(181,52,28,.22);
-    transition:background .22s,transform .2s var(--espring),box-shadow .22s;
-    position:relative;overflow:hidden;
-  }
-  .btn-p::before{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);
-    background-size:200% 100%;background-position:200% 0;
-    transition:background-position .6s;
-  }
-  .btn-p:hover{background:var(--red-h);transform:translateY(-2px);box-shadow:0 12px 36px rgba(181,52,28,.3);}
-  .btn-p:hover::before{background-position:-200% 0;}
-  .btn-p:active{transform:scale(.98);}
-
-  .btn-g{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:var(--fl);font-size:12px;font-weight:500;
-    letter-spacing:.1em;text-transform:uppercase;
-    color:var(--ink-mid);border:1.5px solid var(--border-dk);
-    padding:14px 32px;border-radius:100px;
-    transition:border-color .2s,color .2s,transform .2s var(--espring);
-  }
-  .btn-g:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-2px);}
-  .btn-g:active{transform:scale(.98);}
-
-  .hero-scroll{
-    position:absolute;bottom:36px;left:56px;
-    display:flex;align-items:center;gap:12px;
-  }
-  .sc-line{
-    width:36px;height:1px;
-    background:linear-gradient(to right,var(--red),transparent);
-    animation:sc-breathe 2.5s ease-in-out infinite;
-  }
-  @keyframes sc-breathe{
-    0%,100%{opacity:.5;transform:scaleX(1);}
-    50%    {opacity:1;transform:scaleX(.65);}
-  }
-  .sc-txt{
-    font-family:var(--fl);font-size:10px;
-    letter-spacing:.2em;text-transform:uppercase;color:var(--ink-muted);
-  }
-
-  /* Hero right visual */
-  .hero-right{
-    position:relative;z-index:2;
-    display:flex;align-items:center;justify-content:center;
-    padding:80px 56px 80px 20px;
-  }
-  .hero-vis{position:relative;width:100%;max-width:460px;}
-  .h-main{
-    width:100%;aspect-ratio:3/4;border-radius:var(--r-xl);
-    overflow:hidden;border:1px solid var(--border);
-    box-shadow:0 24px 64px rgba(28,18,8,.1);
-  }
-  .h-inset{
-    position:absolute;bottom:-28px;left:-40px;
-    width:50%;aspect-ratio:4/3;
-    border-radius:var(--r-lg);overflow:hidden;
-    border:4px solid var(--bg);
-    box-shadow:0 16px 48px rgba(28,18,8,.13);
-    transition:transform .4s var(--eout);
-  }
-  .hero-vis:hover .h-inset{transform:translateY(-6px);}
-  .hero-stat{
-    position:absolute;top:24px;right:-20px;
-    background:#fff;border:1px solid var(--border);
-    border-radius:var(--r-md);padding:14px 20px;
-    box-shadow:0 8px 28px rgba(28,18,8,.08);
-    transition:transform .4s var(--espring);
-  }
-  .hero-stat:hover{transform:translateY(-4px);}
-  .st-lbl{
-    font-family:var(--fl);font-size:9px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;
-  }
-  .st-val{
-    font-family:var(--fd);font-size:26px;font-weight:700;
-    color:var(--red);line-height:1;
-  }
-  .st-sub{font-size:11px;font-weight:300;color:var(--ink-muted);margin-top:2px;}
-
-  /* Decorative floating rings in hero */
-  .hero-ring{
-    position:absolute;border-radius:50%;border:1px solid rgba(181,52,28,.1);
-    pointer-events:none;
-  }
-  .hero-ring-1{width:260px;height:260px;bottom:5%;right:0;animation:ring-spin 20s linear infinite;}
-  .hero-ring-2{width:160px;height:160px;top:15%;right:20px;animation:ring-spin 14s linear infinite reverse;}
-  @keyframes ring-spin{to{transform:rotate(360deg);}}
-
-  /* ═══════════════════════════════════════
-     MARQUEE — bold red strip
-  ═══════════════════════════════════════ */
-  .mq-wrap{background:var(--red);overflow:hidden;position:relative;}
-  .mq-track{
-    display:flex;white-space:nowrap;
-    animation:mq-run 28s linear infinite;
-  }
-  .mq-track:hover{animation-play-state:paused;}
-  @keyframes mq-run{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .mq-item{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:16px 44px;
-    font-family:var(--fl);font-size:11px;font-weight:500;
-    letter-spacing:.16em;text-transform:uppercase;
-    color:rgba(255,255,255,.7);flex-shrink:0;
-  }
-  .mq-item.hl{color:#fff;}
-  .mq-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.45);flex-shrink:0;}
-  .mq-item.hl .mq-dot{background:#fff;}
-
-  /* ═══════════════════════════════════════
-     SECTION SHELL
-  ═══════════════════════════════════════ */
-  .sec{padding:112px 0;}
-  .sec.alt{background:var(--bg-alt);}
-  .sec-in{max-width:1280px;margin:0 auto;padding:0 56px;}
-  .sec-hd{margin-bottom:56px;}
-  .sec-hd.mid{text-align:center;}
-  .sec-title{
-    font-family:var(--fd);
-    font-size:clamp(30px,3.8vw,52px);
-    font-weight:600;line-height:1.1;letter-spacing:-.02em;
-    color:var(--ink);margin-top:14px;text-wrap:balance;
-  }
-  .sec-title em{font-style:italic;color:var(--red);}
-  .sec-sub{
-    font-size:15px;font-weight:300;color:var(--ink-muted);
-    max-width:52ch;margin-top:14px;line-height:1.8;
-  }
-  .sec-hd.mid .sec-sub{margin:14px auto 0;}
-
-  /* ═══════════════════════════════════════
-     DISH CARDS — asymmetric bento + 3D tilt
-  ═══════════════════════════════════════ */
-  .bento{
-    display:grid;grid-template-columns:1.4fr 1fr;
-    grid-template-rows:auto auto;gap:20px;
-  }
-  .dish-card{
-    background:var(--bg-card);
-    border:1px solid var(--border);border-radius:var(--r-xl);
-    overflow:hidden;
-    box-shadow:0 4px 20px rgba(28,18,8,.06);
-    transition:box-shadow .4s var(--eout),border-color .3s;
-    transform-style:preserve-3d; /* 3D tilt */
-    will-change:transform;
+  .type-band-txt {
+    font-family:var(--fd); font-size:clamp(20px,3.2vw,42px);
+    color:rgba(247,242,234,.95); font-weight:400; letter-spacing:-.02em; line-height:1.15;
     position:relative;
   }
-  /* Glare overlay — updated by JS */
-  .dish-card::after{
-    content:'';position:absolute;inset:0;border-radius:inherit;
-    background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%);
-    opacity:0;pointer-events:none;
-    transition:opacity .3s;z-index:2;
-  }
-  .dish-card:hover::after{opacity:1;}
-  .dish-card:hover{
-    box-shadow:0 24px 60px rgba(28,18,8,.13);
-    border-color:var(--border-dk);
-  }
-  .dish-card.feat{grid-row:span 2;}
-  .dish-card.feat .dish-ph{aspect-ratio:3/4;}
-  .dish-card.sm   .dish-ph{aspect-ratio:16/9;}
-  .dish-ph{width:100%;overflow:hidden;position:relative;}
-  .dish-tag{
-    position:absolute;top:14px;left:14px;z-index:1;
-    background:var(--red);color:#fff;border-radius:100px;
-    padding:4px 12px;
-    font-family:var(--fl);font-size:9px;font-weight:600;
-    letter-spacing:.14em;text-transform:uppercase;
-    box-shadow:0 4px 12px rgba(181,52,28,.3);
-  }
-  .dish-body{padding:24px 26px 26px;}
-  .dish-name{
-    font-family:var(--fd);font-size:20px;font-weight:600;
-    color:var(--ink);letter-spacing:-.01em;margin-bottom:8px;
-  }
-  .dish-card.feat .dish-name{font-size:26px;}
-  .dish-desc{
-    font-size:13px;font-weight:300;color:var(--ink-muted);
-    line-height:1.7;max-width:48ch;margin-bottom:20px;
-  }
-  .dish-foot{display:flex;align-items:center;justify-content:space-between;}
-  .dish-price{
-    font-family:var(--fd);font-size:22px;font-weight:600;color:var(--red);
-  }
-  .dish-arr{
-    width:34px;height:34px;border-radius:50%;
-    border:1.5px solid var(--border);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--ink-muted);
-    transition:background .2s,border-color .2s,color .2s,transform .3s var(--espring);
-  }
-  .dish-card:hover .dish-arr{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(45deg);}
-  .dishes-cta{text-align:center;margin-top:52px;}
+  .type-band-txt em { font-style:italic; }
 
-  /* ═══════════════════════════════════════
-     PILLARS
-  ═══════════════════════════════════════ */
-  .pillars-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .pillars-grid{
-    max-width:1280px;margin:0 auto;
-    display:grid;grid-template-columns:repeat(4,1fr);
-  }
-  .pillar{
-    padding:52px 40px;border-right:1px solid var(--border);
-    transition:background .3s;
-  }
-  .pillar:last-child{border-right:none;}
-  .pillar:hover{background:var(--bg-alt);}
-  .pillar-icon{
-    width:44px;height:44px;border-radius:12px;
-    background:var(--red-soft);border:1px solid var(--red-b);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--red);margin-bottom:18px;
-    transition:transform .3s var(--espring),background .3s;
-  }
-  .pillar:hover .pillar-icon{transform:translateY(-3px) scale(1.05);background:var(--red);color:#fff;}
-  .pillar-title{font-family:var(--fd);font-size:19px;font-weight:600;color:var(--ink);margin-bottom:10px;}
-  .pillar-desc{font-size:13px;font-weight:300;color:var(--ink-muted);line-height:1.75;}
+  /* ── DISHES ── */
+  .dishes { padding:120px 64px; max-width:1320px; margin:0 auto; }
+  .dishes-hd { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px; }
+  .s-kicker { font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--terra); margin-bottom:14px; }
+  .s-title { font-family:var(--fd); font-size:clamp(34px,4.8vw,60px); font-weight:600; letter-spacing:-.03em; line-height:.96; color:var(--ink); }
+  .s-title em { font-style:italic; color:var(--terra); }
+  .s-link { font-family:var(--fl); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mid); border-bottom:1px solid var(--border-dk); padding-bottom:2px; white-space:nowrap; transition:color .2s,border-color .2s; }
+  .s-link:hover { color:var(--terra); border-color:var(--terra); }
 
-  /* ═══════════════════════════════════════
-     STORY
-  ═══════════════════════════════════════ */
-  .story-in{
-    max-width:1280px;margin:0 auto;padding:112px 56px;
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:88px;align-items:center;
+  .dishes-grid { display:grid; grid-template-columns:1.45fr 1fr; grid-template-rows:auto auto; gap:12px; }
+  .dish-card {
+    border-radius:4px; overflow:hidden; background:var(--bg-alt); box-shadow:var(--sh-sm); position:relative;
+    opacity:0; transform:translateY(22px);
+    transition:opacity .65s var(--eout),transform .65s var(--eout),box-shadow .3s;
   }
-  .story-bq{
-    font-family:var(--fd);
-    font-size:clamp(20px,2.2vw,30px);
-    font-style:italic;font-weight:400;line-height:1.45;
-    color:var(--ink);padding-left:24px;
-    border-left:2px solid var(--red);
-    margin:22px 0 28px;text-wrap:balance;
-  }
-  .story-body{
-    font-size:15px;font-weight:300;color:var(--ink-muted);
-    line-height:1.85;margin-bottom:36px;max-width:52ch;
-  }
-  .link-arr{
-    font-family:var(--fl);font-size:12px;font-weight:500;
-    letter-spacing:.1em;text-transform:uppercase;color:var(--red);
-    display:inline-flex;align-items:center;gap:10px;
-    transition:gap .25s var(--eout);
-  }
-  .link-arr:hover{gap:16px;}
-  .story-imgs{position:relative;}
-  .story-main{
-    width:100%;aspect-ratio:3/4;border-radius:var(--r-xl);
-    overflow:hidden;border:1px solid var(--border);
-    box-shadow:0 16px 56px rgba(28,18,8,.09);
-  }
-  .story-thumb{
-    position:absolute;bottom:-32px;left:-36px;
-    width:54%;aspect-ratio:1;border-radius:var(--r-lg);
-    overflow:hidden;border:4px solid var(--bg-alt);
-    box-shadow:0 16px 48px rgba(28,18,8,.11);
-    transition:transform .4s var(--eout);
-  }
-  .story-imgs:hover .story-thumb{transform:translateY(-6px) rotate(-1deg);}
-  .story-seal{
-    position:absolute;top:24px;right:-18px;
-    width:84px;height:84px;border-radius:50%;
-    background:var(--red);color:#fff;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;
-    font-family:var(--fl);font-size:9px;font-weight:600;
-    letter-spacing:.08em;text-transform:uppercase;line-height:1.4;
-    box-shadow:0 8px 28px rgba(181,52,28,.3);
-    animation:seal-spin 20s linear infinite;
-  }
-  @keyframes seal-spin{to{transform:rotate(360deg);}}
+  .dish-card.vis { opacity:1; transform:none; }
+  .dish-card:hover { box-shadow:var(--sh-md); transform:translateY(-3px); }
+  .dish-card:hover .d-img img { transform:scale(1.05); }
+  .dish-card.feat { grid-row:span 2; display:flex; flex-direction:column; }
+  .d-img { overflow:hidden; }
+  .dish-card:not(.feat) .d-img { aspect-ratio:16/10; }
+  .dish-card.feat .d-img { flex:1; min-height:280px; }
+  .d-img img { width:100%; height:100%; object-fit:cover; transition:transform .8s var(--eout); display:block; }
+  .d-info { padding:22px 26px 28px; }
+  .dish-card.feat .d-info { padding:28px 32px 36px; }
+  .d-tag { display:inline-block; margin-bottom:10px; font-family:var(--fl); font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--terra); background:var(--terra-s); padding:4px 10px; border-radius:100px; border:1px solid var(--terra-b); }
+  .d-name { font-family:var(--fd); font-size:20px; font-weight:600; color:var(--ink); letter-spacing:-.01em; margin-bottom:8px; line-height:1.2; }
+  .dish-card.feat .d-name { font-size:26px; }
+  .d-desc { font-size:13px; font-weight:300; color:var(--ink-mid); line-height:1.78; margin-bottom:18px; }
+  .dish-card.feat .d-desc { font-size:14px; max-width:38ch; }
+  .d-price { font-family:var(--fd); font-size:17px; font-weight:600; color:var(--terra); }
 
-  /* ═══════════════════════════════════════
-     HOURS
-  ═══════════════════════════════════════ */
-  .hours-in{
-    max-width:1280px;margin:0 auto;padding:112px 56px;
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:80px;align-items:start;
+  /* ── STORY ── */
+  .story {
+    position:relative; overflow:hidden; padding:128px 0;
+    background-color:var(--bg-alt);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(160,116,74,.045) 0, rgba(160,116,74,.045) 1px, transparent 1px, transparent 10px),
+      repeating-linear-gradient(-45deg,rgba(160,116,74,.045) 0, rgba(160,116,74,.045) 1px, transparent 1px, transparent 10px);
   }
-  .hours-title{
-    font-family:var(--fd);
-    font-size:clamp(36px,4.5vw,62px);font-weight:700;
-    line-height:1.08;letter-spacing:-.025em;color:var(--ink);
-    margin-top:14px;margin-bottom:44px;
-  }
-  .hours-title em{font-style:italic;color:var(--red);}
-  .hours-table{display:flex;flex-direction:column;}
-  .hours-row{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:17px 0;border-bottom:1px solid var(--border);
-    transition:background .2s;border-radius:6px;padding-left:8px;padding-right:8px;
-  }
-  .hours-row:first-child{border-top:1px solid var(--border);}
-  .hours-row.today{background:var(--red-soft);}
-  .hours-day{
-    font-family:var(--fl);font-size:12px;font-weight:500;
-    letter-spacing:.07em;color:var(--ink-mid);
-  }
-  .hours-row.today .hours-day{color:var(--red);font-weight:600;}
-  .hours-time{font-family:var(--fd);font-size:16px;font-weight:400;color:var(--ink);}
-  .hours-time.closed{color:var(--ink-muted);font-style:italic;font-size:13px;}
-  .hours-row.today .hours-time{color:var(--red);}
-  .today-badge{
-    font-family:var(--fl);font-size:8px;font-weight:600;
-    letter-spacing:.12em;text-transform:uppercase;
-    background:var(--red);color:#fff;
-    padding:2px 7px;border-radius:100px;margin-left:8px;
-    vertical-align:middle;
-  }
+  .story-in { max-width:1320px; margin:0 auto; padding:0 64px; display:grid; grid-template-columns:1fr 1.15fr; gap:88px; align-items:center; }
 
-  .loc-card{
-    background:var(--bg-card);border:1px solid var(--border);
-    border-radius:var(--r-xl);padding:36px;
-    box-shadow:0 8px 32px rgba(28,18,8,.06);
+  .story-img-wrap {
+    position:relative;
+    opacity:0; transform:translateX(-30px);
+    transition:opacity .85s var(--eout),transform .85s var(--eout);
   }
-  .map-block{
-    width:100%;aspect-ratio:16/9;border-radius:var(--r-md);
-    overflow:hidden;margin-bottom:28px;border:1px solid var(--border);
+  .story-img-wrap.vis { opacity:1; transform:none; }
+  .story-img {
+    width:100%; aspect-ratio:3/4; object-fit:cover; display:block;
+    border-radius:3px; box-shadow:var(--sh-lg);
+    clip-path:polygon(0 0,100% 0,100% 86%,96% 91%,90% 95%,82% 98%,72% 100%,60% 100%,48% 99%,36% 97%,25% 93%,15% 88%,7% 82%,2% 75%,0 68%);
   }
-  .loc-rows{display:flex;flex-direction:column;gap:18px;}
-  .loc-row{display:flex;align-items:flex-start;gap:14px;}
-  .loc-ico{
-    width:34px;height:34px;border-radius:50%;flex-shrink:0;
-    background:var(--red-soft);border:1px solid var(--red-b);
-    display:flex;align-items:center;justify-content:center;color:var(--red);
+  .story-ivy {
+    position:absolute; top:-32px; right:-24px; width:72px; opacity:.55; pointer-events:none;
   }
-  .loc-lbl{
-    font-family:var(--fl);font-size:9px;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--red);margin-bottom:3px;
+  .story-chef {
+    position:absolute; bottom:-28px; right:-32px; z-index:4;
+    width:148px; background:var(--bg); padding:10px; border-radius:3px;
+    box-shadow:var(--sh-md); border:1px solid var(--border);
   }
-  .loc-val{font-size:14px;font-weight:400;color:var(--ink);line-height:1.5;}
-  .loc-val a{color:var(--ink-mid);transition:color .2s;}
-  .loc-val a:hover{color:var(--red);}
-  .dir-btn{
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    width:100%;margin-top:28px;padding:15px;
-    background:var(--red-soft);border:1.5px solid var(--red-b);
-    border-radius:var(--r-md);
-    font-family:var(--fl);font-size:12px;font-weight:600;
-    letter-spacing:.1em;text-transform:uppercase;color:var(--red);
-    transition:background .22s,border-color .22s,color .22s,transform .2s var(--espring);
-  }
-  .dir-btn:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-1px);}
-  .dir-btn:active{transform:scale(.98);}
+  .story-chef img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:2px; margin-bottom:10px; display:block; }
+  .story-chef-name { font-family:var(--fd); font-size:13px; font-weight:600; color:var(--ink); line-height:1.2; }
+  .story-chef-role { font-family:var(--fl); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); margin-top:2px; }
 
-  /* ═══════════════════════════════════════
-     INSTAGRAM
-  ═══════════════════════════════════════ */
-  .insta-hd{text-align:center;margin-bottom:44px;padding:0 56px;}
-  .insta-handle{
-    font-family:var(--fd);font-size:26px;font-weight:600;
-    color:var(--ink);margin-top:10px;
+  .story-text {
+    opacity:0; transform:translateX(30px);
+    transition:opacity .85s var(--eout) .15s,transform .85s var(--eout) .15s;
   }
-  .insta-handle .a{color:var(--red);}
-  .insta-sub{font-size:13px;font-weight:300;color:var(--ink-muted);margin-top:6px;}
-  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
-  .ig-cell{
-    aspect-ratio:1;overflow:hidden;position:relative;
-  }
-  /* Stagger hover on grid cells */
-  .ig-cell::after{
-    content:'';position:absolute;inset:0;
-    background:rgba(181,52,28,0);transition:background .3s;
-  }
-  .ig-cell:hover::after{background:rgba(181,52,28,.15);}
-  .ig-cell .ph-live{border-radius:0;}
-  /* Slight hue variation per cell */
-  .ig-cell:nth-child(1) .ph-live{filter:hue-rotate(0deg);}
-  .ig-cell:nth-child(2) .ph-live{filter:hue-rotate(8deg);}
-  .ig-cell:nth-child(3) .ph-live{filter:hue-rotate(-8deg);}
-  .ig-cell:nth-child(4) .ph-live{filter:hue-rotate(15deg);}
-  .ig-cell:nth-child(5) .ph-live{filter:hue-rotate(-5deg);}
-  .ig-cell:nth-child(6) .ph-live{filter:hue-rotate(10deg);}
-  .insta-follow{text-align:center;padding:36px 0;}
+  .story-text.vis { opacity:1; transform:none; }
+  .story-ghost { font-family:var(--fd); font-style:italic; font-size:clamp(80px,12vw,144px); line-height:1; color:rgba(30,22,18,.055); letter-spacing:-.04em; display:block; margin-bottom:-0.32em; }
+  .story-heading { font-family:var(--fd); font-size:clamp(32px,4.2vw,50px); font-weight:600; letter-spacing:-.025em; line-height:1.1; color:var(--ink); margin-bottom:28px; }
+  .story-heading em { font-style:italic; color:var(--terra); }
+  .story-body { font-size:15px; font-weight:300; color:var(--ink-mid); line-height:1.9; margin-bottom:24px; max-width:44ch; }
+  .story-seal-wrap { display:flex; align-items:center; gap:18px; margin-top:20px; }
+  .story-seal { width:92px; height:92px; flex-shrink:0; animation:spin 20s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .story-seal-lbl { font-size:13px; font-weight:300; color:var(--ink-muted); line-height:1.7; }
+  .story-seal-lbl strong { display:block; font-weight:500; color:var(--ink); }
 
-  /* ═══════════════════════════════════════
-     FOOTER
-  ═══════════════════════════════════════ */
-  footer{
-    background:var(--ink);border-top:3px solid var(--red);
-    padding:60px 56px 40px;
-  }
-  .ft-in{max-width:1280px;margin:0 auto;}
-  .ft-top{
-    display:grid;grid-template-columns:1.6fr 1fr 1fr;
-    gap:60px;padding-bottom:44px;
-    border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:28px;
-  }
-  .ft-logo{
-    font-family:var(--fd);font-size:24px;font-weight:600;
-    color:#fff;margin-bottom:14px;
-  }
-  .ft-logo .a{color:var(--red);}
-  .ft-tag{
-    font-size:13px;font-weight:300;color:rgba(255,255,255,.45);
-    line-height:1.8;max-width:42ch;margin-bottom:26px;
-  }
-  .ft-soc{display:flex;gap:10px;}
-  .soc-btn{
-    width:38px;height:38px;border-radius:50%;
-    border:1px solid rgba(255,255,255,.14);
-    display:flex;align-items:center;justify-content:center;
-    color:rgba(255,255,255,.45);
-    transition:border-color .2s,color .2s,background .2s,transform .2s var(--espring);
-  }
-  .soc-btn:hover{border-color:var(--red);color:#fff;background:var(--red);transform:translateY(-3px);}
-  .ft-col-lbl{
-    font-family:var(--fl);font-size:10px;font-weight:600;
-    letter-spacing:.18em;text-transform:uppercase;
-    color:rgba(255,255,255,.3);margin-bottom:22px;
-  }
-  .ft-links{display:flex;flex-direction:column;gap:12px;list-style:none;}
-  .ft-links a{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);transition:color .2s;}
-  .ft-links a:hover{color:#fff;}
-  .ft-bot{
-    display:flex;align-items:center;justify-content:space-between;
-    font-size:12px;font-weight:300;color:rgba(255,255,255,.3);
-  }
-  .ft-bot .a{color:var(--red);}
+  /* ── HOURS ── */
+  .hours-wrap { padding:120px 64px; max-width:1320px; margin:0 auto; display:grid; grid-template-columns:1.15fr 1fr; gap:56px; align-items:start; }
 
-  /* ═══════════════════════════════════════
-     RESPONSIVE
-  ═══════════════════════════════════════ */
-  @media(max-width:1024px){
-    .nav{padding:0 32px;}
-    .hero{grid-template-columns:1fr;min-height:auto;}
-    .hero-left{padding:140px 32px 60px;}
-    .hero-right{display:none;}
-    .hero-scroll{left:32px;}
-    .sec-in{padding:0 32px;}
-    .story-in{padding:80px 32px;gap:56px;}
-    .hours-in{padding:80px 32px;gap:48px;}
-    .pillars-grid{grid-template-columns:1fr 1fr;}
-    .pillar:nth-child(2){border-right:none;}
-    .pillar:nth-child(3){border-right:1px solid var(--border);}
-    .ig-grid{grid-template-columns:repeat(4,1fr);}
-    footer{padding:48px 32px 32px;}
-    .ft-top{grid-template-columns:1fr;gap:36px;}
+  .hours-card {
+    background:var(--bg-alt); border-radius:4px; padding:48px 44px;
+    border:1px solid var(--border); border-top:3px solid var(--wood); box-shadow:var(--sh-sm);
+    opacity:0; transform:translateY(24px);
+    transition:opacity .7s var(--eout),transform .7s var(--eout);
   }
-  @media(max-width:768px){
-    .nav{padding:0 20px;}
-    .nav-links{display:none;}
-    .hero-left{padding:120px 20px 64px;}
-    .hero-h1{font-size:clamp(36px,9vw,56px);}
-    .sec{padding:72px 0;}
-    .sec-in{padding:0 20px;}
-    .bento{grid-template-columns:1fr;}
-    .dish-card.feat{grid-row:span 1;}
-    .dish-card.feat .dish-ph{aspect-ratio:16/9;}
-    .pillars-grid{grid-template-columns:1fr 1fr;}
-    .story-in{grid-template-columns:1fr;padding:72px 20px;}
-    .story-imgs{display:none;}
-    .hours-in{grid-template-columns:1fr;padding:72px 20px;}
-    .ig-grid{grid-template-columns:repeat(3,1fr);}
-    .insta-hd{padding:0 20px;}
-    footer{padding:40px 20px 28px;}
-    .ft-bot{flex-direction:column;gap:10px;text-align:center;}
+  .hours-card.vis { opacity:1; transform:none; }
+  .hours-heading { font-family:var(--fd); font-size:clamp(24px,3vw,34px); font-weight:600; letter-spacing:-.02em; color:var(--ink); margin-bottom:36px; }
+  .h-row { display:flex; justify-content:space-between; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--border); font-size:14px; }
+  .h-row:last-child { border-bottom:none; }
+  .h-day { font-weight:500; color:var(--ink); }
+  .h-time { font-weight:300; color:var(--ink-mid); font-variant-numeric:tabular-nums; }
+  .h-row.today { background:var(--terra-s); margin:0 -12px; padding:13px 12px; border-radius:3px; border-color:transparent; }
+  .h-row.today .h-day { color:var(--terra); font-weight:600; }
+  .h-row.today .h-time { color:var(--terra); }
+  .h-row.closed .h-time { color:var(--ink-muted); font-style:italic; }
+
+  .map-card {
+    border-radius:4px; overflow:hidden; box-shadow:var(--sh-md);
+    opacity:0; transform:translateY(24px);
+    transition:opacity .7s var(--eout) .15s,transform .7s var(--eout) .15s;
+  }
+  .map-card.vis { opacity:1; transform:none; }
+  .map-img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .map-foot { background:var(--bg-dark); padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .map-addr { font-size:13px; font-weight:300; color:rgba(247,242,234,.55); line-height:1.65; }
+  .map-addr strong { display:block; color:#F7F2EA; font-weight:500; font-size:14px; margin-bottom:3px; }
+  .map-btn { font-family:var(--fl); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--terra); border-bottom:1px solid var(--terra-b); padding-bottom:1px; white-space:nowrap; transition:color .2s,border-color .2s; flex-shrink:0; }
+  .map-btn:hover { color:var(--terra-h); border-color:var(--terra); }
+
+  /* ── INSTAGRAM ── */
+  .gram {
+    padding:80px 64px;
+    background-color:var(--bg-alt);
+    background-image:
+      repeating-linear-gradient(45deg,  rgba(160,116,74,.045) 0,rgba(160,116,74,.045) 1px,transparent 1px,transparent 10px),
+      repeating-linear-gradient(-45deg, rgba(160,116,74,.045) 0,rgba(160,116,74,.045) 1px,transparent 1px,transparent 10px);
+  }
+  .gram-in { max-width:1320px; margin:0 auto; }
+  .gram-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:32px; }
+  .gram-title { font-family:var(--fd); font-size:clamp(22px,3vw,30px); font-weight:600; letter-spacing:-.02em; color:var(--ink); }
+  .gram-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:6px; }
+  .g-item {
+    aspect-ratio:1; overflow:hidden; border-radius:2px; position:relative;
+    opacity:0; transform:translateY(14px);
+    transition:opacity .5s var(--eout),transform .5s var(--eout);
+  }
+  .g-item.vis { opacity:1; transform:none; }
+  .g-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--eout); }
+  .g-item:hover img { transform:scale(1.09); }
+  .g-over { position:absolute; inset:0; background:rgba(30,22,18,0); display:flex; align-items:center; justify-content:center; transition:background .3s; }
+  .g-item:hover .g-over { background:rgba(30,22,18,.38); }
+  .g-icon { color:#F7F2EA; opacity:0; transition:opacity .3s; }
+  .g-item:hover .g-icon { opacity:1; }
+
+  /* ── FOOTER ── */
+  footer { background:var(--bg-dark); border-top:3px solid var(--terra); padding:72px 64px 44px; }
+  .ft-in { max-width:1320px; margin:0 auto; }
+  .ft-brand { font-family:var(--fd); font-size:clamp(40px,6vw,76px); font-weight:600; color:#F7F2EA; letter-spacing:-.035em; line-height:1; margin-bottom:52px; }
+  .ft-brand .a { color:var(--terra); }
+  .ft-top { display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:60px; padding-bottom:44px; border-bottom:1px solid rgba(247,242,234,.08); margin-bottom:28px; }
+  .ft-tag { font-size:13px; font-weight:300; color:rgba(247,242,234,.42); line-height:1.85; max-width:42ch; margin-bottom:28px; }
+  .ft-soc { display:flex; gap:10px; }
+  .soc-btn { width:38px; height:38px; border-radius:50%; border:1px solid rgba(247,242,234,.12); display:flex; align-items:center; justify-content:center; color:rgba(247,242,234,.42); transition:border-color .22s,color .22s,background .22s,transform .22s var(--espring); }
+  .soc-btn:hover { border-color:var(--terra); color:#F7F2EA; background:var(--terra); transform:translateY(-3px); }
+  .ft-col-lbl { font-family:var(--fl); font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(247,242,234,.28); margin-bottom:22px; }
+  .ft-links { display:flex; flex-direction:column; gap:12px; list-style:none; }
+  .ft-links a { font-size:13px; font-weight:300; color:rgba(247,242,234,.46); transition:color .2s; }
+  .ft-links a:hover { color:#F7F2EA; }
+  .ft-bot { display:flex; align-items:center; justify-content:space-between; font-size:12px; font-weight:300; color:rgba(247,242,234,.28); }
+  .ft-bot .a { color:var(--terra); }
+
+  /* RESPONSIVE */
+  @media(max-width:1100px) {
+    .nav { padding:0 32px; }
+    .hero-l { padding:60px 40px 140px 40px; }
+    .dishes { padding:88px 40px; }
+    .story-in { padding:0 40px; gap:56px; }
+    .hours-wrap { padding:88px 40px; }
+    .gram { padding:60px 40px; }
+    footer { padding:60px 40px 36px; }
+    .story-chef { display:none; }
+  }
+  @media(max-width:900px) {
+    .hero { grid-template-columns:1fr; }
+    .hero-l { padding:56px 24px 140px; }
+    .hero-r { position:absolute; inset:0; z-index:1; opacity:.15; }
+    .hero-r::before,.hero-r::after { display:none; }
+    .hero-year { display:none; }
+    .stat { padding:18px 24px; }
+    .dishes-grid { grid-template-columns:1fr; }
+    .dish-card.feat { grid-row:auto; }
+    .dish-card.feat .d-img { aspect-ratio:16/9; min-height:0; }
+    .story-in { grid-template-columns:1fr; gap:48px; }
+    .story-img { aspect-ratio:16/9; clip-path:none; border-radius:4px; }
+    .story-ivy { display:none; }
+    .hours-wrap { grid-template-columns:1fr; gap:32px; }
+    .gram-grid { grid-template-columns:repeat(3,1fr); }
+    .ft-top { grid-template-columns:1fr; gap:36px; }
+  }
+  @media(max-width:640px) {
+    .nav { padding:0 20px; }
+    .nav-links { display:none; }
+    .hero-l { padding:40px 20px 140px; }
+    .type-band { padding:28px 24px; }
+    .dishes { padding:64px 20px; }
+    .dishes-hd { flex-direction:column; align-items:flex-start; gap:20px; }
+    .story-in { padding:0 20px; }
+    .hours-wrap { padding:64px 20px; }
+    .gram { padding:48px 20px; }
+    footer { padding:48px 20px 28px; }
+    .ft-brand { margin-bottom:36px; }
+    .ft-bot { flex-direction:column; gap:10px; text-align:center; }
+    .btt { bottom:20px; right:20px; width:42px; height:42px; }
+    .stat { padding:16px 20px; }
+    .stat-n { font-size:20px; }
   }
   </style>
 </head>
 <body>
 
-  <!-- ══ INTRO CURTAIN ══ -->
-  <div class="intro" id="intro">
-    <div class="intro-half intro-top"></div>
-    <div class="intro-half intro-bot"></div>
-    <div class="intro-center">
-      <div class="intro-logo" id="intro-logo">In's Kitchen</div>
-      <div class="intro-sub" id="intro-sub">Authentic Korean · Ottawa</div>
-    </div>
-  </div>
-
-  <!-- ══ CURSOR ══ -->
   <div class="c-dot" id="cdot"></div>
   <div class="c-ring" id="cring"></div>
-
-  <!-- ══ SCROLL PROGRESS ══ -->
   <div class="spb" id="spb"></div>
 
-  <!-- ══════════════════════════════ NAV ══ -->
+  <button class="btt" id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 12V2M2 7l5-5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
   <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">In<span class="a">'</span>s Kitchen</a>
+    <a href="index.html" class="nav-logo">In<span class="a">'</span>s Kitchen</a>
     <ul class="nav-links">
-      <li><a href="#dishes">Menu</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
       <li><a href="#story">Our Story</a></li>
       <li><a href="#hours">Find Us</a></li>
-      <li><a href="https://www.instagram.com/in.s_kitchen" target="_blank">Instagram</a></li>
-      <li><a href="https://g.page/inskitchen/review" target="_blank" class="nav-pill" data-magnetic>Review Us</a></li>
+      <li><a href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="menu.html" class="nav-pill">View Menu →</a></li>
     </ul>
   </nav>
 
-  <!-- ══════════════════════════════ HERO ══ -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-orb"></div>
-
-    <div class="hero-left">
-      <div class="hero-halal ry d1">
-        <span class="halal-dot"></span>
-        <span class="halal-txt">100% Halal Certified</span>
-      </div>
-
-      <div class="hero-eyebrow ry d2">
+    <div class="hero-l">
+      <div class="hero-eyebrow">
         <div class="ey-line"></div>
-        <span class="lbl">Authentic Korean · Ottawa, ON</span>
+        <span class="ey-txt">Ottawa's Lowertown · 100% Halal</span>
       </div>
-
-      <h1 class="hero-h1" id="hero-h1">
-        <span class="reveal-line"><span class="reveal-inner" style="transition-delay:.05s">Seoul in</span></span>
-        <span class="reveal-line"><span class="reveal-inner" style="transition-delay:.18s">Every <em>Bowl</em></span></span>
+      <h1 class="hero-headline">
+        <span class="hl"><span>Authentic</span></span>
+        <span class="hl"><span><em>Korean</em></span></span>
+        <span class="hl"><span>Cuisine</span></span>
       </h1>
-
-      <p class="hero-body ry d3">
-        Home-cooked Korean flavours made with Triple&thinsp;A beef and the warmth of a neighbourhood kitchen on Templeton St.
+      <p class="hero-sub">
+        Home-style Korean cooking, made fresh every morning. Warm flavours, honest ingredients, and a little bit of Seoul in every bowl.
       </p>
-
-      <div class="hero-actions ry d4">
-        <a href="menu.html" class="btn-p" data-magnetic>
-          View Menu
-          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#story" class="btn-g">Our Story</a>
-      </div>
-
-      <div class="hero-scroll ry d5">
-        <div class="sc-line"></div>
-        <span class="sc-txt">Scroll</span>
+      <div class="hero-cta">
+        <a href="menu.html" class="btn-p">Explore the Menu</a>
+        <a href="#story" class="btn-s">Our Story</a>
       </div>
     </div>
 
-    <!-- RIGHT: visual panel with animated placeholders -->
-    <div class="hero-right">
-      <div class="hero-vis">
-        <div class="h-main"><div class="ph-live" style="aspect-ratio:3/4;"></div></div>
-        <div class="h-inset"><div class="ph-live" style="aspect-ratio:4/3;"></div></div>
-        <div class="hero-stat">
-          <div class="st-lbl">Est.</div>
-          <div class="st-val" id="counter" data-target="2019">0</div>
-          <div class="st-sub">Ottawa's Korean kitchen</div>
+    <div class="hero-r">
+      <img src="https://picsum.photos/seed/ins-hero-main/700/1000" alt="Korean dish at In's Kitchen" loading="eager">
+    </div>
+
+    <div class="hero-year" aria-hidden="true">2019</div>
+
+    <div class="hero-stats" aria-hidden="true">
+      <div class="stat">
+        <div class="stat-n">100%</div>
+        <div class="stat-l">Halal Certified</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">Est. '19</div>
+        <div class="stat-l">Proudly Ottawa</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">Triple A</div>
+        <div class="stat-l">Canadian Beef</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE BAND -->
+  <div class="type-band">
+    <p class="type-band-txt">Made fresh. <em>Every day.</em> Since&nbsp;2019.</p>
+  </div>
+
+  <!-- DISHES -->
+  <section class="dishes">
+    <div class="dishes-hd">
+      <div>
+        <div class="s-kicker">From the Kitchen</div>
+        <div class="s-title">The dishes<br>they <em>come back for</em></div>
+      </div>
+      <a href="menu.html" class="s-link">Full menu →</a>
+    </div>
+    <div class="dishes-grid">
+
+      <div class="dish-card feat">
+        <div class="d-img">
+          <img src="https://picsum.photos/seed/bulgogi-ins/600/800" alt="Bulgogi Bowl" loading="lazy">
         </div>
-        <!-- Decorative rings -->
-        <div class="hero-ring hero-ring-1"></div>
-        <div class="hero-ring hero-ring-2"></div>
+        <div class="d-info">
+          <span class="d-tag">Chef's Pick</span>
+          <div class="d-name">Bulgogi Bowl</div>
+          <p class="d-desc">Thinly sliced Triple A beef marinated overnight in soy, pear, and sesame — served over steamed rice with rotating banchan sides and house gochujang.</p>
+          <div class="d-price">$16</div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="d-img">
+          <img src="https://picsum.photos/seed/sundubu-ins/600/500" alt="Sundubu Jjigae" loading="lazy">
+        </div>
+        <div class="d-info">
+          <span class="d-tag">Most Loved</span>
+          <div class="d-name">Sundubu Jjigae</div>
+          <p class="d-desc">Silken tofu in a deep, spicy broth. Bubbling hot at the table.</p>
+          <div class="d-price">$14</div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="d-img">
+          <img src="https://picsum.photos/seed/tteokbokki-ins/600/500" alt="Tteokbokki" loading="lazy">
+        </div>
+        <div class="d-info">
+          <span class="d-tag">Spicy</span>
+          <div class="d-name">Tteokbokki</div>
+          <p class="d-desc">Chewy rice cakes in fiery gochujang — a Seoul street food staple. Mild on request.</p>
+          <div class="d-price">$12</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════ MARQUEE ══ -->
-  <div class="mq-wrap">
-    <div class="mq-track">
-      <div class="mq-item hl"><span class="mq-dot"></span>100% Halal Certified</div>
-      <div class="mq-item"><span class="mq-dot"></span>Triple A Canadian Beef</div>
-      <div class="mq-item"><span class="mq-dot"></span>Authentic Seoul Recipes</div>
-      <div class="mq-item"><span class="mq-dot"></span>Ottawa's Korean Kitchen</div>
-      <div class="mq-item"><span class="mq-dot"></span>Walk-ins Welcome</div>
-      <div class="mq-item"><span class="mq-dot"></span>Near University of Ottawa</div>
-      <div class="mq-item hl"><span class="mq-dot"></span>100% Halal Certified</div>
-      <div class="mq-item"><span class="mq-dot"></span>Triple A Canadian Beef</div>
-      <div class="mq-item"><span class="mq-dot"></span>Authentic Seoul Recipes</div>
-      <div class="mq-item"><span class="mq-dot"></span>Ottawa's Korean Kitchen</div>
-      <div class="mq-item"><span class="mq-dot"></span>Walk-ins Welcome</div>
-      <div class="mq-item"><span class="mq-dot"></span>Near University of Ottawa</div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════ DISHES ══ -->
-  <section class="sec" id="dishes">
-    <div class="sec-in">
-      <div class="sec-hd ry">
-        <div class="lbl">Signature Dishes</div>
-        <h2 class="sec-title">From our kitchen,<br>to <em>your table</em></h2>
-        <p class="sec-sub">Every dish made fresh in-house, with ingredients we stand behind — and flavours that bring Seoul to Ottawa.</p>
-      </div>
-
-      <div class="bento">
-        <article class="dish-card feat ry d1">
-          <div class="dish-ph"><div class="ph-live" style="aspect-ratio:3/4;"></div><div class="dish-tag">Chef's pick</div></div>
-          <div class="dish-body">
-            <div class="dish-name">Bulgogi Bowl</div>
-            <div class="dish-desc">Thinly sliced Triple A marinated beef over steamed rice, with rotating banchan and house gochujang.</div>
-            <div class="dish-foot">
-              <div class="dish-price">$16</div>
-              <div class="dish-arr" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="dish-card sm ry d2">
-          <div class="dish-ph"><div class="ph-live" style="aspect-ratio:16/9;filter:hue-rotate(12deg)"></div><div class="dish-tag">Most loved</div></div>
-          <div class="dish-body">
-            <div class="dish-name">Sundubu Jjigae</div>
-            <div class="dish-desc">Silken tofu stew in a deep, spicy broth — served bubbling hot with rice.</div>
-            <div class="dish-foot">
-              <div class="dish-price">$14</div>
-              <div class="dish-arr" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="dish-card sm ry d3">
-          <div class="dish-ph"><div class="ph-live" style="aspect-ratio:16/9;filter:hue-rotate(-10deg)"></div><div class="dish-tag">Street classic</div></div>
-          <div class="dish-body">
-            <div class="dish-name">Tteokbokki</div>
-            <div class="dish-desc">Chewy rice cakes in rich, spicy-sweet gochujang broth — a Seoul street food staple.</div>
-            <div class="dish-foot">
-              <div class="dish-price">$12</div>
-              <div class="dish-arr" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="dishes-cta ry">
-        <a href="menu.html" class="btn-p" data-magnetic>
-          View full menu
-          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════ PILLARS ══ -->
-  <div class="pillars-strip">
-    <div class="pillars-grid">
-      <div class="pillar rx- d1">
-        <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
-        <div class="pillar-title">100% Halal</div>
-        <div class="pillar-desc">Every ingredient is fully halal — because great food should be for everyone.</div>
-      </div>
-      <div class="pillar ry d2">
-        <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
-        <div class="pillar-title">Triple A Beef</div>
-        <div class="pillar-desc">Only Canada's finest Triple A grade beef — the flavour you taste in every bite.</div>
-      </div>
-      <div class="pillar ry d3">
-        <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
-        <div class="pillar-title">Made fresh daily</div>
-        <div class="pillar-desc">Every banchan, broth, and sauce made from scratch each morning. No shortcuts.</div>
-      </div>
-      <div class="pillar rx+ d4">
-        <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <div class="pillar-title">Neighbourhood roots</div>
-        <div class="pillar-desc">Steps from uOttawa — a warm kitchen for students, families, and regulars.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════ STORY ══ -->
-  <section class="sec alt" id="story">
+  <!-- STORY -->
+  <section class="story" id="story">
     <div class="story-in">
-      <div class="rx-">
-        <div class="lbl">Our story</div>
-        <blockquote class="story-bq">"We wanted to bring the warmth of a Seoul home kitchen to Ottawa — one bowl at a time."</blockquote>
+      <div class="story-img-wrap">
+        <img class="story-img" src="https://picsum.photos/seed/kitchen-story-ins/500/700" alt="In's Kitchen interior">
+        <svg class="story-ivy" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M40 0 Q36 38 40 76 Q44 114 38 160 Q35 178 40 200" stroke="#4A7C59" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="27" cy="38" rx="13" ry="8" fill="#4A7C59" opacity=".55" transform="rotate(-28 27 38)"/>
+          <ellipse cx="54" cy="76" rx="13" ry="8" fill="#4A7C59" opacity=".48" transform="rotate(22 54 76)"/>
+          <ellipse cx="26" cy="118" rx="13" ry="8" fill="#4A7C59" opacity=".52" transform="rotate(-18 26 118)"/>
+          <ellipse cx="56" cy="158" rx="11" ry="7" fill="#4A7C59" opacity=".4" transform="rotate(30 56 158)"/>
+        </svg>
+        <div class="story-chef">
+          <img src="https://picsum.photos/seed/chef-ins-portrait/300/300" alt="Chef In">
+          <div class="story-chef-name">Chef In</div>
+          <div class="story-chef-role">Founder &amp; Head Chef</div>
+        </div>
+      </div>
+
+      <div class="story-text">
+        <span class="story-ghost" aria-hidden="true">Our</span>
+        <h2 class="story-heading">A kitchen built on<br><em>family recipes</em></h2>
         <p class="story-body">
-          In's Kitchen was built on one belief: that authentic Korean food, made with love and the finest halal ingredients, can bring people together. We started small on Templeton Street, serving the uOttawa community — and we haven't looked back.<br><br>
-          Every dish is rooted in tradition — the kind passed through generations in Korean kitchens. We make it here, in Ottawa, for you.
+          In's Kitchen started with one woman's love for the flavours she grew up with — her mother's sundubu, her grandmother's kimchi, the bulgogi that marked every celebration.
         </p>
-        <a href="#" class="link-arr">
-          Read our full story
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="story-imgs rx+ d2">
-        <div class="story-main"><div class="ph-live" style="aspect-ratio:3/4;"></div></div>
-        <div class="story-thumb"><div class="ph-live" style="aspect-ratio:1;filter:hue-rotate(15deg)"></div></div>
-        <div class="story-seal">Halal<br>Certified</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════ HOURS ══ -->
-  <section class="sec" id="hours">
-    <div class="hours-in">
-      <div class="rx-">
-        <div class="lbl">Hours &amp; location</div>
-        <h2 class="hours-title">Come<br>find <em>us</em></h2>
-        <div class="hours-table" id="hours-table">
-          <div class="hours-row" data-day="1">
-            <span class="hours-day">Monday</span>
-            <span class="hours-time">11:00 am – 8:00 pm</span>
-          </div>
-          <div class="hours-row" data-day="2">
-            <span class="hours-day">Tuesday</span>
-            <span class="hours-time">11:00 am – 8:00 pm</span>
-          </div>
-          <div class="hours-row" data-day="3">
-            <span class="hours-day">Wednesday</span>
-            <span class="hours-time">11:00 am – 8:00 pm</span>
-          </div>
-          <div class="hours-row" data-day="4">
-            <span class="hours-day">Thursday</span>
-            <span class="hours-time">11:00 am – 8:00 pm</span>
-          </div>
-          <div class="hours-row" data-day="5">
-            <span class="hours-day">Friday</span>
-            <span class="hours-time">11:00 am – 8:00 pm</span>
-          </div>
-          <div class="hours-row" data-day="6">
-            <span class="hours-day">Saturday</span>
-            <span class="hours-time">12:00 pm – 7:00 pm</span>
-          </div>
-          <div class="hours-row" data-day="0">
-            <span class="hours-day">Sunday</span>
-            <span class="hours-time closed">Closed</span>
-          </div>
-        </div>
-        <p style="margin-top:20px;font-size:12px;font-weight:300;color:var(--ink-muted)">
-          Holiday hours may vary — follow <a href="https://www.instagram.com/in.s_kitchen" style="color:var(--red)">@In.s_kitchen</a> for updates.
+        <p class="story-body">
+          In 2019, she brought those recipes to Ottawa's Lowertown. Everything is made in-house, every morning. The banchan changes with the season. The beef is always Triple A, always halal.
         </p>
-      </div>
-
-      <div class="rx+ d2">
-        <div class="loc-card">
-          <div class="map-block">
-            <!-- Replace with actual Google Maps embed iframe -->
-            <div class="ph-live" style="height:100%;border-radius:inherit;"></div>
+        <div class="story-seal-wrap">
+          <svg class="story-seal" viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <path id="sp" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0"/>
+            </defs>
+            <text font-family="'Playfair Display', Georgia, serif" font-size="10.5" fill="#B84C3A" letter-spacing="3.5">
+              <textPath href="#sp">In's Kitchen · Ottawa · Since 2019 · </textPath>
+            </text>
+          </svg>
+          <div class="story-seal-lbl">
+            <strong>65-1 Templeton St.</strong>
+            Ottawa's Lowertown<br>Open Mon–Sat
           </div>
-          <div class="loc-rows">
-            <div class="loc-row">
-              <div class="loc-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-              <div><div class="loc-lbl">Address</div><div class="loc-val">65-1 Templeton St.<br>Ottawa, ON &nbsp;K1N 0A6</div></div>
-            </div>
-            <div class="loc-row">
-              <div class="loc-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg></div>
-              <div><div class="loc-lbl">Phone</div><div class="loc-val"><a href="tel:6132331001">(613) 233-1001</a></div></div>
-            </div>
-            <div class="loc-row">
-              <div class="loc-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-              <div><div class="loc-lbl">Email</div><div class="loc-val"><a href="mailto:suyeon@inskitchen.ca">suyeon@inskitchen.ca</a></div></div>
-            </div>
-          </div>
-          <button class="dir-btn" onclick="window.open('https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON','_blank')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            Get directions
-          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════ INSTAGRAM ══ -->
-  <section class="sec alt" style="padding-bottom:0">
-    <div class="insta-hd ry">
-      <div class="lbl">Follow along</div>
-      <div class="insta-handle">@In<span class="a">.</span>s_kitchen</div>
-      <div class="insta-sub">Behind the scenes, daily specials, and all the good stuff.</div>
+  <!-- HOURS -->
+  <section class="hours-wrap" id="hours">
+    <div class="hours-card">
+      <h2 class="hours-heading">Hours &amp; Location</h2>
+      <div class="h-row" data-day="1"><span class="h-day">Monday</span><span class="h-time">11 AM – 9 PM</span></div>
+      <div class="h-row" data-day="2"><span class="h-day">Tuesday</span><span class="h-time">11 AM – 9 PM</span></div>
+      <div class="h-row" data-day="3"><span class="h-day">Wednesday</span><span class="h-time">11 AM – 9 PM</span></div>
+      <div class="h-row" data-day="4"><span class="h-day">Thursday</span><span class="h-time">11 AM – 9 PM</span></div>
+      <div class="h-row" data-day="5"><span class="h-day">Friday</span><span class="h-time">11 AM – 9 PM</span></div>
+      <div class="h-row" data-day="6"><span class="h-day">Saturday</span><span class="h-time">12 PM – 9 PM</span></div>
+      <div class="h-row closed" data-day="0"><span class="h-day">Sunday</span><span class="h-time">Closed</span></div>
     </div>
-    <div class="ig-grid">
-      <div class="ig-cell ry d1"><div class="ph-live"></div></div>
-      <div class="ig-cell ry d2"><div class="ph-live"></div></div>
-      <div class="ig-cell ry d3"><div class="ph-live"></div></div>
-      <div class="ig-cell ry d4"><div class="ph-live"></div></div>
-      <div class="ig-cell ry d5"><div class="ph-live"></div></div>
-      <div class="ig-cell ry" style="transition-delay:.48s"><div class="ph-live"></div></div>
-    </div>
-    <div class="insta-follow">
-      <a href="https://www.instagram.com/in.s_kitchen" target="_blank" class="btn-g">
-        Follow on Instagram
-        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+    <div class="map-card">
+      <img class="map-img" src="https://picsum.photos/seed/ottawa-map-lowertown/800/500" alt="Map — 65-1 Templeton St, Ottawa" loading="lazy">
+      <div class="map-foot">
+        <div class="map-addr">
+          <strong>65-1 Templeton St.</strong>
+          Ottawa, ON K1N 0A6 · (613) 233-1001
+        </div>
+        <a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener" class="map-btn">Get Directions →</a>
+      </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════ FOOTER ══ -->
+  <!-- INSTAGRAM -->
+  <div class="gram">
+    <div class="gram-in">
+      <div class="gram-hd">
+        <div class="gram-title">On Instagram — <em style="font-family:var(--fd);font-style:italic;font-weight:400;">@in.s_kitchen</em></div>
+        <a href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" class="s-link">Follow us →</a>
+      </div>
+      <div class="gram-grid" id="gramGrid">
+        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="Instagram post"><img src="https://picsum.photos/seed/gram-ins-1/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="Instagram post"><img src="https://picsum.photos/seed/gram-ins-2/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="Instagram post"><img src="https://picsum.photos/seed/gram-ins-3/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="Instagram post"><img src="https://picsum.photos/seed/gram-ins-4/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="Instagram post"><img src="https://picsum.photos/seed/gram-ins-5/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="Instagram post"><img src="https://picsum.photos/seed/gram-ins-6/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
     <div class="ft-in">
+      <div class="ft-brand">In<span class="a">'</span>s Kitchen</div>
       <div class="ft-top">
         <div>
-          <div class="ft-logo">In<span class="a">'</span>s Kitchen</div>
-          <p class="ft-tag">Authentic Korean cuisine in the heart of Ottawa. 100% Halal. Triple A beef. Made with care every day.</p>
+          <p class="ft-tag">Authentic Korean cuisine in the heart of Ottawa. 100% Halal. Triple A beef. Made fresh every morning by people who care.</p>
           <div class="ft-soc">
-            <a href="https://www.instagram.com/in.s_kitchen" class="soc-btn" title="Instagram" target="_blank" rel="noopener">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
-            </a>
-            <a href="https://www.facebook.com" class="soc-btn" title="Facebook" target="_blank" rel="noopener">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Facebook"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-            </a>
-            <a href="https://g.page/inskitchen/review" class="soc-btn" title="Reviews" target="_blank" rel="noopener">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Reviews"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </a>
-            <a href="mailto:suyeon@inskitchen.ca" class="soc-btn" title="Email">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Email"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </a>
+            <a href="https://www.instagram.com/in.s_kitchen" class="soc-btn" aria-label="Instagram" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a>
+            <a href="https://g.page/r/inskitchen/review" class="soc-btn" aria-label="Google Reviews" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></a>
+            <a href="mailto:suyeon@inskitchen.ca" class="soc-btn" aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
           </div>
         </div>
         <div>
           <div class="ft-col-lbl">Navigate</div>
           <ul class="ft-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="#story">Our story</a></li>
-            <li><a href="#hours">Find us</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#hours">Find Us</a></li>
           </ul>
         </div>
         <div>
-          <div class="ft-col-lbl">Visit us</div>
+          <div class="ft-col-lbl">Visit Us</div>
           <ul class="ft-links">
-            <li><a href="#">65-1 Templeton St.</a></li>
-            <li><a href="#">Ottawa, ON &nbsp;K1N 0A6</a></li>
+            <li><a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener">65-1 Templeton St.</a></li>
+            <li><a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener">Ottawa, ON K1N 0A6</a></li>
             <li><a href="tel:6132331001">(613) 233-1001</a></li>
             <li><a href="mailto:suyeon@inskitchen.ca">suyeon@inskitchen.ca</a></li>
           </ul>
@@ -1118,170 +652,68 @@
       </div>
       <div class="ft-bot">
         <span>© 2025 In's Kitchen · All rights reserved.</span>
-        <span>Made with <span class="a">care</span> in Ottawa, ON</span>
+        <span>Questions? <a href="tel:6132331001" class="a">(613) 233-1001</a></span>
       </div>
     </div>
   </footer>
 
   <script>
-  /* ── INTRO CURTAIN ── */
-  const intro     = document.getElementById('intro');
-  const introLogo = document.getElementById('intro-logo');
-  const introSub  = document.getElementById('intro-sub');
-
-  setTimeout(() => { introLogo.classList.add('show'); introSub.classList.add('show'); }, 280);
-  setTimeout(() => {
-    intro.classList.add('open');
-    setTimeout(() => {
-      intro.remove();
-      // trigger hero text reveals after curtain opens
-      document.querySelectorAll('.reveal-inner').forEach(el => el.classList.add('in'));
-      // trigger all ry/rx elements
-      document.querySelectorAll('.ry,.rx-,.rx+,.rscale').forEach(el => {
-        if (isInView(el)) el.classList.add('in');
-      });
-    }, 1000);
-  }, 1500);
-
-  /* ── CUSTOM CURSOR ── */
-  const cdot  = document.getElementById('cdot');
+  /* CURSOR */
+  const cdot = document.getElementById('cdot');
   const cring = document.getElementById('cring');
-  let  mx = window.innerWidth/2, my = window.innerHeight/2;
-  let  rx = mx, ry2 = my;
-
-  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive:true });
-
-  (function tickCursor() {
-    // dot: instant
-    cdot.style.left  = mx + 'px';
-    cdot.style.top   = my + 'px';
-    // ring: lerp (spring-like lag)
-    rx  += (mx - rx)  * 0.12;
-    ry2 += (my - ry2) * 0.12;
-    cring.style.left = rx  + 'px';
-    cring.style.top  = ry2 + 'px';
-    requestAnimationFrame(tickCursor);
+  let mx = window.innerWidth/2, my = window.innerHeight/2, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, {passive:true});
+  (function tick() {
+    cdot.style.left = mx+'px'; cdot.style.top = my+'px';
+    rx += (mx-rx)*.12; ry += (my-ry)*.12;
+    cring.style.left = rx+'px'; cring.style.top = ry+'px';
+    requestAnimationFrame(tick);
   })();
-
-  // Cursor hover states
-  document.querySelectorAll('a,button,[data-magnetic]').forEach(el => {
+  document.querySelectorAll('a,button').forEach(el => {
     el.addEventListener('mouseenter', () => cring.classList.add('hover'));
     el.addEventListener('mouseleave', () => cring.classList.remove('hover'));
   });
-  document.addEventListener('mousedown', () => cdot.classList.add('click'));
-  document.addEventListener('mouseup',   () => cdot.classList.remove('click'));
 
-  /* ── SCROLL PROGRESS BAR ── */
+  /* SCROLL */
   const spb = document.getElementById('spb');
-  function updateSPB() {
-    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    spb.style.width = (pct * 100) + '%';
-  }
-
-  /* ── NAV SCROLL ── */
+  const btt = document.getElementById('btt');
   const nav = document.getElementById('nav');
-  function onScroll() {
-    nav.classList.toggle('on', window.scrollY > 50);
-    updateSPB();
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY, h = document.body.scrollHeight - window.innerHeight;
+    spb.style.width = (y/h*100)+'%';
+    btt.classList.toggle('show', y > 500);
+    nav.classList.toggle('scrolled', y > 20);
+  }, {passive:true});
+
+  /* REVEALS */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, {threshold:.1});
+  document.querySelectorAll('.dish-card,.story-img-wrap,.story-text,.hours-card,.map-card').forEach(el => obs.observe(el));
+
+  /* Dish stagger */
+  document.querySelectorAll('.dish-card').forEach((el,i) => { el.style.transitionDelay = (i*.1)+'s'; });
+
+  /* Instagram stagger */
+  const gramObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.g-item').forEach((el,i) => setTimeout(() => el.classList.add('vis'), i*65));
+        gramObs.unobserve(e.target);
+      }
+    });
+  }, {threshold:.1});
+  const gg = document.getElementById('gramGrid');
+  if (gg) gramObs.observe(gg);
+
+  /* TODAY */
+  const day = new Date().getDay();
+  const todayRow = document.querySelector('.h-row[data-day="'+day+'"]');
+  if (todayRow) {
+    todayRow.classList.add('today');
+    const d = todayRow.querySelector('.h-day');
+    if (d) d.textContent += ' (Today)';
   }
-  window.addEventListener('scroll', onScroll, { passive:true });
-
-  /* ── HIGHLIGHT TODAY'S HOURS ── */
-  const today = new Date().getDay(); // 0=Sun … 6=Sat
-  document.querySelectorAll('.hours-row').forEach(row => {
-    if (parseInt(row.dataset.day) === today) {
-      row.classList.add('today');
-      const daySpan = row.querySelector('.hours-day');
-      if (daySpan) daySpan.innerHTML += '<span class="today-badge">Today</span>';
-    }
-  });
-
-  /* ── SCROLL REVEALS (IntersectionObserver) ── */
-  function isInView(el) {
-    const r = el.getBoundingClientRect();
-    return r.top < window.innerHeight - 40;
-  }
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }});
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.ry,.rx-,.rx+,.rscale').forEach(el => revObs.observe(el));
-
-  /* ── COUNTER ANIMATION ── */
-  const counterEl = document.getElementById('counter');
-  let counted = false;
-  const cObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !counted) {
-      counted = true;
-      const target = parseInt(counterEl.dataset.target);
-      const start  = target - 80;
-      const dur    = 1200;
-      const t0     = performance.now();
-      (function tick(now) {
-        const p = Math.min((now - t0) / dur, 1);
-        // ease out cubic
-        const ep = 1 - Math.pow(1 - p, 3);
-        counterEl.textContent = Math.round(start + (target - start) * ep);
-        if (p < 1) requestAnimationFrame(tick);
-      })(t0);
-    }
-  }, { threshold: 0.5 });
-  if (counterEl) cObs.observe(counterEl);
-
-  /* ── MAGNETIC BUTTONS ── */
-  document.querySelectorAll('[data-magnetic]').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r  = btn.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width  / 2);
-      const dy = e.clientY - (r.top  + r.height / 2);
-      btn.style.transform = `translate(${dx * 0.28}px, ${dy * 0.28}px)`;
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-    });
-  });
-
-  /* ── DISH CARD 3D TILT + GLARE ── */
-  document.querySelectorAll('.dish-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
-      const x  = (e.clientX - r.left)  / r.width  - 0.5;
-      const y  = (e.clientY - r.top)   / r.height - 0.5;
-      const rx = -y * 10;
-      const ry3 = x * 10;
-      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry3}deg) translateZ(8px)`;
-      // Update glare position via CSS vars
-      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-      card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-
-  /* ── PARALLAX (hero visual panel) ── */
-  const heroRight = document.querySelector('.hero-right');
-  const heroOrb   = document.querySelector('.hero-orb');
-  let ticking = false;
-  function onScrollPar() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (heroRight) heroRight.style.transform = `translateY(${y * 0.18}px)`;
-        if (heroOrb)   heroOrb.style.transform   = `translateY(${y * 0.08}px)`;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-  window.addEventListener('scroll', onScrollPar, { passive:true });
-
-  /* ── SMOOTH ANCHORS ── */
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
-    });
-  });
   </script>
 </body>
 </html>
