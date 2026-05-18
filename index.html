@@ -8,27 +8,28 @@
   <meta property="og:title" content="In's Kitchen — Authentic Korean Cuisine · Ottawa">
   <meta property="og:description" content="Home-style Korean cooking, made fresh every morning. Warm flavours, honest ingredients, and a little bit of Seoul in every bowl.">
   <meta property="og:type" content="website">
+  <link rel="preload" href="ins/heroSection.PNG" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
   :root {
-    --bg:        #FAFAF8;
-    --bg-alt:    #F2EDE6;
-    --bg-dark:   #1A1008;
-    --terra:     #E05520;
-    --terra-h:   #EC6630;
-    --terra-s:   rgba(224,85,32,.07);
-    --terra-b:   rgba(224,85,32,.18);
-    --ink:       #1A1008;
-    --ink-mid:   #6B5A4A;
-    --ink-muted: #9E8A78;
-    --border:    rgba(26,16,8,.08);
-    --border-dk: rgba(26,16,8,.15);
-    --sh-sm:  0 2px 12px rgba(160,90,30,.08), 0 1px 3px rgba(160,90,30,.04);
-    --sh-md:  0 8px 40px rgba(160,90,30,.12), 0 3px 12px rgba(160,90,30,.06);
-    --sh-lg:  0 24px 88px rgba(160,90,30,.15), 0 8px 30px rgba(160,90,30,.08);
-    --sh-t:   0 6px 24px rgba(224,85,32,.24);
+    --bg:        #F5F1E8;
+    --bg-alt:    #E8E2D4;
+    --bg-dark:   #0C0A0A;
+    --terra:     #BF3218;
+    --terra-h:   #A22814;
+    --terra-s:   rgba(191,50,24,.07);
+    --terra-b:   rgba(191,50,24,.18);
+    --ink:       #0E0C0B;
+    --ink-mid:   #564030;
+    --ink-muted: #88705E;
+    --border:    rgba(14,12,11,.09);
+    --border-dk: rgba(14,12,11,.16);
+    --sh-sm:  0 2px 12px rgba(191,50,24,.08), 0 1px 3px rgba(191,50,24,.04);
+    --sh-md:  0 8px 40px rgba(191,50,24,.11), 0 3px 12px rgba(191,50,24,.05);
+    --sh-lg:  0 24px 88px rgba(191,50,24,.14), 0 8px 30px rgba(191,50,24,.07);
+    --sh-t:   0 6px 28px rgba(191,50,24,.30);
     --fd: 'Playfair Display', Georgia, serif;
     --fb: 'Outfit', system-ui, sans-serif;
     --fl: 'Space Grotesk', sans-serif;
@@ -38,11 +39,15 @@
 
   *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
   html { scroll-behavior:smooth }
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto }
+    *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
   body {
     background:var(--bg); color:var(--ink);
     font-family:var(--fb); font-size:16px; line-height:1.65;
-    overflow-x:hidden; -webkit-font-smoothing:antialiased;
-    cursor:none;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    cursor:none; text-rendering:optimizeSpeed;
   }
   img { display:block; max-width:100%; height:auto }
   a   { text-decoration:none; color:inherit }
@@ -89,8 +94,8 @@
   .btt:active { transform:scale(.94)!important; }
 
   /* NAV */
-  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(250,250,248,.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); transition:box-shadow .3s; }
-  .nav.scrolled { box-shadow:var(--sh-sm); }
+  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(250,250,248,.96); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid var(--border); transition:box-shadow .4s var(--eout), background .3s; }
+  .nav.scrolled { box-shadow:0 4px 24px rgba(14,12,11,.08), 0 1px 4px rgba(14,12,11,.04); background:rgba(250,250,248,.98); }
   .nav-logo { font-family:var(--fd); font-size:21px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
   .nav-logo .a { color:var(--terra); }
   .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
@@ -127,7 +132,7 @@
     font-size:clamp(58px,8.8vw,114px);
     line-height:.88; letter-spacing:-.04em; color:var(--ink);
     margin-bottom:40px;
-    text-wrap:balance;
+    text-wrap:balance; text-rendering:optimizeLegibility;
   }
   .hero-headline .hl { display:block; overflow:hidden; }
   .hero-headline .hl span { display:block; opacity:0; transform:translateY(1.1em); animation:lineUp .9s var(--eout) forwards; }
@@ -193,19 +198,21 @@
   .hero-stats {
     position:absolute; bottom:0; left:0; right:0; z-index:10;
     display:flex; align-items:stretch;
-    background:rgba(250,250,248,.94); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-top:1px solid var(--border);
+    background:rgba(12,10,10,.94); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-top:1px solid rgba(255,255,255,.07);
   }
   .stat {
-    flex:1; padding:26px 44px; border-right:1px solid var(--border);
+    flex:1; padding:30px 40px; border-right:1px solid rgba(255,255,255,.07);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
     opacity:0; transform:translateY(10px); animation:fuUp .6s var(--eout) forwards;
   }
   .stat:last-child { border-right:none; }
   .stat:nth-child(1){ animation-delay:1.25s; }
   .stat:nth-child(2){ animation-delay:1.38s; }
   .stat:nth-child(3){ animation-delay:1.51s; }
-  .stat-n { font-family:var(--fd); font-size:28px; font-weight:600; color:var(--ink); line-height:1; margin-bottom:5px; letter-spacing:-.025em; }
-  .stat-l { font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-muted); }
+  .stat::before { content:''; display:block; width:20px; height:2px; background:var(--terra); border-radius:99px; margin-bottom:12px; }
+  .stat-n { font-family:var(--fd); font-size:30px; font-weight:700; color:#F2EDE0; line-height:1; margin-bottom:6px; letter-spacing:-.03em; }
+  .stat-l { font-family:var(--fl); font-size:9px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:rgba(242,237,224,.48); }
 
   @keyframes fuUp    { to { opacity:1; transform:none; } }
   @keyframes lineUp  { to { opacity:1; transform:translateY(0); } }
@@ -288,6 +295,7 @@
     padding:72px 52px 48px 64px; z-index:4;
     opacity:0; transform:translateY(20px);
     transition:opacity .75s var(--eout),transform .75s var(--eout);
+    will-change:opacity,transform;
   }
   .dh-left.vis { opacity:1; transform:none; }
   .dh-kicker {
@@ -313,18 +321,22 @@
     padding:80px 64px 80px 0; overflow:hidden;
     opacity:0; transform:translateX(20px);
     transition:opacity .85s var(--eout) .15s, transform .85s var(--eout) .15s;
+    will-change:opacity,transform;
   }
   .dh-right.vis { opacity:1; transform:none; }
   .dh-blob-wrap { position:relative; display:flex; align-items:center; justify-content:center; }
   .dh-blob-ring {
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
     width:clamp(340px,42vw,560px); aspect-ratio:1;
-    border-radius:50%; border:1px solid var(--border-dk); pointer-events:none;
+    border-radius:50%; border:2px solid var(--terra); pointer-events:none;
+    opacity:.5;
   }
   .dh-food-blob {
     width:clamp(240px,32vw,440px); aspect-ratio:1;
     border-radius:50%; overflow:hidden; position:relative; z-index:2;
-    box-shadow:0 32px 96px rgba(150,100,45,.22), 0 8px 32px rgba(150,100,45,.10);
+    box-shadow:0 32px 96px rgba(191,50,24,.22), 0 8px 32px rgba(191,50,24,.10);
+    outline:3px solid var(--terra);
+    outline-offset:8px;
   }
   .dh-food-blob img { width:100%; height:100%; object-fit:cover; display:block; }
   .dh-float-stat {
@@ -350,6 +362,7 @@
     text-align:center; margin-bottom:48px;
     opacity:0; transform:translateY(18px);
     transition:opacity .7s var(--eout), transform .7s var(--eout);
+    will-change:opacity,transform;
   }
   .ds-hd.vis { opacity:1; transform:none; }
   /* Words sit behind cards by default; each word pops individually on hover */
@@ -389,12 +402,13 @@
     background:var(--bg); padding:0 36px 48px;
     border:1px solid var(--border); box-shadow:var(--sh-sm);
     display:flex; flex-direction:column; align-items:center;
-    overflow:visible;
+    overflow:visible; border-radius:2px;
     opacity:0; transform:translateY(32px);
-    transition:opacity .65s var(--eout),transform .65s var(--eout),box-shadow .3s;
+    transition:opacity .65s var(--eout),transform .65s var(--eout),box-shadow .3s,border-color .3s;
+    will-change:opacity,transform;
   }
   .ds-card.vis { opacity:1; transform:translateY(0); }
-  .ds-card:hover { box-shadow:var(--sh-md); transform:translateY(-8px); }
+  .ds-card:hover { box-shadow:var(--sh-md); transform:translateY(-8px); border-color:rgba(191,50,24,.18); }
   .ds-photo {
     width:clamp(140px,15vw,196px); height:clamp(140px,15vw,196px);
     border-radius:50%; overflow:hidden; flex-shrink:0;
@@ -444,30 +458,35 @@
   .st-overlay {
     position:absolute; inset:0; z-index:1; pointer-events:none;
     background:
-      linear-gradient(to bottom, rgba(24,17,13,.48) 0%, transparent 22%, transparent 78%, rgba(24,17,13,.48) 100%),
-      linear-gradient(to right, transparent 30%, rgba(24,17,13,.30) 100%);
+      linear-gradient(to bottom, rgba(12,10,10,.58) 0%, transparent 22%, transparent 78%, rgba(12,10,10,.58) 100%),
+      linear-gradient(to right, transparent 30%, rgba(12,10,10,.38) 100%);
   }
   /* Left portrait — sits directly beside the copy panel, like a family photo alongside the story */
   .st-portrait {
-    position:absolute; right:calc(47% + 16px); top:50%; transform:translateY(-50%);
-    width:clamp(200px,20vw,300px); height:clamp(340px,68vh,580px);
+    position:absolute; right:calc(48% + 20px); top:50%; transform:translateY(-50%);
+    width:clamp(240px,24vw,380px);
     z-index:5; overflow:hidden;
-    box-shadow:0 32px 96px rgba(24,17,13,.55), 0 8px 28px rgba(24,17,13,.3);
-    border:1px solid rgba(245,238,228,.12);
+    box-shadow:0 32px 96px rgba(12,10,10,.65), 0 8px 28px rgba(12,10,10,.38);
+    border:1px solid rgba(240,232,215,.12);
   }
-  .st-portrait img { width:100%; height:100%; object-fit:cover; display:block; }
-  /* Copy block — frosted panel on the right */
+  .st-portrait img { width:100%; height:auto; display:block; }
+  /* Copy block — centered frosted panel */
   .st-copy {
-    position:absolute; left:53%; top:50%;
-    transform:translateY(calc(-50% + 24px));
-    width:min(360px,38%); z-index:10;
-    background:rgba(235,226,210,.84);
-    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
-    padding:48px 40px; border:1px solid var(--border);
+    position:absolute; left:50%; top:50%;
+    transform:translate(-50%, calc(-50% + 28px));
+    width:min(680px,62%); z-index:10;
+    background:rgba(245,239,226,.93);
+    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    padding:56px 64px;
+    border:1px solid rgba(191,50,24,.15);
+    border-top:2px solid var(--terra);
+    border-radius:4px;
+    box-shadow:0 48px 96px rgba(0,0,0,.32), 0 16px 48px rgba(0,0,0,.18), 0 4px 16px rgba(0,0,0,.1);
     opacity:0;
     transition:opacity .85s var(--eout) .15s, transform .85s var(--eout) .15s;
+    will-change:opacity,transform;
   }
-  .st-copy.vis { opacity:1; transform:translateY(-50%); }
+  .st-copy.vis { opacity:1; transform:translate(-50%, -50%); }
   .st-kicker {
     font-family:var(--fl); font-size:10px; font-weight:500;
     letter-spacing:.2em; text-transform:uppercase; color:var(--terra);
@@ -485,6 +504,15 @@
     font-size:14px; font-weight:300; color:var(--ink-mid);
     line-height:1.88; margin-bottom:18px; text-wrap:pretty;
   }
+  .btn-see-team {
+    display:inline-block; margin-top:24px;
+    font-family:var(--fl); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--terra); border:1px solid var(--terra); padding:10px 28px; border-radius:999px;
+    background:transparent; cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .btn-see-team:hover { background:var(--terra); color:var(--bg); }
+  .st-copy.st-dismissed { opacity:0 !important; pointer-events:none; }
   .story-seal-wrap { display:flex; align-items:center; gap:16px; margin-top:20px; }
   .story-seal { width:72px; height:72px; flex-shrink:0; animation:spin 22s linear infinite; }
   @keyframes spin { to { transform:rotate(360deg); } }
@@ -493,7 +521,7 @@
 
   /* ── HOURS ── */
   .hours-wrap {
-    background: linear-gradient(to bottom, #2E1208 0%, var(--bg-dark) 40%, var(--bg-dark) 100%);
+    background: linear-gradient(to bottom, #1C0808 0%, var(--bg-dark) 40%, var(--bg-dark) 100%);
     padding:80px 64px; min-height:100dvh;
     display:flex; align-items:center;
   }
@@ -506,9 +534,11 @@
     border:1px solid rgba(245,238,228,.1); border-top:2px solid var(--terra);
     box-shadow:0 8px 48px rgba(0,0,0,.4);
     opacity:0; transform:translateY(24px);
-    transition:opacity .7s var(--eout),transform .7s var(--eout);
+    transition:opacity .7s var(--eout),transform .7s var(--eout),background .3s,border-color .3s;
+    will-change:opacity,transform;
   }
   .hours-card.vis { opacity:1; transform:none; }
+  .hours-card.vis:hover { background:rgba(245,238,228,.08); border-color:rgba(245,238,228,.18); }
   .hours-heading { font-family:var(--fd); font-size:clamp(26px,3.2vw,36px); font-weight:600; letter-spacing:-.022em; color:rgba(245,238,228,.92); margin-bottom:40px; }
   .h-row { display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-bottom:1px solid rgba(245,238,228,.08); font-size:14px; }
   .h-row:last-child { border-bottom:none; }
@@ -523,9 +553,11 @@
     border-radius:2px; overflow:hidden;
     box-shadow:0 12px 56px rgba(0,0,0,.5);
     opacity:0; transform:translateY(24px);
-    transition:opacity .7s var(--eout) .15s,transform .7s var(--eout) .15s;
+    transition:opacity .7s var(--eout) .15s,transform .7s var(--eout) .15s,box-shadow .3s;
+    will-change:opacity,transform;
   }
   .map-card.vis { opacity:1; transform:none; }
+  .map-card.vis:hover { box-shadow:0 20px 72px rgba(0,0,0,.6); }
   .map-img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
   .map-foot { background:rgba(245,238,228,.07); border-top:1px solid rgba(245,238,228,.12); padding:26px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
   .map-addr { font-size:13px; font-weight:300; color:rgba(245,238,228,.5); line-height:1.7; }
@@ -533,31 +565,31 @@
   .map-btn { font-family:var(--fl); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--terra); border-bottom:1px solid var(--terra-b); padding-bottom:1px; white-space:nowrap; transition:color .2s,border-color .2s; flex-shrink:0; }
   .map-btn:hover { color:var(--terra-h); border-color:var(--terra); }
 
-  /* ── INSTAGRAM ── */
-  .gram {
-    padding:64px;
-    min-height:100dvh; display:flex; flex-direction:column; justify-content:center;
-    background-color:var(--bg-alt);
-    background-image:
-      repeating-linear-gradient(45deg,  rgba(150,100,50,.035) 0,rgba(150,100,50,.035) 1px,transparent 1px,transparent 10px),
-      repeating-linear-gradient(-45deg, rgba(150,100,50,.035) 0,rgba(150,100,50,.035) 1px,transparent 1px,transparent 10px);
+  /* ── MAP PHOTO ── */
+  .map-photo-wrap {
+    display:flex; justify-content:center; align-items:center; padding:80px 64px;
+    background:linear-gradient(180deg, var(--bg-alt) 0%, #D8D0BE 100%);
+    border-top:1px solid var(--border);
   }
-  .gram-in { max-width:1320px; margin:0 auto; }
-  .gram-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:36px; }
-  .gram-title { font-family:var(--fd); font-size:clamp(22px,3vw,30px); font-weight:600; letter-spacing:-.022em; color:var(--ink); }
-  .gram-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:5px; }
-  .g-item {
-    aspect-ratio:1; overflow:hidden; border-radius:1px; position:relative;
-    opacity:0; transform:translateY(14px);
-    transition:opacity .5s var(--eout),transform .5s var(--eout);
+  .map-frame { display:flex; align-items:center; gap:28px; width:100%; max-width:1100px; }
+  .map-frame a {
+    flex:1; min-width:0; display:block; border-radius:12px; overflow:hidden; cursor:pointer;
+    border:3px solid #6B3A1F;
+    box-shadow: 0 0 0 8px var(--bg-alt), 0 0 0 10px #6B3A1F, 0 28px 56px rgba(12,10,10,.22);
+    transition:box-shadow .35s var(--eout), transform .35s var(--espring);
+    will-change:transform;
   }
-  .g-item.vis { opacity:1; transform:none; }
-  .g-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s var(--eout); }
-  .g-item:hover img { transform:scale(1.1); }
-  .g-over { position:absolute; inset:0; background:rgba(24,17,13,0); display:flex; align-items:center; justify-content:center; transition:background .3s; }
-  .g-item:hover .g-over { background:rgba(24,17,13,.35); }
-  .g-icon { color:#F5EEE4; opacity:0; transition:opacity .3s; }
-  .g-item:hover .g-icon { opacity:1; }
+  .map-frame a:hover {
+    transform:translateY(-6px) scale(1.004);
+    box-shadow: 0 0 0 8px var(--bg-alt), 0 0 0 11px #5C2E12, 0 48px 80px rgba(12,10,10,.32), 0 0 80px rgba(92,46,18,.12);
+  }
+  .map-frame a img { width:100%; height:auto; display:block; }
+  .map-side { display:flex; align-items:center; flex-shrink:0; }
+  .map-side svg { overflow:visible; }
+  .map-side-l { align-self:flex-end; animation:label-float 2.4s ease-in-out infinite; }
+  .map-side-r { align-self:flex-start; animation:label-float 2.4s ease-in-out infinite .7s; }
+  @keyframes label-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+  .map-photo-wrap img { width:100%; height:auto; display:block; }
 
   /* ── FOOTER ── */
   footer { background:var(--bg-dark); border-top:2px solid var(--terra); padding:80px 64px 48px; }
@@ -608,7 +640,7 @@
     .ds-card:nth-child(2).vis { transform:translateY(-24px); }
     .ds-card:nth-child(2):hover { transform:translateY(-32px); }
     .st-portrait { display:none; }
-    .st-copy { position:absolute; left:24px; right:24px; top:50%; transform:translateY(calc(-50% + 20px)); width:auto; max-width:none; padding:36px 32px; }
+    .st-copy { position:absolute; left:24px; right:24px; top:50%; transform:translateY(calc(-50% + 20px)); width:auto; max-width:none; padding:36px 32px; border-radius:4px; }
     .st-copy.vis { transform:translateY(-50%); }
     .hours-inner { grid-template-columns:1fr; gap:32px; }
     .gram-grid { grid-template-columns:repeat(3,1fr); }
@@ -651,10 +683,7 @@
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
-      <li><a href="#story">Our Story</a></li>
       <li><a href="#hours">Find Us</a></li>
-      <li><a href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="menu.html" class="nav-pill">View Menu →</a></li>
     </ul>
   </nav>
 
@@ -674,13 +703,13 @@
         Home-style Korean cooking, made fresh every morning. Warm flavours, honest ingredients, and a little bit of Seoul in every bowl.
       </p>
       <div class="hero-cta">
-        <a href="menu.html" class="btn-p">Explore the Menu</a>
+        <a href="menu.html" class="btn-p btn-oval">Explore the Menu</a>
         <a href="#story" class="btn-s">Our Story</a>
       </div>
     </div>
 
     <div class="hero-r">
-      <img src="https://picsum.photos/seed/ins-hero-main/700/1000" alt="Korean dish at In's Kitchen" loading="eager">
+      <img src="ins/heroSection.PNG" alt="Korean dish at In's Kitchen" loading="eager" fetchpriority="high" decoding="async">
     </div>
 
     <div class="hero-year" aria-hidden="true">2019</div>
@@ -705,7 +734,7 @@
   <div class="type-band" id="typeBand">
     <div class="torn-top" aria-hidden="true">
       <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#FAFAF8"/>
+        <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#0C0A0A"/>
       </svg>
     </div>
     <div class="tb-lines" aria-hidden="true">
@@ -719,7 +748,7 @@
         <path d="M0,29 C80,6 200,52 330,26 C450,4 570,48 660,29" stroke="rgba(255,255,255,.58)" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
       </svg>
       <svg class="tb-curve" style="top:42%;width:52vw;height:42px" viewBox="0 0 520 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,36 Q260,4 520,36" stroke="rgba(24,17,13,.35)" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <path d="M0,36 Q260,4 520,36" stroke="rgba(12,10,10,.30)" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
       </svg>
       <svg class="tb-curve" style="top:67%;width:74vw;height:78px" viewBox="0 0 740 78" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,39 C120,8 250,68 400,36 C540,6 660,64 740,39" stroke="rgba(255,255,255,.44)" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
@@ -738,37 +767,32 @@
   <section class="story" id="story">
     <div class="torn-top" aria-hidden="true">
       <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,56 L0,28 L26,25 L53,31 L80,23 L106,29 L132,25 L158,31 L185,24 L212,29 L238,25 L265,31 L292,24 L318,29 L345,25 L372,31 L398,24 L425,29 L452,25 L478,31 L505,24 L532,29 L558,25 L585,31 L612,24 L638,29 L665,25 L692,31 L718,24 L745,29 L772,25 L798,31 L825,24 L852,29 L878,25 L905,31 L932,24 L958,29 L985,25 L1012,31 L1038,24 L1065,29 L1092,25 L1118,31 L1145,24 L1172,29 L1198,25 L1225,31 L1252,24 L1278,29 L1305,25 L1332,31 L1358,24 L1385,29 L1412,25 L1440,28 L1440,56 Z" fill="#E05520"/>
+        <path d="M0,56 L0,28 L26,25 L53,31 L80,23 L106,29 L132,25 L158,31 L185,24 L212,29 L238,25 L265,31 L292,24 L318,29 L345,25 L372,31 L398,24 L425,29 L452,25 L478,31 L505,24 L532,29 L558,25 L585,31 L612,24 L638,29 L665,25 L692,31 L718,24 L745,29 L772,25 L798,31 L825,24 L852,29 L878,25 L905,31 L932,24 L958,29 L985,25 L1012,31 L1038,24 L1065,29 L1092,25 L1118,31 L1145,24 L1172,29 L1198,25 L1225,31 L1252,24 L1278,29 L1305,25 L1332,31 L1358,24 L1385,29 L1412,25 L1440,28 L1440,56 Z" fill="#BF3218"/>
       </svg>
     </div>
 
     <!-- Single full-bleed background image -->
     <div class="st-bg">
-      <img src="https://picsum.photos/seed/story-bg-ins/1920/1080" alt="Inside In's Kitchen" loading="lazy">
+      <img src="ins/ourStory.PNG" alt="Inside In's Kitchen" loading="lazy" decoding="async">
     </div>
     <div class="st-overlay" aria-hidden="true"></div>
-
-    <!-- Left portrait — framed photo left of copy panel -->
-    <div class="st-portrait" aria-hidden="true">
-      <img src="https://picsum.photos/seed/story-portrait-ins/600/900" alt="" loading="lazy">
-    </div>
 
     <!-- Copy block — frosted panel on the right -->
     <div class="st-copy">
       <div class="st-kicker">Our story</div>
-      <h2 class="st-heading">A kitchen built on<br><em>family recipes</em></h2>
+      <h2 class="st-heading">Your passport to<br><em>Korean flavours</em></h2>
       <p class="st-body">
-        In's Kitchen started with one woman's love for the flavours she grew up with — her mother's sundubu, her grandmother's kimchi, the bulgogi that marked every celebration.
+        Welcome to In's Kitchen — your passport to the rich and tantalizing flavours of Korea, nestled in the heart of Canada's capital, Ottawa. Our story began with a deep-seated passion for Korean cuisine and a mission to share its authentic, soul-warming dishes with the diverse community of Ottawa, including the vibrant students from the nearby University of Ottawa.
       </p>
       <p class="st-body">
-        In 2019, she brought those recipes to Ottawa's Lowertown. Everything is made in-house, every morning. The banchan changes with the season. The beef is always Triple A, always halal.
+        At In's Kitchen, we believe that the key to truly delicious Korean food is the use of high-quality ingredients. That's why we take pride in sourcing only Triple A Beef and 100% halal ingredients, ensuring that every dish we create is not only bursting with flavour but also respects the dietary preferences of our valued customers. Join us on this culinary journey, where tradition meets innovation, and let us transport your taste buds to the vibrant streets of Seoul right here in Ottawa.
       </p>
       <div class="story-seal-wrap">
         <svg class="story-seal" viewBox="0 0 120 120" aria-hidden="true">
           <defs>
             <path id="sp" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0"/>
           </defs>
-          <text font-family="'Playfair Display', Georgia, serif" font-size="10.5" fill="#B84C3A" letter-spacing="3.5">
+          <text font-family="'Playfair Display', Georgia, serif" font-size="10.5" fill="#BF3218" letter-spacing="3.5">
             <textPath href="#sp">In's Kitchen · Ottawa · Since 2019 · </textPath>
           </text>
         </svg>
@@ -777,6 +801,7 @@
           Ottawa's Lowertown<br>Open Mon–Sat
         </div>
       </div>
+      <button class="btn-see-team" type="button">See the team</button>
       <div class="torn-bot" aria-hidden="true">
         <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#FAFAF8"/>
@@ -802,7 +827,7 @@
       <div class="dh-blob-wrap">
         <div class="dh-blob-ring"></div>
         <div class="dh-food-blob">
-          <img src="https://picsum.photos/seed/dishes-hero-ins/600/600" alt="Signature dish at In's Kitchen" loading="lazy">
+          <img src="ins/heroSection.PNG" alt="Signature dish at In's Kitchen" loading="lazy">
         </div>
         <div class="dh-float-stat">
           <div class="dh-stat-n">Triple A</div>
@@ -824,7 +849,7 @@
 
       <div class="ds-card">
         <div class="ds-photo">
-          <img src="https://picsum.photos/seed/bulgogi-ins/400/400" alt="Bulgogi Bowl" loading="lazy">
+          <img src="ins/Bulgogi Bowl.PNG" alt="Bulgogi Bowl" loading="lazy" decoding="async">
         </div>
         <div class="ds-badge">Chef's Pick</div>
         <div class="ds-name">Bulgogi Bowl</div>
@@ -839,7 +864,7 @@
 
       <div class="ds-card">
         <div class="ds-photo">
-          <img src="https://picsum.photos/seed/sundubu-ins/400/400" alt="Sundubu Jjigae" loading="lazy">
+          <img src="ins/SundubuJjigae.PNG" alt="Sundubu Jjigae" loading="lazy" decoding="async">
         </div>
         <div class="ds-badge">Most Loved</div>
         <div class="ds-name">Sundubu Jjigae</div>
@@ -854,7 +879,7 @@
 
       <div class="ds-card">
         <div class="ds-photo">
-          <img src="https://picsum.photos/seed/tteokbokki-ins/400/400" alt="Tteokbokki" loading="lazy">
+          <img src="ins/Tteokbokki.PNG" alt="Tteokbokki" loading="lazy" decoding="async">
         </div>
         <div class="ds-badge">Spicy</div>
         <div class="ds-name">Tteokbokki</div>
@@ -871,7 +896,7 @@
   </section>
     <div class="torn-bot" aria-hidden="true">
       <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#2E1208"/>
+        <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#1A0808"/>
       </svg>
     </div>
   </div><!-- /.dishes-wrap -->
@@ -890,7 +915,7 @@
         <div class="h-row closed" data-day="0"><span class="h-day">Sunday</span><span class="h-time">Closed</span></div>
       </div>
       <div class="map-card">
-        <img class="map-img" src="https://picsum.photos/seed/ottawa-map-lowertown/800/500" alt="Map — 65-1 Templeton St, Ottawa's Lowertown" loading="lazy">
+        <img class="map-img" src="ins/location.PNG" alt="Map — 65-1 Templeton St, Ottawa's Lowertown" loading="lazy" decoding="async">
         <div class="map-foot">
           <div class="map-addr">
             <strong>65-1 Templeton St.</strong>
@@ -902,21 +927,34 @@
     </div>
   </section>
 
-  <!-- INSTAGRAM -->
-  <div class="gram">
-    <div class="gram-in">
-      <div class="gram-hd">
-        <div class="gram-title">On Instagram — <em style="font-family:var(--fd);font-style:italic;font-weight:400;">@in.s_kitchen</em></div>
-        <a href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" class="s-link">Follow us →</a>
+  <!-- MAP PHOTO -->
+  <div class="map-photo-wrap">
+    <div class="map-frame">
+
+      <!-- Left label -->
+      <div class="map-side map-side-l" aria-hidden="true">
+        <svg width="132" height="114" viewBox="0 0 132 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 22,72 C 6,58 4,36 18,22 C 30,10 58,6 92,10" stroke="#5C2E12" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 86,4 L 93,10 L 87,17" stroke="#5C2E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="2" y="86" width="128" height="26" rx="13" fill="#5C2E12"/>
+          <text x="66" y="104" font-family="'Playfair Display', Georgia, serif" font-size="15" font-style="italic" font-weight="700" fill="#F5EEE4" text-anchor="middle">Take me there!</text>
+        </svg>
       </div>
-      <div class="gram-grid" id="gramGrid">
-        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="View on Instagram"><img src="https://picsum.photos/seed/gram-ins-1/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
-        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="View on Instagram"><img src="https://picsum.photos/seed/gram-ins-2/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
-        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="View on Instagram"><img src="https://picsum.photos/seed/gram-ins-3/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
-        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="View on Instagram"><img src="https://picsum.photos/seed/gram-ins-4/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
-        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="View on Instagram"><img src="https://picsum.photos/seed/gram-ins-5/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
-        <a class="g-item" href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener" aria-label="View on Instagram"><img src="https://picsum.photos/seed/gram-ins-6/400/400" alt="" loading="lazy"><div class="g-over"><svg class="g-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div></a>
+
+      <a href="https://www.google.com/maps/place/In's+Kitchen/@45.4210624,-75.6805102,17z/data=!3m1!4b1!4m6!3m5!1s0x4cce058fd2e8f7ab:0xa09dd8183be6893d!8m2!3d45.4210624!4d-75.6779353!16s%2Fg%2F11rqzjbcqx?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Open in Google Maps">
+        <img src="ins/map.PNG" alt="Map of In's Kitchen location" loading="lazy" decoding="async">
+      </a>
+
+      <!-- Right label -->
+      <div class="map-side map-side-r" aria-hidden="true">
+        <svg width="110" height="80" viewBox="0 0 110 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="2" width="94" height="26" rx="13" fill="#5C2E12"/>
+          <text x="55" y="20" font-family="'Playfair Display', Georgia, serif" font-size="15" font-style="italic" font-weight="700" fill="#F5EEE4" text-anchor="middle">Click Me</text>
+          <path d="M 90,28 C 102,38 104,54 86,56 C 68,58 42,50 22,62" stroke="#5C2E12" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 28,56 L 21,62 L 27,69" stroke="#5C2E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
+
     </div>
   </div>
 
@@ -979,42 +1017,54 @@
     el.addEventListener('mouseleave', () => cring.classList.remove('hover'));
   });
 
-  /* SCROLL */
-  const spb    = document.getElementById('spb');
-  const btt    = document.getElementById('btt');
-  const nav    = document.getElementById('nav');
+  /* SCROLL — all reads before writes, gated by rAF so at most one paint per frame */
+  const spb      = document.getElementById('spb');
+  const btt      = document.getElementById('btt');
+  const nav      = document.getElementById('nav');
   const heroImg  = document.querySelector('.hero-r img');
   const heroEl   = document.querySelector('.hero');
-  const tbEl      = document.getElementById('typeBand');
+  const tbEl     = document.getElementById('typeBand');
   const tbLineEls = tbEl ? tbEl.querySelectorAll('.tb-curve') : [];
   const tbTravel  = [128, 142, 120, 148, 132, 145];
   const tbDirs    = [1, -1, 1, -1, 1, -1];
 
+  let heroH = heroEl ? heroEl.offsetHeight : 0;
+  window.addEventListener('resize', () => { heroH = heroEl ? heroEl.offsetHeight : 0; }, {passive:true});
+
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    const y = window.scrollY, h = document.body.scrollHeight - window.innerHeight;
-    spb.style.width = (y/h*100)+'%';
-    btt.classList.toggle('show', y > 500);
-    nav.classList.toggle('scrolled', y > 20);
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      /* ── READS ── */
+      const y = window.scrollY;
+      const h = document.body.scrollHeight - window.innerHeight;
+      let tbProgress = null;
+      if (tbEl && tbLineEls.length) {
+        const rect    = tbEl.getBoundingClientRect();
+        const total   = window.innerHeight + rect.height;
+        const scrolled = window.innerHeight - rect.top;
+        tbProgress = Math.max(0, Math.min(1, scrolled / total));
+      }
 
-    /* HERO PARALLAX */
-    if (heroImg && y < heroEl.offsetHeight) {
-      heroImg.style.transform = `scale(1) translateY(${y * 0.28}px)`;
-    }
+      /* ── WRITES ── */
+      spb.style.width = (y / h * 100) + '%';
+      btt.classList.toggle('show', y > 500);
+      nav.classList.toggle('scrolled', y > 20);
 
-    /* TYPE BAND HORIZONTAL LINES — sweep fully across as section enters→exits viewport */
-    if (tbEl && tbLineEls.length) {
-      const rect = tbEl.getBoundingClientRect();
-      /* progress 0 = section bottom just hit viewport bottom (entering)
-         progress 1 = section top just hit viewport top (exited) */
-      const total    = window.innerHeight + rect.height;
-      const scrolled = window.innerHeight - rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / total));
-      tbLineEls.forEach((line, i) => {
-        /* maps 0→1 to: start off-screen one side, cross through, exit off other side */
-        const x = tbDirs[i] * tbTravel[i] * (1 - 2 * progress);
-        line.style.transform = `translateX(${x}vw)`;
-      });
-    }
+      if (heroImg && y < heroH) {
+        heroImg.style.transform = `scale(1) translateY(${y * 0.28}px)`;
+      }
+
+      if (tbProgress !== null) {
+        tbLineEls.forEach((line, i) => {
+          const x = tbDirs[i] * tbTravel[i] * (1 - 2 * tbProgress);
+          line.style.transform = `translateX(${x}vw)`;
+        });
+      }
+
+      ticking = false;
+    });
   }, {passive:true});
 
   /* CURSOR COLOR — white on red section */
@@ -1046,7 +1096,25 @@
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
   }, {threshold:.1});
-  document.querySelectorAll('.dh-left,.dh-right,.ds-hd,.st-copy,.hours-card,.map-card').forEach(el => obs.observe(el));
+  document.querySelectorAll('.dh-left,.dh-right,.ds-hd,.hours-card,.map-card').forEach(el => obs.observe(el));
+
+  /* Story text — reveal only once section is half scrolled through */
+  const storyObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const copy = e.target.querySelector('.st-copy');
+      if (!copy.classList.contains('st-dismissed')) {
+        copy.classList.toggle('vis', e.isIntersecting);
+      }
+    });
+  }, {threshold:.90});
+  const storySection = document.querySelector('.story');
+  if (storySection) storyObs.observe(storySection);
+
+  document.querySelector('.btn-see-team')?.addEventListener('click', () => {
+    const copy = document.querySelector('.st-copy');
+    copy.classList.remove('vis');
+    copy.classList.add('st-dismissed');
+  });
 
   /* Dishes spotlight stagger */
   const dsObs = new IntersectionObserver(entries => {
@@ -1060,17 +1128,6 @@
   const dsCards = document.getElementById('dsCards');
   if (dsCards) dsObs.observe(dsCards);
 
-  /* Instagram stagger */
-  const gramObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.g-item').forEach((el,i) => setTimeout(() => el.classList.add('vis'), i*65));
-        gramObs.unobserve(e.target);
-      }
-    });
-  }, {threshold:.1});
-  const gg = document.getElementById('gramGrid');
-  if (gg) gramObs.observe(gg);
 
   /* TODAY */
   const day = new Date().getDay();
