@@ -13,22 +13,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
   :root {
-    --bg:        #F5EEE4;
-    --bg-alt:    #EBE2D2;
-    --bg-dark:   #18110D;
-    --terra:     #B84C3A;
-    --terra-h:   #C9584A;
-    --terra-s:   rgba(184,76,58,.07);
-    --terra-b:   rgba(184,76,58,.16);
-    --ink:       #18110D;
-    --ink-mid:   #78655A;
-    --ink-muted: #A89178;
-    --border:    rgba(24,17,13,.08);
-    --border-dk: rgba(24,17,13,.15);
-    --sh-sm:  0 2px 12px rgba(150,100,45,.09), 0 1px 3px rgba(150,100,45,.05);
-    --sh-md:  0 8px 40px rgba(150,100,45,.13), 0 3px 12px rgba(150,100,45,.07);
-    --sh-lg:  0 24px 88px rgba(150,100,45,.17), 0 8px 30px rgba(150,100,45,.09);
-    --sh-t:   0 6px 24px rgba(184,76,58,.22);
+    --bg:        #FAFAF8;
+    --bg-alt:    #F2EDE6;
+    --bg-dark:   #1A1008;
+    --terra:     #E05520;
+    --terra-h:   #EC6630;
+    --terra-s:   rgba(224,85,32,.07);
+    --terra-b:   rgba(224,85,32,.18);
+    --ink:       #1A1008;
+    --ink-mid:   #6B5A4A;
+    --ink-muted: #9E8A78;
+    --border:    rgba(26,16,8,.08);
+    --border-dk: rgba(26,16,8,.15);
+    --sh-sm:  0 2px 12px rgba(160,90,30,.08), 0 1px 3px rgba(160,90,30,.04);
+    --sh-md:  0 8px 40px rgba(160,90,30,.12), 0 3px 12px rgba(160,90,30,.06);
+    --sh-lg:  0 24px 88px rgba(160,90,30,.15), 0 8px 30px rgba(160,90,30,.08);
+    --sh-t:   0 6px 24px rgba(224,85,32,.24);
     --fd: 'Playfair Display', Georgia, serif;
     --fb: 'Outfit', system-ui, sans-serif;
     --fl: 'Space Grotesk', sans-serif;
@@ -89,7 +89,7 @@
   .btt:active { transform:scale(.94)!important; }
 
   /* NAV */
-  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(245,238,228,.94); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); transition:box-shadow .3s; }
+  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(250,250,248,.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); transition:box-shadow .3s; }
   .nav.scrolled { box-shadow:var(--sh-sm); }
   .nav-logo { font-family:var(--fd); font-size:21px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
   .nav-logo .a { color:var(--terra); }
@@ -176,7 +176,7 @@
   }
   .hero-r::after {
     content:''; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(to top,rgba(245,238,228,.45) 0%,transparent 40%);
+    background:linear-gradient(to top,rgba(250,250,248,.45) 0%,transparent 40%);
   }
 
   /* Year ghost */
@@ -193,7 +193,7 @@
   .hero-stats {
     position:absolute; bottom:0; left:0; right:0; z-index:10;
     display:flex; align-items:stretch;
-    background:rgba(245,238,228,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    background:rgba(250,250,248,.94); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
     border-top:1px solid var(--border);
   }
   .stat {
@@ -252,29 +252,40 @@
   .cursor-light .c-dot { background:#F5EEE4; }
   .cursor-light .c-ring { border-color:#F5EEE4; }
 
+  /* ── TORN EDGES ── */
+  .torn-top, .torn-bot {
+    position:absolute; left:0; width:100%;
+    overflow:hidden; line-height:0; pointer-events:none; z-index:20;
+  }
+  .torn-top { top:-1px; }
+  .torn-bot { bottom:-1px; }
+  .torn-top svg, .torn-bot svg { display:block; width:100%; height:56px; }
+  .torn-top svg { transform:scaleY(-1); transform-origin:center; }
+
   /* ── DISHES ── */
-  /* Bold top-to-bottom sweep — near-white to deep warm rust, both sections one canvas */
   .dishes-wrap {
-    background: linear-gradient(
-      to bottom,
-      #FEFCF8 0%,
-      #F0D8B0 20%,
-      #D4A060 42%,
-      #B87040 62%,
-      #9A5020 82%,
-      #7A3810 100%
-    );
+    background:
+      radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(60,20,5,.28) 100%),
+      linear-gradient(
+        to bottom,
+        #FAFAF8 0%,
+        #F8EEE0 22%,
+        #F0D8B8 44%,
+        #E8BE88 64%,
+        #DC9E58 82%,
+        #CE8238 100%
+      );
     position:relative;
   }
   /* Section 1: split intro */
   .dishes-hero {
-    min-height:88dvh;
+    min-height:72dvh;
     display:grid; grid-template-columns:52% 48%;
     background:transparent; overflow:hidden; position:relative;
   }
   .dh-left {
     display:flex; flex-direction:column; justify-content:center;
-    padding:80px 52px 80px 64px; z-index:4;
+    padding:72px 52px 48px 64px; z-index:4;
     opacity:0; transform:translateY(20px);
     transition:opacity .75s var(--eout),transform .75s var(--eout);
   }
@@ -331,9 +342,9 @@
   }
   /* Section 2: circular card spotlight */
   .dishes-spot {
-    min-height:90dvh; background:transparent;
+    min-height:72dvh; background:transparent;
     display:flex; flex-direction:column; justify-content:center;
-    padding:32px 48px 64px;
+    padding:16px 48px 64px;
   }
   .ds-hd {
     text-align:center; margin-bottom:48px;
@@ -341,18 +352,24 @@
     transition:opacity .7s var(--eout), transform .7s var(--eout);
   }
   .ds-hd.vis { opacity:1; transform:none; }
-  /* Words sit behind cards by default; the whole title lifts together on hover */
+  /* Words sit behind cards by default; each word pops individually on hover */
   .ds-word {
     display:inline-block;
     position:relative; z-index:1;
-    transition:transform .35s var(--espring), color .25s var(--eout), text-shadow .25s var(--eout);
+    transition:transform .35s var(--espring), color .25s var(--eout), text-shadow .25s var(--eout), opacity .2s;
     cursor:default;
   }
   .ds-title:hover .ds-word {
     z-index:30;
+    color:rgba(255,255,255,.72);
+    transform:translateY(-4px) scale(1.04);
+    text-shadow:0 8px 20px rgba(0,0,0,.28);
+  }
+  .ds-title .ds-word:hover {
+    z-index:40;
     color:#fff;
-    transform:translateY(-5px) scale(1.06);
-    text-shadow:0 10px 32px rgba(0,0,0,.35);
+    transform:translateY(-12px) scale(1.16);
+    text-shadow:0 0 52px rgba(255,185,70,.8), 0 18px 52px rgba(0,0,0,.7);
   }
   .ds-kicker {
     font-family:var(--fl); font-size:10px; font-weight:500;
@@ -384,7 +401,7 @@
     margin-top:calc(-1 * clamp(70px,7.5vw,98px));
     margin-bottom:26px;
     box-shadow:0 16px 48px rgba(150,100,45,.22);
-    border:5px solid #EDE5D5;
+    border:5px solid #F2EDE6;
   }
   .ds-photo img { width:100%; height:100%; object-fit:cover; display:block; }
   .ds-badge {
@@ -686,6 +703,11 @@
 
   <!-- TYPE BAND -->
   <div class="type-band" id="typeBand">
+    <div class="torn-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#FAFAF8"/>
+      </svg>
+    </div>
     <div class="tb-lines" aria-hidden="true">
       <svg class="tb-curve" style="top:7%;width:62vw;height:54px" viewBox="0 0 620 54" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,27 C90,5 210,50 340,22 C460,2 560,44 620,27" stroke="rgba(255,255,255,.72)" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
@@ -714,6 +736,11 @@
 
   <!-- STORY -->
   <section class="story" id="story">
+    <div class="torn-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,56 L0,28 L26,25 L53,31 L80,23 L106,29 L132,25 L158,31 L185,24 L212,29 L238,25 L265,31 L292,24 L318,29 L345,25 L372,31 L398,24 L425,29 L452,25 L478,31 L505,24 L532,29 L558,25 L585,31 L612,24 L638,29 L665,25 L692,31 L718,24 L745,29 L772,25 L798,31 L825,24 L852,29 L878,25 L905,31 L932,24 L958,29 L985,25 L1012,31 L1038,24 L1065,29 L1092,25 L1118,31 L1145,24 L1172,29 L1198,25 L1225,31 L1252,24 L1278,29 L1305,25 L1332,31 L1358,24 L1385,29 L1412,25 L1440,28 L1440,56 Z" fill="#E05520"/>
+      </svg>
+    </div>
 
     <!-- Single full-bleed background image -->
     <div class="st-bg">
@@ -749,6 +776,11 @@
           <strong>65-1 Templeton St.</strong>
           Ottawa's Lowertown<br>Open Mon–Sat
         </div>
+      </div>
+      <div class="torn-bot" aria-hidden="true">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#FAFAF8"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -837,6 +869,11 @@
 
     </div>
   </section>
+    <div class="torn-bot" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#2E1208"/>
+      </svg>
+    </div>
   </div><!-- /.dishes-wrap -->
 
   <!-- HOURS -->
