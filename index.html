@@ -1101,9 +1101,11 @@
   /* Story text — reveal only once section is half scrolled through */
   const storyObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
+      if (!e.isIntersecting) return;
       const copy = e.target.querySelector('.st-copy');
       if (!copy.classList.contains('st-dismissed')) {
-        copy.classList.toggle('vis', e.isIntersecting);
+        copy.classList.add('vis');
+        storyObs.unobserve(e.target);
       }
     });
   }, {threshold:.90});
