@@ -76,8 +76,8 @@
   .btt:active { transform:scale(.94)!important; }
 
   /* NAV */
-  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(245,238,228,.94); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); transition:box-shadow .3s; }
-  .nav.scrolled { box-shadow:var(--sh-sm); }
+  .nav { position:fixed; top:0; left:0; right:0; z-index:800; padding:0 56px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(250,250,248,.96); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid var(--border); transition:box-shadow .4s var(--eout), background .3s; }
+  .nav.scrolled { box-shadow:0 4px 24px rgba(14,12,11,.08), 0 1px 4px rgba(14,12,11,.04); background:rgba(250,250,248,.98); }
   .nav-logo { font-family:var(--fd); font-size:21px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
   .nav-logo .a { color:var(--terra); }
   .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
@@ -86,7 +86,7 @@
   .nav-links a:hover { color:var(--ink); }
   .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
   .nav-links a.active { color:var(--terra); }
-  .nav-pill { color:var(--bg)!important; background:var(--terra); padding:9px 22px; border-radius:2px; transition:background .22s,transform .22s var(--espring),box-shadow .22s; box-shadow:var(--sh-t); }
+  .nav-pill { font-family:var(--fl); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--bg)!important; background:var(--terra); padding:9px 22px; border-radius:2px; transition:background .22s,transform .22s var(--espring),box-shadow .22s; box-shadow:var(--sh-t); }
   .nav-pill::after { display:none!important; }
   .nav-pill:hover { background:var(--terra-h); transform:translateY(-1px); }
   .nav-pill:active { transform:scale(.97) translateY(0)!important; }
@@ -412,11 +412,9 @@
   <nav class="nav" id="nav">
     <a href="index.html" class="nav-logo">In<span class="a">'</span>s Kitchen</a>
     <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
       <li><a href="menu.html" class="active">Menu</a></li>
-      <li><a href="index.html#story">Our Story</a></li>
       <li><a href="index.html#hours">Find Us</a></li>
-      <li><a href="https://www.instagram.com/in.s_kitchen" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://g.page/r/inskitchen/review" target="_blank" rel="noopener" class="nav-pill">Review Us ↗</a></li>
     </ul>
   </nav>
 
@@ -445,7 +443,7 @@
       <div class="mi-blob-wrap">
         <div class="mi-blob-ring"></div>
         <div class="mi-food-blob">
-          <img src="ins/heroSection.PNG" alt="A signature Korean bowl at In's Kitchen" loading="eager">
+          <img src="ins/beef.PNG" alt="A signature Korean bowl at In's Kitchen" loading="eager">
         </div>
         <div class="mi-float-stat">
           <div class="mi-stat-n">100%</div>
