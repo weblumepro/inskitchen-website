@@ -690,6 +690,9 @@
   .md-2 { top:10%; right:3%; width:clamp(140px,15vw,210px); transform:rotate(-7deg); }
   .md-3 { bottom:-6%; left:18%; width:clamp(150px,16vw,220px); transform:rotate(-5deg); }
   .md-4 { bottom:2%; right:10%; width:clamp(150px,16vw,225px); transform:rotate(8deg); }
+  /* FAQ section scatter */
+  .fd-1 { top:4%; left:-2%; width:clamp(140px,15vw,210px); transform:rotate(-9deg); }
+  .fd-2 { bottom:-4%; right:-1%; width:clamp(150px,16vw,225px); transform:rotate(7deg); }
   .hours-card {
     background:rgba(255,255,255,.6); border-radius:2px; padding:52px 48px;
     border:1px solid var(--border); border-top:2px solid var(--terra);
@@ -747,9 +750,54 @@
   }
   .map-frame a img { width:100%; height:auto; display:block; }
 
+  /* ── TESTIMONIALS ── */
+  .tst-wrap { background:#FAF8F2; padding:88px 64px; position:relative; overflow:hidden; }
+  .tst-inner { max-width:1200px; margin:0 auto; position:relative; z-index:1; }
+  .tst-kicker {
+    font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--terra); display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:16px;
+  }
+  .tst-kicker::before, .tst-kicker::after { content:''; width:24px; height:1px; background:var(--terra); }
+  .tst-heading {
+    font-family:var(--fd); font-size:clamp(28px,3.4vw,44px); font-weight:600;
+    letter-spacing:-.025em; color:var(--ink); text-align:center; margin-bottom:12px; text-wrap:balance;
+  }
+  .tst-sub { text-align:center; font-size:14px; font-weight:300; color:var(--ink-mid); margin-bottom:52px; }
+  .tst-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .tst-card {
+    background:rgba(255,255,255,.7); border:1px solid var(--border); border-top:2px solid var(--terra);
+    border-radius:14px; padding:34px 30px; box-shadow:var(--sh-sm);
+    display:flex; flex-direction:column;
+    transition:transform .3s var(--eout), box-shadow .3s;
+  }
+  .tst-card:hover { transform:translateY(-6px); box-shadow:var(--sh-md); }
+  .tst-stars { display:flex; gap:3px; color:#F2B705; margin-bottom:18px; }
+  .tst-quote { font-size:15px; font-weight:300; color:var(--ink-mid); line-height:1.82; flex:1; margin-bottom:26px; text-wrap:pretty; }
+  .tst-quote::before { content:'\201C'; font-family:var(--fd); color:var(--terra); font-size:34px; line-height:0; vertical-align:-12px; margin-right:4px; }
+  .tst-author { display:flex; align-items:center; gap:13px; }
+  .tst-avatar {
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
+    background:var(--terra); color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:var(--fd); font-size:18px; font-weight:600;
+  }
+  .tst-name { font-family:var(--fl); font-size:14px; font-weight:600; color:var(--ink); }
+  .tst-src { font-size:11px; font-weight:400; color:var(--ink-muted); margin-top:2px; display:flex; align-items:center; gap:5px; }
+  .tst-cta { text-align:center; margin-top:48px; }
+  .tst-cta a {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--fl); font-size:12px; font-weight:600; letter-spacing:.06em;
+    color:#fff; background:var(--terra); padding:13px 30px; border-radius:4px;
+    box-shadow:var(--sh-t); transition:background .2s, transform .22s var(--espring);
+  }
+  .tst-cta a:hover { background:var(--terra-h); transform:translateY(-2px); }
+
   /* ── FAQ ── */
-  .faq-wrap { background:#FAF8F2; padding:88px 64px; border-top:1px solid var(--border); }
-  .faq-inner { max-width:880px; margin:0 auto; }
+  .faq-wrap {
+    background:#FAF8F2;
+    padding:88px 64px; border-top:1px solid var(--border);
+    position:relative; overflow:hidden;
+  }
+  .faq-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
   .faq-kicker {
     font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
     color:var(--terra); display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:16px;
@@ -759,23 +807,43 @@
     font-family:var(--fd); font-size:clamp(28px,3.4vw,44px); font-weight:600;
     letter-spacing:-.025em; color:var(--ink); text-align:center; margin-bottom:44px; text-wrap:balance;
   }
-  .faq-item { border-bottom:1px solid var(--border); }
+
+  .faq-list {
+    background:#FBF8F2; border:1px solid var(--border); border-radius:16px;
+    overflow:hidden; box-shadow:var(--sh-md);
+  }
+  .faq-item {
+    border-bottom:1px solid var(--border);
+    transition:background .25s var(--eout);
+  }
+  .faq-item:last-child { border-bottom:none; }
+  .faq-item:hover { background:rgba(204,111,35,.05); }
+  .faq-item[open] { background:#fff; box-shadow:inset 3px 0 0 var(--terra); }
   .faq-item summary {
-    list-style:none; cursor:pointer; padding:22px 4px;
+    list-style:none; cursor:pointer; padding:22px 26px;
     display:flex; align-items:center; justify-content:space-between; gap:20px;
-    font-family:var(--fd); font-size:clamp(17px,1.8vw,21px); font-weight:600; color:var(--ink); transition:color .2s;
+    font-family:var(--fd); font-size:clamp(16px,1.8vw,20px); font-weight:600; color:var(--ink); transition:color .2s;
   }
   .faq-item summary::-webkit-details-marker { display:none; }
-  .faq-item summary:hover { color:var(--terra); }
-  .faq-icon { flex-shrink:0; width:24px; height:24px; position:relative; }
+  .faq-item summary:hover, .faq-item[open] summary { color:var(--terra); }
+
+  .faq-icon {
+    flex-shrink:0; width:30px; height:30px; border-radius:50%;
+    background:var(--terra-s); position:relative;
+    transition:transform .35s var(--espring), background .25s;
+  }
+  .faq-item[open] .faq-icon { transform:rotate(180deg); background:var(--terra-b); }
   .faq-icon::before, .faq-icon::after {
     content:''; position:absolute; top:50%; left:50%; background:var(--terra); border-radius:2px;
     transform:translate(-50%,-50%);
   }
-  .faq-icon::before { width:14px; height:2px; }
-  .faq-icon::after { width:2px; height:14px; transition:transform .3s var(--eout); }
+  .faq-icon::before { width:12px; height:2px; }
+  .faq-icon::after { width:2px; height:12px; transition:transform .3s var(--eout); }
   .faq-item[open] .faq-icon::after { transform:translate(-50%,-50%) scaleY(0); }
-  .faq-answer { padding:0 4px 24px; font-size:15px; font-weight:300; color:var(--ink-mid); line-height:1.8; max-width:64ch; }
+
+  .faq-answer { padding:0 26px 24px; font-size:15px; font-weight:300; color:var(--ink-mid); line-height:1.8; max-width:64ch; }
+  .faq-item[open] .faq-answer { animation:faqReveal .4s var(--eout); }
+  @keyframes faqReveal { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
   .faq-answer a { color:var(--terra); border-bottom:1px solid var(--terra-b); transition:color .2s; }
   .faq-answer a:hover { color:var(--terra-h); }
 
@@ -810,6 +878,7 @@
     .dishes-spot { padding:64px 32px 56px; }
     .hours-wrap { padding:60px 40px; }
     .hours-inner { gap:40px; }
+    .tst-wrap { padding:72px 40px; }
     .faq-wrap { padding:72px 40px; }
     footer { padding:64px 40px 40px; }
     .type-band { padding:60px 40px; }
@@ -834,6 +903,7 @@
     .st-copy { position:absolute; left:24px; right:24px; top:50%; transform:translateY(calc(-50% + 20px)); width:auto; max-width:none; padding:36px 32px; border-radius:4px; }
     .st-copy.vis { transform:translateY(-50%); }
     .hours-inner { grid-template-columns:1fr; gap:32px; }
+    .tst-grid { grid-template-columns:1fr; gap:22px; max-width:480px; margin:0 auto; }
     .ft-top { grid-template-columns:1fr; gap:40px; }
   }
   @media(max-width:640px) {
@@ -853,6 +923,7 @@
     .ds-card { padding:0 20px 32px; }
     .st-copy { left:20px; right:20px; padding:28px 20px; }
     .hours-wrap { padding:48px 20px; }
+    .tst-wrap { padding:56px 20px; }
     .faq-wrap { padding:56px 20px; }
     footer { padding:56px 20px 32px; }
     .ft-brand { margin-bottom:40px; }
@@ -1107,6 +1178,126 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS — real Google reviews -->
+  <section class="tst-wrap" id="reviews">
+    <img src="hero/2.png" class="sec-deco md-1" alt="" aria-hidden="true">
+    <img src="hero/5.png" class="sec-deco md-2" alt="" aria-hidden="true">
+    <img src="hero/9.png" class="sec-deco md-3" alt="" aria-hidden="true">
+    <img src="hero/11.png" class="sec-deco md-4" alt="" aria-hidden="true">
+    <div class="tst-inner">
+      <div class="tst-kicker">Loved in Ottawa</div>
+      <h2 class="tst-heading">What our guests are saying</h2>
+      <p class="tst-sub">Real reviews from Korean food lovers across Ottawa</p>
+
+      <div class="tst-grid">
+
+        <article class="tst-card">
+          <div class="tst-stars" aria-label="5 out of 5 stars">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tst-quote">My wife and I returned for another delicious meal at In's Kitchen; a first time for dinner. We were warmly welcomed on our arrival and our orders were promptly taken by the friendly waitress. We enjoyed the excellent beef bibimbap and dakgalbi and their accompaniments. The dining room was busy, but our meal was served quickly and was piping hot. We look forward to returning soon.</p>
+          <div class="tst-author">
+            <div class="tst-avatar" aria-hidden="true">P</div>
+            <div>
+              <div class="tst-name">P B</div>
+              <div class="tst-src">
+                <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+                Google review
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tst-card">
+          <div class="tst-stars" aria-label="5 out of 5 stars">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tst-quote">I absolutely love this place! I discovered it last year, and even though I'm from Gatineau, every time I think of Korean food, I want to come here. … I've tried the Gamjatang, Bulgogi, Jeyuk, and Don Katsu, and all of them were delicious but my go-to is definitely the Gamjatang. The prices are very reasonable, and for the quality of the meal, it's absolutely worth it. The service was excellent too!</p>
+          <div class="tst-author">
+            <div class="tst-avatar" aria-hidden="true">A</div>
+            <div>
+              <div class="tst-name">Ms. A</div>
+              <div class="tst-src">
+                <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+                Google review
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tst-card">
+          <div class="tst-stars" aria-label="5 out of 5 stars">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="tst-quote">This place is so incredible! I've been here twice now and both times, our food was so delicious and fresh. The ttoekbokki is definitely my favourite of all the ones I've tried in Ottawa so far. Their beef bulgogi is my favourite and all the side dishes are also super yummy! To top it all off, their service is amazing.</p>
+          <div class="tst-author">
+            <div class="tst-avatar" aria-hidden="true">S</div>
+            <div>
+              <div class="tst-name">Safiyah M</div>
+              <div class="tst-src">
+                <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+                Google review
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="tst-cta">
+        <a href="https://www.google.com/search?q=In%27s+Kitchen+Reviews&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOTiMFLP1fOAabzaPEdjjYOqq9WqM5FKxd0cQ9nvgO60cmW7uMlELoHpmLMwEHM5nfi4zj6AYZudbopoNt8fF0WkqJK5f" target="_blank" rel="noopener">Read all reviews on Google &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-wrap" id="faq">
+    <img src="hero/6.png" class="sec-deco fd-1" alt="" aria-hidden="true">
+    <img src="hero/3.png" class="sec-deco fd-2" alt="" aria-hidden="true">
+    <div class="faq-inner">
+      <div class="faq-kicker">Good to know</div>
+      <h2 class="faq-heading">Korean food in Ottawa — frequently asked questions</h2>
+
+      <div class="faq-list">
+      <details class="faq-item">
+        <summary>Is In's Kitchen halal? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Yes — In's Kitchen is 100% halal. We use only halal-certified ingredients and Triple A Canadian beef in every dish, so you can enjoy authentic Korean food in Ottawa with complete peace of mind.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Where is In's Kitchen located? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">We're at 65-1 Templeton St. in Ottawa's Lowertown, just minutes from the University of Ottawa and downtown Ottawa. <a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener">Get directions →</a></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer vegetarian options? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Yes. Several of our Korean dishes can be prepared vegetarian, including sundubu jjigae (soft tofu stew) made with vegetables and our tteokbokki rice cakes. Just ask when you order.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer takeout? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Yes, we offer takeout and pickup. Call us at <a href="tel:6132331001">(613) 233-1001</a> to place a pickup order for any of our Korean dishes.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are your most popular dishes? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Our most-loved dishes are the Bulgogi Bowl, Sundubu Jjigae, and Tteokbokki — Korean classics made fresh daily here in Ottawa. <a href="menu.html">View the full menu →</a></div>
+      </details>
+    </div>
+  </section>
+
   <!-- HOURS -->
   <section class="hours-wrap" id="hours">
     <img src="hero/1.png" class="sec-deco hd-1" alt="" aria-hidden="true">
@@ -1139,52 +1330,6 @@
     </div>
   </section>
 
-  <!-- MAP PHOTO -->
-  <div class="map-photo-wrap">
-    <img src="hero/2.png" class="sec-deco md-1" alt="" aria-hidden="true">
-    <img src="hero/5.png" class="sec-deco md-2" alt="" aria-hidden="true">
-    <img src="hero/9.png" class="sec-deco md-3" alt="" aria-hidden="true">
-    <img src="hero/11.png" class="sec-deco md-4" alt="" aria-hidden="true">
-    <div class="map-frame">
-      <a href="https://www.google.com/maps/place/In's+Kitchen/@45.4210624,-75.6805102,17z/data=!3m1!4b1!4m6!3m5!1s0x4cce058fd2e8f7ab:0xa09dd8183be6893d!8m2!3d45.4210624!4d-75.6779353!16s%2Fg%2F11rqzjbcqx?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Open in Google Maps">
-        <img src="ins/map.PNG" alt="Map of In's Kitchen location" loading="lazy" decoding="async">
-      </a>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <section class="faq-wrap" id="faq">
-    <div class="faq-inner">
-      <div class="faq-kicker">Good to know</div>
-      <h2 class="faq-heading">Korean food in Ottawa — frequently asked questions</h2>
-
-      <details class="faq-item" open>
-        <summary>Is In's Kitchen halal? <span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer">Yes — In's Kitchen is 100% halal. We use only halal-certified ingredients and Triple A Canadian beef in every dish, so you can enjoy authentic Korean food in Ottawa with complete peace of mind.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Where is In's Kitchen located? <span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer">We're at 65-1 Templeton St. in Ottawa's Lowertown, just minutes from the University of Ottawa and downtown Ottawa. <a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener">Get directions →</a></div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do you offer vegetarian options? <span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer">Yes. Several of our Korean dishes can be prepared vegetarian, including sundubu jjigae (soft tofu stew) made with vegetables and our tteokbokki rice cakes. Just ask when you order.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do you offer takeout? <span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer">Yes, we offer takeout and pickup. Call us at <a href="tel:6132331001">(613) 233-1001</a> to place a pickup order for any of our Korean dishes.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What are your most popular dishes? <span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer">Our most-loved dishes are the Bulgogi Bowl, Sundubu Jjigae, and Tteokbokki — Korean classics made fresh daily here in Ottawa. <a href="menu.html">View the full menu →</a></div>
-      </details>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="ft-in">
@@ -1204,6 +1349,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="#story">Our Story</a></li>
+            <li><a href="#reviews">Reviews</a></li>
             <li><a href="#hours">Find Us</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
