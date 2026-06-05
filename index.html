@@ -3,11 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>In's Kitchen — Authentic Korean Cuisine · Ottawa</title>
-  <meta name="description" content="In's Kitchen serves authentic Korean cuisine in Ottawa's Lowertown. 100% Halal. Triple A Canadian beef. Made fresh daily since 2019.">
-  <meta property="og:title" content="In's Kitchen — Authentic Korean Cuisine · Ottawa">
-  <meta property="og:description" content="Home-style Korean cooking, made fresh every morning. Warm flavours, honest ingredients, and a little bit of Seoul in every bowl.">
+  <title>In's Kitchen — Halal Korean Food in Ottawa | Korean Restaurant, Lowertown</title>
+  <meta name="description" content="In's Kitchen is a 100% halal Korean restaurant in Ottawa's Lowertown, minutes from the University of Ottawa. Try our bulgogi, tteokbokki and sundubu jjigae — Triple A Canadian beef, made fresh daily since 2019.">
+  <meta name="keywords" content="Korean food Ottawa, halal Korean food Ottawa, Korean restaurant near University of Ottawa, Korean restaurant Lowertown, bulgogi Ottawa, tteokbokki Ottawa, sundubu jjigae Ottawa, halal restaurant Ottawa">
+  <link rel="canonical" href="https://www.inskitchen.ca/">
+  <meta name="geo.region" content="CA-ON">
+  <meta name="geo.placename" content="Ottawa">
+  <meta name="geo.position" content="45.4210624;-75.6779353">
+  <meta name="ICBM" content="45.4210624, -75.6779353">
+  <meta property="og:title" content="In's Kitchen — Halal Korean Food in Ottawa">
+  <meta property="og:description" content="Authentic 100% halal Korean food in Ottawa's Lowertown, near the University of Ottawa. Bulgogi, tteokbokki, sundubu jjigae and more, made fresh daily since 2019.">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_CA">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "In's Kitchen",
+    "description": "100% halal Korean restaurant in Ottawa's Lowertown serving bulgogi, tteokbokki, sundubu jjigae and more, made fresh daily since 2019.",
+    "servesCuisine": ["Korean", "Halal"],
+    "priceRange": "$$",
+    "url": "https://www.inskitchen.ca/",
+    "telephone": "+1-613-233-1001",
+    "image": "https://www.inskitchen.ca/ins/ourStory.PNG",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "65-1 Templeton St.",
+      "addressLocality": "Ottawa",
+      "addressRegion": "ON",
+      "postalCode": "K1N 0A6",
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.4210624,
+      "longitude": -75.6779353
+    },
+    "areaServed": "Ottawa, Lowertown, University of Ottawa",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "11:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "12:00", "closes": "21:00" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is In's Kitchen halal?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. In's Kitchen is 100% halal. We use only halal-certified ingredients and Triple A Canadian beef in every dish." } },
+      { "@type": "Question", "name": "Where is In's Kitchen located?", "acceptedAnswer": { "@type": "Answer", "text": "We're at 65-1 Templeton St. in Ottawa's Lowertown, just minutes from the University of Ottawa and downtown Ottawa." } },
+      { "@type": "Question", "name": "Do you offer vegetarian options?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Several dishes can be made vegetarian, including our sundubu jjigae with vegetables and tteokbokki rice cakes." } },
+      { "@type": "Question", "name": "Do you offer takeout?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer takeout and pickup. Call us at (613) 233-1001 to place a pickup order." } },
+      { "@type": "Question", "name": "What are your most popular dishes?", "acceptedAnswer": { "@type": "Answer", "text": "Our most loved dishes are the Bulgogi Bowl, Sundubu Jjigae, and Tteokbokki — Korean classics made fresh in Ottawa." } }
+    ]
+  }
+  </script>
   <link rel="preload" href="ins/ourStory.PNG" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,6 +245,8 @@
   .hv-btn-dark:hover { box-shadow:0 14px 32px rgba(28,43,74,.42); }
   .hv-btn-terra { background:#CC6F23; color:#fff; box-shadow:0 8px 24px rgba(204,111,35,.28); }
   .hv-btn-terra:hover { background:#B05C18; box-shadow:0 14px 32px rgba(204,111,35,.42); }
+  .hv-btn-ghost { background:transparent; color:var(--ink); border:1.5px solid var(--border-dk); }
+  .hv-btn-ghost:hover { border-color:var(--ink); background:rgba(14,12,11,.04); }
 
   /* RIGHT PANEL */
   .hv-right {
@@ -693,6 +747,38 @@
   }
   .map-frame a img { width:100%; height:auto; display:block; }
 
+  /* ── FAQ ── */
+  .faq-wrap { background:#FAF8F2; padding:88px 64px; border-top:1px solid var(--border); }
+  .faq-inner { max-width:880px; margin:0 auto; }
+  .faq-kicker {
+    font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--terra); display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:16px;
+  }
+  .faq-kicker::before, .faq-kicker::after { content:''; width:24px; height:1px; background:var(--terra); }
+  .faq-heading {
+    font-family:var(--fd); font-size:clamp(28px,3.4vw,44px); font-weight:600;
+    letter-spacing:-.025em; color:var(--ink); text-align:center; margin-bottom:44px; text-wrap:balance;
+  }
+  .faq-item { border-bottom:1px solid var(--border); }
+  .faq-item summary {
+    list-style:none; cursor:pointer; padding:22px 4px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    font-family:var(--fd); font-size:clamp(17px,1.8vw,21px); font-weight:600; color:var(--ink); transition:color .2s;
+  }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary:hover { color:var(--terra); }
+  .faq-icon { flex-shrink:0; width:24px; height:24px; position:relative; }
+  .faq-icon::before, .faq-icon::after {
+    content:''; position:absolute; top:50%; left:50%; background:var(--terra); border-radius:2px;
+    transform:translate(-50%,-50%);
+  }
+  .faq-icon::before { width:14px; height:2px; }
+  .faq-icon::after { width:2px; height:14px; transition:transform .3s var(--eout); }
+  .faq-item[open] .faq-icon::after { transform:translate(-50%,-50%) scaleY(0); }
+  .faq-answer { padding:0 4px 24px; font-size:15px; font-weight:300; color:var(--ink-mid); line-height:1.8; max-width:64ch; }
+  .faq-answer a { color:var(--terra); border-bottom:1px solid var(--terra-b); transition:color .2s; }
+  .faq-answer a:hover { color:var(--terra-h); }
+
   /* ── FOOTER ── */
   footer { background:var(--bg-dark); border-top:2px solid var(--terra); padding:80px 64px 48px; }
   .ft-in { max-width:1320px; margin:0 auto; }
@@ -724,6 +810,7 @@
     .dishes-spot { padding:64px 32px 56px; }
     .hours-wrap { padding:60px 40px; }
     .hours-inner { gap:40px; }
+    .faq-wrap { padding:72px 40px; }
     footer { padding:64px 40px 40px; }
     .type-band { padding:60px 40px; }
   }
@@ -766,6 +853,7 @@
     .ds-card { padding:0 20px 32px; }
     .st-copy { left:20px; right:20px; padding:28px 20px; }
     .hours-wrap { padding:48px 20px; }
+    .faq-wrap { padding:56px 20px; }
     footer { padding:56px 20px 32px; }
     .ft-brand { margin-bottom:40px; }
     .ft-bot { flex-direction:column; gap:14px; text-align:center; }
@@ -817,12 +905,13 @@
         <div class="hv-content">
           <h1 class="hv-title">An Authentic<br>Korean Experience</h1>
 
-          <p class="hv-body">Join us at the table for a taste of Seoul, right in the heart of Ottawa's Lowertown.</p>
+          <p class="hv-body">Authentic halal Korean food in the heart of Ottawa's Lowertown — a taste of Seoul just minutes from the University of Ottawa.</p>
           <p class="hv-body hv-body-b">We take pride in 100% halal ingredients and Triple A Canadian beef.</p>
 
           <div class="hv-ctas">
-            <a href="#story" class="hv-btn hv-btn-dark">Our Story &nbsp;→</a>
-            <a href="menu.html" class="hv-btn hv-btn-terra">Menu &nbsp;→</a>
+            <a href="menu.html" class="hv-btn hv-btn-terra">View Menu &nbsp;→</a>
+            <a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener" class="hv-btn hv-btn-dark">Get Directions</a>
+            <a href="tel:6132331001" class="hv-btn hv-btn-ghost">Call Now</a>
           </div>
         </div>
       </div>
@@ -836,7 +925,7 @@
         <img src="hero/11.png" class="hv-bg-img hv-bg-11" alt="" aria-hidden="true">
         <!-- Restaurant photo in organic blob shape -->
         <div class="hv-photo-wrap">
-          <img src="ins/heroSection.PNG" alt="Inside In's Kitchen dining room" class="hv-restaurant-img" loading="eager" fetchpriority="high" decoding="async">
+          <img src="ins/heroSection.PNG" alt="Inside In's Kitchen, a halal Korean restaurant in Ottawa's Lowertown" class="hv-restaurant-img" loading="eager" fetchpriority="high" decoding="async">
           <img src="hero/12.png" class="hv-bg-img hv-bg-12" alt="" aria-hidden="true">
         </div>
 
@@ -929,7 +1018,7 @@
 
       <div class="ds-card">
         <div class="ds-photo">
-          <img src="ins/Bulgogi Bowl.PNG" alt="Bulgogi Bowl" loading="lazy" decoding="async">
+          <img src="ins/Bulgogi Bowl.PNG" alt="Bulgogi Bowl — Korean marinated beef rice bowl at In's Kitchen, Ottawa" loading="lazy" decoding="async">
         </div>
         <div class="ds-rating"><svg class="ds-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>8.8</span></div>
         <div class="ds-name">Bulgogi Bowl</div>
@@ -944,7 +1033,7 @@
 
       <div class="ds-card">
         <div class="ds-photo">
-          <img src="ins/SundubuJjigae.PNG" alt="Sundubu Jjigae" loading="lazy" decoding="async">
+          <img src="ins/SundubuJjigae.PNG" alt="Sundubu Jjigae — Korean soft tofu stew at In's Kitchen, Ottawa" loading="lazy" decoding="async">
         </div>
         <div class="ds-rating"><svg class="ds-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>9.2</span></div>
         <div class="ds-name">Sundubu Jjigae</div>
@@ -959,7 +1048,7 @@
 
       <div class="ds-card">
         <div class="ds-photo">
-          <img src="ins/Tteokbokki.PNG" alt="Tteokbokki" loading="lazy" decoding="async">
+          <img src="ins/Tteokbokki.PNG" alt="Tteokbokki — spicy Korean rice cakes at In's Kitchen, Ottawa" loading="lazy" decoding="async">
         </div>
         <div class="ds-rating"><svg class="ds-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>8.5</span></div>
         <div class="ds-name">Tteokbokki</div>
@@ -1063,6 +1152,39 @@
     </div>
   </div>
 
+  <!-- FAQ -->
+  <section class="faq-wrap" id="faq">
+    <div class="faq-inner">
+      <div class="faq-kicker">Good to know</div>
+      <h2 class="faq-heading">Korean food in Ottawa — frequently asked questions</h2>
+
+      <details class="faq-item" open>
+        <summary>Is In's Kitchen halal? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Yes — In's Kitchen is 100% halal. We use only halal-certified ingredients and Triple A Canadian beef in every dish, so you can enjoy authentic Korean food in Ottawa with complete peace of mind.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Where is In's Kitchen located? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">We're at 65-1 Templeton St. in Ottawa's Lowertown, just minutes from the University of Ottawa and downtown Ottawa. <a href="https://maps.google.com/?q=65-1+Templeton+St+Ottawa+ON" target="_blank" rel="noopener">Get directions →</a></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer vegetarian options? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Yes. Several of our Korean dishes can be prepared vegetarian, including sundubu jjigae (soft tofu stew) made with vegetables and our tteokbokki rice cakes. Just ask when you order.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer takeout? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Yes, we offer takeout and pickup. Call us at <a href="tel:6132331001">(613) 233-1001</a> to place a pickup order for any of our Korean dishes.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are your most popular dishes? <span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer">Our most-loved dishes are the Bulgogi Bowl, Sundubu Jjigae, and Tteokbokki — Korean classics made fresh daily here in Ottawa. <a href="menu.html">View the full menu →</a></div>
+      </details>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="ft-in">
@@ -1083,6 +1205,7 @@
             <li><a href="menu.html">Menu</a></li>
             <li><a href="#story">Our Story</a></li>
             <li><a href="#hours">Find Us</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
         <div>
