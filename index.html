@@ -422,7 +422,8 @@
   .dishes-spot {
     min-height:72dvh; background:transparent;
     display:flex; flex-direction:column; justify-content:center;
-    padding:16px 48px 64px;
+    padding:48px 48px 72px;
+    position:relative; overflow:hidden;
   }
   .ds-hd {
     text-align:center; margin-bottom:48px;
@@ -459,13 +460,14 @@
   .ds-sub { font-size:14px; font-weight:300; color:var(--ink-mid); margin-top:18px; }
   .ds-cards {
     display:grid; grid-template-columns:repeat(3,1fr);
-    gap:32px; width:100%;
+    gap:34px; width:100%; max-width:1180px; margin:104px auto 0;
+    position:relative; z-index:1;
   }
   .ds-card {
-    background:var(--bg); padding:0 36px 48px;
+    background:var(--bg); padding:0 28px 30px;
     border:1px solid var(--border); box-shadow:var(--sh-sm);
-    display:flex; flex-direction:column; align-items:center;
-    overflow:visible; border-radius:2px;
+    display:flex; flex-direction:column; align-items:stretch; text-align:left;
+    overflow:visible; border-radius:18px;
     opacity:0; transform:translateY(32px);
     transition:opacity .65s var(--eout),transform .65s var(--eout),box-shadow .3s,border-color .3s;
     will-change:opacity,transform;
@@ -474,19 +476,20 @@
   .ds-card:hover { box-shadow:var(--sh-md); transform:translateY(-8px); border-color:rgba(191,50,24,.18); }
   .ds-photo {
     width:clamp(140px,15vw,196px); height:clamp(140px,15vw,196px);
-    border-radius:50%; overflow:hidden; flex-shrink:0;
+    border-radius:50%; overflow:hidden; flex-shrink:0; align-self:center;
     margin-top:calc(-1 * clamp(70px,7.5vw,98px));
-    margin-bottom:26px;
+    margin-bottom:22px;
     box-shadow:0 16px 48px rgba(150,100,45,.22);
     border:5px solid #F2EDE6;
   }
   .ds-photo img { width:100%; height:100%; object-fit:cover; display:block; }
-  .ds-badge {
-    font-family:var(--fl); font-size:9px; font-weight:600;
-    letter-spacing:.16em; text-transform:uppercase; color:var(--terra); margin-bottom:8px;
+  .ds-rating {
+    display:flex; align-items:center; gap:7px; margin-bottom:10px;
+    font-family:var(--fl); font-size:15px; font-weight:600; color:var(--ink);
   }
-  .ds-name { font-family:var(--fd); font-size:19px; font-weight:600; letter-spacing:-.015em; color:var(--ink); margin-bottom:8px; text-align:center; line-height:1.2; }
-  .ds-desc { font-size:13px; font-weight:300; color:var(--ink-mid); line-height:1.82; margin-bottom:24px; text-align:center; text-wrap:pretty; flex:1; }
+  .ds-star { color:#F2B705; flex-shrink:0; }
+  .ds-name { font-family:var(--fd); font-size:19px; font-weight:600; letter-spacing:-.015em; color:var(--ink); margin-bottom:8px; text-align:left; line-height:1.2; }
+  .ds-desc { font-size:13px; font-weight:300; color:var(--ink-mid); line-height:1.7; margin-bottom:22px; text-align:left; text-wrap:pretty; flex:1; }
   .ds-foot { display:flex; align-items:center; justify-content:space-between; width:100%; }
   .ds-price { font-family:var(--fd); font-size:22px; font-weight:600; color:var(--ink); letter-spacing:-.02em; }
   .ds-more {
@@ -507,6 +510,31 @@
     border-width:6px;
     box-shadow:0 20px 56px rgba(150,100,45,.28);
   }
+
+  /* ── Dishes ghost decorations (both intro + spotlight) ── */
+  .dish-ghosts { position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .dg-word {
+    position:absolute; font-family:var(--fd); font-style:italic; font-weight:600;
+    color:rgba(245,238,228,.05); white-space:nowrap; line-height:1; letter-spacing:-.04em;
+  }
+  .dg-lg { font-size:clamp(90px,13vw,210px); }
+  .dg-md { font-size:clamp(44px,6vw,96px); }
+  .dg-sm {
+    font-family:var(--fl); font-style:normal; font-weight:500;
+    font-size:clamp(16px,2.4vw,30px); letter-spacing:.22em; text-transform:uppercase;
+    color:rgba(245,238,228,.05);
+  }
+  .dg-float  { animation:dgFloat 9s ease-in-out infinite; }
+  .dg-float2 { animation:dgFloat 11s ease-in-out infinite 1.5s; }
+  @keyframes dgFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+  .dg-dot { position:absolute; border-radius:50%; background:var(--terra); animation:dgPulse 4.5s ease-in-out infinite; }
+  @keyframes dgPulse { 0%,100%{opacity:.1; transform:scale(1)} 50%{opacity:.4; transform:scale(1.7)} }
+  /* Slowly drifting ring */
+  .dg-ring {
+    position:absolute; border-radius:50%; border:1px solid rgba(245,238,228,.06);
+    animation:dgSpin 26s linear infinite;
+  }
+  @keyframes dgSpin { to { transform:rotate(360deg); } }
 
   /* ── STORY ── */
   .story {
@@ -538,8 +566,7 @@
     position:absolute; left:50%; top:50%;
     transform:translate(-50%, calc(-50% + 28px));
     width:min(680px,62%); z-index:10;
-    background:rgba(245,239,226,.93);
-    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    background:#F5EFE2;
     padding:56px 64px;
     border:1px solid rgba(191,50,24,.15);
     border-top:2px solid var(--terra);
@@ -851,6 +878,13 @@
   <div class="dishes-wrap">
   <!-- DISHES: INTRO -->
   <section class="dishes-hero">
+    <div class="dish-ghosts" aria-hidden="true">
+      <div class="dg-word dg-md dg-float" style="top:9%; left:2%;">한국</div>
+      <div class="dg-word dg-sm" style="bottom:13%; left:2.5%;">Authentic · Halal · Triple A</div>
+      <div class="dg-ring" style="bottom:12%; right:32%; width:96px; height:96px;"></div>
+      <div class="dg-dot" style="top:28%; right:22%; width:6px; height:6px;"></div>
+      <div class="dg-dot" style="top:62%; left:9%; width:5px; height:5px; animation-delay:1.5s;"></div>
+    </div>
     <div class="dh-left">
       <div class="dh-kicker">From the kitchen</div>
       <h2 class="dh-title">The dishes they<br><em>come back for</em></h2>
@@ -877,10 +911,19 @@
 
   <!-- DISHES: SPOTLIGHT -->
   <section class="dishes-spot">
+    <div class="dish-ghosts" aria-hidden="true">
+      <div class="dg-word dg-lg dg-float" style="bottom:2%; left:-1.5%;">Seoul</div>
+      <div class="dg-word dg-md dg-float2" style="top:6%; right:1%;">한국 요리</div>
+      <div class="dg-word dg-sm" style="top:52%; left:1%;">Authentic Korean</div>
+      <div class="dg-ring" style="top:12%; left:7%; width:120px; height:120px;"></div>
+      <div class="dg-dot" style="top:24%; left:15%; width:6px; height:6px;"></div>
+      <div class="dg-dot" style="top:68%; right:11%; width:5px; height:5px; animation-delay:1s;"></div>
+      <div class="dg-dot" style="top:40%; right:7%; width:7px; height:7px; animation-delay:2s;"></div>
+      <div class="dg-dot" style="bottom:18%; left:24%; width:5px; height:5px; animation-delay:.5s;"></div>
+    </div>
     <div class="ds-hd">
       <div class="ds-kicker">Top picks</div>
       <div class="ds-title"><span class="ds-word">Three</span> <span class="ds-word">reasons</span> <span class="ds-word">to</span><br><em><span class="ds-word">come</span> <span class="ds-word">in</span> <span class="ds-word">today</span></em></div>
-      <p class="ds-sub">Made fresh. Served hot.</p>
     </div>
     <div class="ds-cards" id="dsCards">
 
@@ -888,11 +931,11 @@
         <div class="ds-photo">
           <img src="ins/Bulgogi Bowl.PNG" alt="Bulgogi Bowl" loading="lazy" decoding="async">
         </div>
-        <div class="ds-badge">Chef's Pick</div>
+        <div class="ds-rating"><svg class="ds-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>8.8</span></div>
         <div class="ds-name">Bulgogi Bowl</div>
         <p class="ds-desc">Thinly sliced Triple A beef marinated overnight in soy, pear, and sesame — over steamed rice with rotating banchan sides.</p>
         <div class="ds-foot">
-          <div class="ds-price">$16</div>
+          <div class="ds-price">16$</div>
           <a href="menu.html#rice" class="ds-more" aria-label="See on menu">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </a>
@@ -903,11 +946,11 @@
         <div class="ds-photo">
           <img src="ins/SundubuJjigae.PNG" alt="Sundubu Jjigae" loading="lazy" decoding="async">
         </div>
-        <div class="ds-badge">Most Loved</div>
+        <div class="ds-rating"><svg class="ds-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>9.2</span></div>
         <div class="ds-name">Sundubu Jjigae</div>
         <p class="ds-desc">Silken tofu in a deep, spicy broth with your choice of beef or vegetables. Bubbling hot at the table.</p>
         <div class="ds-foot">
-          <div class="ds-price">$14</div>
+          <div class="ds-price">14$</div>
           <a href="menu.html#soups" class="ds-more" aria-label="See on menu">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </a>
@@ -918,11 +961,11 @@
         <div class="ds-photo">
           <img src="ins/Tteokbokki.PNG" alt="Tteokbokki" loading="lazy" decoding="async">
         </div>
-        <div class="ds-badge">Spicy</div>
+        <div class="ds-rating"><svg class="ds-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>8.5</span></div>
         <div class="ds-name">Tteokbokki</div>
         <p class="ds-desc">Chewy rice cakes in fiery gochujang — a Seoul street food staple. The heat is real. Mild available on request.</p>
         <div class="ds-foot">
-          <div class="ds-price">$12</div>
+          <div class="ds-price">12$</div>
           <a href="menu.html#starters" class="ds-more" aria-label="See on menu">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </a>
@@ -972,11 +1015,6 @@
         </div>
       </div>
       <button class="btn-see-team" type="button">See the team</button>
-      <div class="torn-bot" aria-hidden="true">
-        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,56 L0,27 L28,24 L55,30 L82,25 L108,29 L135,23 L162,30 L188,25 L215,29 L242,24 L268,30 L295,26 L322,31 L348,24 L375,29 L402,25 L428,30 L455,24 L482,29 L508,25 L535,31 L562,24 L588,29 L615,25 L642,30 L668,24 L695,29 L722,25 L748,31 L775,24 L802,29 L828,25 L855,30 L882,24 L908,29 L935,25 L962,31 L988,24 L1015,29 L1042,25 L1068,30 L1095,24 L1122,29 L1148,25 L1175,31 L1202,24 L1228,29 L1255,25 L1282,30 L1308,24 L1335,29 L1362,25 L1388,30 L1415,24 L1440,28 L1440,56 Z" fill="#1C0808"/>
-        </svg>
-      </div>
     </div>
   </section>
 
