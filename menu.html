@@ -38,10 +38,10 @@
 
   *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
   html { scroll-behavior:smooth }
-  body { background:var(--bg); color:var(--ink); font-family:var(--fb); font-size:16px; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; cursor:none; }
+  body { background:var(--bg); color:var(--ink); font-family:var(--fb); font-size:16px; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
   img { display:block; max-width:100%; height:auto }
   a { text-decoration:none; color:inherit }
-  button { cursor:none; border:none; background:none; font-family:inherit }
+  button { cursor:pointer; border:none; background:none; font-family:inherit }
 
   /* SKIP LINK */
   .skip-link {
@@ -66,10 +66,6 @@
 
   /* UTILITIES */
   .spb { position:fixed; top:0; left:0; height:2px; width:0%; background:var(--terra); z-index:9990; transition:width .05s linear; pointer-events:none; }
-  .c-dot { position:fixed; width:6px; height:6px; border-radius:50%; background:var(--terra); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); will-change:left,top; }
-  .c-ring { position:fixed; width:32px; height:32px; border-radius:50%; border:1.5px solid var(--terra); pointer-events:none; z-index:9997; transform:translate(-50%,-50%); opacity:.4; transition:width .4s var(--eout),height .4s var(--eout),opacity .3s,background .3s; will-change:left,top; }
-  .c-ring.hover { width:50px; height:50px; opacity:.16; background:var(--terra-s); }
-  @media(pointer:coarse) { .c-dot,.c-ring{display:none;} body,button{cursor:auto;} }
 
   .btt { position:fixed; bottom:32px; right:32px; z-index:900; width:44px; height:44px; border-radius:50%; background:var(--terra); color:var(--bg); display:flex; align-items:center; justify-content:center; box-shadow:var(--sh-t); opacity:0; pointer-events:none; transform:translateY(16px); transition:opacity .35s var(--eout),transform .35s var(--eout),background .2s; }
   .btt.show { opacity:1; pointer-events:auto; transform:translateY(0); }
@@ -232,7 +228,7 @@
   .ms-add {
     width:36px; height:36px; border-radius:50%; background:var(--terra); color:var(--bg);
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
-    cursor:none; transition:background .2s,transform .22s var(--espring); box-shadow:var(--sh-t);
+    cursor:pointer; transition:background .2s,transform .22s var(--espring); box-shadow:var(--sh-t);
   }
   .ms-add:hover { background:var(--terra-h); transform:scale(1.14) rotate(90deg); }
   .ms-add:active { transform:scale(.9); }
@@ -241,17 +237,20 @@
   @keyframes lineUp { to { opacity:1; transform:translateY(0); } }
 
   /* SERVICE SWITCH */
+  .menu-main { position:relative; padding-top:70px; }
+
   .service-switch {
     max-width:1320px; margin:0 auto; padding:30px 64px;
     display:flex; align-items:center; gap:32px;
     border-bottom:1px solid var(--border);
+    position:relative; z-index:1;
   }
   .svc-lbl { font-family:var(--fl); font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-muted); }
   .svc-btns { display:flex; align-items:center; gap:0; border:1px solid var(--border-dk); border-radius:2px; overflow:hidden; }
   .svc-btn {
     font-family:var(--fd); font-size:14px; font-weight:400; font-style:italic;
     color:var(--ink-mid); background:transparent;
-    padding:10px 26px; cursor:none; letter-spacing:-.01em;
+    padding:10px 26px; cursor:pointer; letter-spacing:-.01em;
     transition:background .2s,color .2s;
     border-right:1px solid var(--border-dk);
   }
@@ -272,13 +271,20 @@
   .menu-tabs-wrap { position:sticky; top:70px; z-index:400; background:rgba(245,238,228,.96); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
   .menu-tabs { max-width:1320px; margin:0 auto; padding:0 64px; display:flex; overflow-x:auto; scrollbar-width:none; }
   .menu-tabs::-webkit-scrollbar { display:none; }
-  .menu-tab { flex-shrink:0; padding:18px 28px; font-family:var(--fl); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); border-bottom:2px solid transparent; cursor:none; transition:color .2s var(--eout),border-color .2s; background:none; border-left:none; border-right:none; border-top:none; }
+  .menu-tab { flex-shrink:0; padding:18px 28px; font-family:var(--fl); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); border-bottom:2px solid transparent; cursor:pointer; transition:color .2s var(--eout),border-color .2s; background:none; border-left:none; border-right:none; border-top:none; }
   .menu-tab.active, .menu-tab:hover { color:var(--terra); border-bottom-color:var(--terra); }
 
   /* MENU BODY */
-  .menu-body { max-width:1320px; margin:0 auto; padding:96px 64px 160px; }
+  .menu-body { max-width:1320px; margin:0 auto; padding:96px 64px 160px; position:relative; z-index:1; }
 
-  .menu-section { margin-bottom:104px; }
+  .menu-row {
+    display:grid; grid-template-columns:1fr 1fr;
+    margin-bottom:96px;
+  }
+  .menu-row:last-child { margin-bottom:0; }
+  .menu-row > .menu-section:first-child { padding-right:56px; }
+  .menu-row > .menu-section:last-child { padding-left:56px; border-left:1px solid var(--border); }
+  .menu-section { margin-bottom:0; scroll-margin-top:140px; }
 
   /* Section header */
   .msec-hdr {
@@ -289,8 +295,8 @@
   }
   .msec-hdr.vis { opacity:1; transform:none; }
   .msec-title {
-    font-family:var(--fd); font-size:clamp(48px,6.5vw,76px);
-    font-weight:600; letter-spacing:-.04em; line-height:.9; color:var(--ink);
+    font-family:var(--fd); font-size:clamp(32px,3.4vw,46px);
+    font-weight:600; letter-spacing:-.035em; line-height:.94; color:var(--ink);
     text-wrap:balance;
   }
   .msec-count {
@@ -373,6 +379,8 @@
     .service-switch { padding:26px 40px; }
     .menu-tabs { padding:0 40px; }
     .menu-body { padding:72px 40px 128px; }
+    .menu-row > .menu-section:first-child { padding-right:40px; }
+    .menu-row > .menu-section:last-child { padding-left:40px; }
     footer { padding:64px 40px 40px; }
     .ft-top { grid-template-columns:1fr; gap:40px; }
   }
@@ -390,8 +398,12 @@
     .menu-tabs { padding:0 20px; }
     .menu-tab { padding:15px 18px; }
     .menu-body { padding:52px 20px 96px; }
+    .menu-row { grid-template-columns:1fr; margin-bottom:0; }
+    .menu-row > .menu-section:first-child,
+    .menu-row > .menu-section:last-child { padding-left:0; padding-right:0; border-left:none; }
+    .menu-section { margin-bottom:72px; }
     .menu-item { gap:20px; }
-    .msec-title { font-size:clamp(40px,9vw,58px); }
+    .msec-title { font-size:clamp(34px,8vw,48px); }
     footer { padding:56px 20px 32px; }
     .ft-bot { flex-direction:column; gap:14px; text-align:center; }
     .ft-legal { justify-content:center; }
@@ -402,8 +414,6 @@
 <body>
 
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="c-dot" id="cdot"></div>
-  <div class="c-ring" id="cring"></div>
   <div class="spb" id="spb"></div>
 
   <button class="btt" id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
@@ -420,109 +430,10 @@
     </ul>
   </nav>
 
-  <!-- MENU INTRO -->
-  <section class="menu-intro" id="main">
-    <div class="mi-left-col">
-      <div class="mi-eyebrow">
-        <div class="mi-ey-line"></div>
-        <span class="mi-ey-txt">Ottawa's Lowertown · 100% Halal</span>
-      </div>
-      <h1 class="mi-h1">
-        <span class="hl"><span>Fresh Korean</span></span>
-        <span class="hl"><span>food, made</span></span>
-        <span class="hl"><span><em>every day</em></span></span>
-      </h1>
-      <p class="mi-sub">
-        Home-style cooking brought from Seoul to Ottawa. Every dish made in-house from scratch, every single morning.
-      </p>
-      <div class="mi-cta">
-        <a href="#starters" class="btn-p" onclick="document.getElementById('starters').scrollIntoView({behavior:'smooth',block:'start'});return false;">Explore the menu</a>
-        <a href="index.html#hours" class="btn-s">Find us →</a>
-      </div>
-    </div>
-
-    <div class="mi-right-col" aria-hidden="true">
-      <div class="mi-blob-wrap">
-        <div class="mi-blob-ring"></div>
-        <div class="mi-food-blob">
-          <img src="ins/beef.PNG" alt="A signature Korean bowl at In's Kitchen" loading="eager">
-        </div>
-        <div class="mi-float-stat">
-          <div class="mi-stat-n">100%</div>
-          <div class="mi-stat-l">Halal certified</div>
-        </div>
-      </div>
-      <div class="mi-year" aria-hidden="true">2019</div>
-    </div>
-  </section>
-
-  <!-- SPOTLIGHT -->
-  <section class="menu-spotlight">
-    <div class="ms-hd">
-      <div class="ms-kicker">Top picks</div>
-      <div class="ms-title">The dishes they<br><em>come back for</em></div>
-    </div>
-    <div class="ms-cards" id="msCards">
-
-      <div class="ms-card">
-        <div class="ms-photo">
-          <img src="ins/Bulgogi Bowl.PNG" alt="Bulgogi Bowl" loading="lazy">
-        </div>
-        <div class="ms-rating">
-          <span class="ms-stars">★★★★★</span>
-          <span class="ms-score">4.9</span>
-        </div>
-        <div class="ms-name">Bulgogi Bowl</div>
-        <p class="ms-desc">Thinly sliced Triple A beef marinated overnight in soy, pear, and sesame. Served over steamed rice with rotating banchan.</p>
-        <div class="ms-foot">
-          <div class="ms-price">$16</div>
-          <button class="ms-add" aria-label="View Bulgogi Bowl on menu">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="ms-card">
-        <div class="ms-photo">
-          <img src="ins/SundubuJjigae.PNG" alt="Sundubu Jjigae" loading="lazy">
-        </div>
-        <div class="ms-rating">
-          <span class="ms-stars">★★★★★</span>
-          <span class="ms-score">4.8</span>
-        </div>
-        <div class="ms-name">Sundubu Jjigae</div>
-        <p class="ms-desc">Silken tofu stew in a deep, spicy broth with your choice of beef or vegetables. Served bubbling hot at the table.</p>
-        <div class="ms-foot">
-          <div class="ms-price">$14</div>
-          <button class="ms-add" aria-label="View Sundubu Jjigae on menu">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="ms-card">
-        <div class="ms-photo">
-          <img src="ins/Tteokbokki.PNG" alt="Tteokbokki" loading="lazy">
-        </div>
-        <div class="ms-rating">
-          <span class="ms-stars">★★★★☆</span>
-          <span class="ms-score">4.6</span>
-        </div>
-        <div class="ms-name">Tteokbokki</div>
-        <p class="ms-desc">Chewy rice cakes in fiery gochujang — a Seoul street food staple. The heat is real. Mild available on request.</p>
-        <div class="ms-foot">
-          <div class="ms-price">$12</div>
-          <button class="ms-add" aria-label="View Tteokbokki on menu">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </section>
+  <main class="menu-main">
 
   <!-- SERVICE SWITCH -->
-  <div class="service-switch">
+  <div class="service-switch" id="main">
     <span class="svc-lbl">Serving</span>
     <div class="svc-btns">
       <button class="svc-btn active" id="btn-lunch">Lunch</button>
@@ -551,6 +462,8 @@
   <!-- MENU CONTENT -->
   <div class="menu-body">
 
+    <!-- ROW 1: STARTERS · SOUPS -->
+    <div class="menu-row">
     <!-- STARTERS -->
     <section class="menu-section" id="starters">
       <div class="msec-hdr">
@@ -629,6 +542,10 @@
       </div>
     </section>
 
+    </div>
+
+    <!-- ROW 2: RICE BOWLS · NOODLES -->
+    <div class="menu-row">
     <!-- RICE BOWLS -->
     <section class="menu-section" id="rice">
       <div class="msec-hdr">
@@ -693,6 +610,10 @@
       </div>
     </section>
 
+    </div>
+
+    <!-- ROW 3: SIDES · DRINKS -->
+    <div class="menu-row">
     <!-- SIDES -->
     <section class="menu-section" id="sides">
       <div class="msec-hdr">
@@ -751,8 +672,11 @@
         </div>
       </div>
     </section>
+    </div>
 
   </div>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -797,22 +721,6 @@
   </footer>
 
   <script>
-  /* CURSOR */
-  const cdot = document.getElementById('cdot');
-  const cring = document.getElementById('cring');
-  let mx = window.innerWidth/2, my = window.innerHeight/2, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, {passive:true});
-  (function tick() {
-    cdot.style.left = mx+'px'; cdot.style.top = my+'px';
-    rx += (mx-rx)*.12; ry += (my-ry)*.12;
-    cring.style.left = rx+'px'; cring.style.top = ry+'px';
-    requestAnimationFrame(tick);
-  })();
-  document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', () => cring.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cring.classList.remove('hover'));
-  });
-
   /* SCROLL */
   const spb = document.getElementById('spb');
   const btt = document.getElementById('btt');
@@ -824,23 +732,11 @@
     nav.classList.toggle('scrolled', y > 20);
   }, {passive:true});
 
-  /* SECTION HEADER + SPOTLIGHT HEADER REVEALS */
+  /* SECTION HEADER REVEALS */
   const hdrObs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); hdrObs.unobserve(e.target); } });
   }, {threshold:.15});
-  document.querySelectorAll('.msec-hdr,.ms-hd').forEach(el => hdrObs.observe(el));
-
-  /* SPOTLIGHT CARD STAGGER */
-  const spotObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.ms-card').forEach((c,i) => setTimeout(() => c.classList.add('vis'), i*120));
-        spotObs.unobserve(e.target);
-      }
-    });
-  }, {threshold:.1});
-  const msCards = document.getElementById('msCards');
-  if (msCards) spotObs.observe(msCards);
+  document.querySelectorAll('.msec-hdr').forEach(el => hdrObs.observe(el));
 
   /* STAGGERED MENU ITEM REVEALS */
   const secObs = new IntersectionObserver(entries => {
