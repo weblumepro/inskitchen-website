@@ -37,7 +37,7 @@
   }
 
   *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
-  html { scroll-behavior:smooth }
+  html { scroll-behavior:smooth; overflow-x:clip }
   body { background:var(--bg); color:var(--ink); font-family:var(--fb); font-size:16px; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
   img { display:block; max-width:100%; height:auto }
   a { text-decoration:none; color:inherit }
@@ -87,6 +87,27 @@
   .nav-pill::after { display:none!important; }
   .nav-pill:hover { background:var(--terra-h); transform:translateY(-1px); }
   .nav-pill:active { transform:scale(.97) translateY(0)!important; }
+
+  /* MOBILE NAV (hamburger) */
+  .nav-burger { display:none; }
+  .mobile-menu {
+    display:none;
+    position:fixed; top:70px; left:0; right:0; z-index:790;
+    background:rgba(250,250,248,.98); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    border-bottom:1px solid var(--border);
+    flex-direction:column; padding:6px 0;
+    transform:translateY(-12px); opacity:0; pointer-events:none;
+    transition:opacity .25s var(--eout), transform .25s var(--eout);
+    box-shadow:0 14px 30px rgba(14,12,11,.08);
+  }
+  .mobile-menu.open { transform:translateY(0); opacity:1; pointer-events:auto; }
+  .mobile-menu a {
+    font-family:var(--fl); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-mid); padding:16px 28px; border-bottom:1px solid var(--border); transition:color .2s, background .2s;
+  }
+  .mobile-menu a:last-child { border-bottom:none; }
+  .mobile-menu a.active { color:var(--terra); }
+  .mobile-menu a:active { background:var(--terra-s); }
 
   /* ── MENU INTRO ── */
   .menu-intro {
@@ -387,6 +408,15 @@
   @media(max-width:768px) {
     .nav { padding:0 20px; }
     .nav-links { display:none; }
+    .nav-burger {
+      display:flex; flex-direction:column; justify-content:center; gap:5px;
+      width:40px; height:40px; padding:9px 7px; cursor:pointer; background:none; border:none;
+    }
+    .nav-burger span { display:block; height:2px; width:100%; background:var(--ink); border-radius:2px; transition:transform .3s var(--eout), opacity .2s; }
+    .nav-burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2){ opacity:0; }
+    .nav-burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:flex; }
     .menu-intro { grid-template-columns:1fr; min-height:auto; }
     .mi-right-col { display:none; }
     .mi-left-col { padding:48px 20px 64px; }
@@ -428,7 +458,17 @@
       <li><a href="index.html#hours">Find Us</a></li>
       <li><a href="https://www.ubereats.com/ca/store/ins-kitchen/dgi07fdFXYCxyZeVWNWjZg" target="_blank" rel="noopener" class="nav-pill">Order Now ↗</a></li>
     </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="menu.html" class="active">Menu</a>
+    <a href="index.html#hours">Find Us</a>
+    <a href="https://www.ubereats.com/ca/store/ins-kitchen/dgi07fdFXYCxyZeVWNWjZg" target="_blank" rel="noopener">Order Now ↗</a>
+  </div>
 
   <main class="menu-main">
 
@@ -721,6 +761,22 @@
   </footer>
 
   <script>
+  /* MOBILE NAV (hamburger) */
+  (function(){
+    const burger = document.getElementById('navBurger');
+    const menu   = document.getElementById('mobileMenu');
+    if (!burger || !menu) return;
+    const setOpen = open => {
+      menu.classList.toggle('open', open);
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      menu.setAttribute('aria-hidden', !open);
+    };
+    burger.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  })();
+
   /* SCROLL */
   const spb = document.getElementById('spb');
   const btt = document.getElementById('btt');
